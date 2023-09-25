@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/09/22 15:58:20 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/09/23 19:42:39 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,51 +24,23 @@
 
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -I/usr/local/opt/readline/include
-LIBFT_PATH = libft/
+CFLAGS = -Wall -Wextra -Werror -g3 
+LIBFT_PATH = include/libft/
 LIBFT = $(LIBFT_PATH)libft.a
 
 SRC = ./src/main.c \
-	./src/check_str_synthax.c \
-	./src/parsing.c \
-	./src/execute.c \
-	./src/execute_core.c \
-	./src/arg_split.c \
-	./src/free.c \
-	./src/quote.c \
-	./src/check_spe_character.c \
-	./src/exit_synthax_error.c \
-	./src/token.c \
-	./src/wait_for_pids.c \
-	./src/create_t_env.c \
-	./src/is_in_quote.c \
-	./src/handle_dollar.c \
-	./src/handle_dollar_utils.c \
-	./src/join_quote.c \
-	./src/check_tok.c \
-	./src/get_cmd.c \
-	./src/close.c \
-	./src/prepare_fd.c \
-	./src/execute_core_utils.c \
-	./src/here_doc.c \
-	./src/handle_redirin.c \
-	./src/a_exit.c \
-	./src/a_echo.c \
-	./src/a_env.c \
-	./src/a_pwd.c \
-	./src/a_cd.c \
-	./src/a_unset.c \
-	./src/create_var.c \
-	./src/a_export.c \
-	./src/a_export_utils.c \
-	./src/a_export_utils_bis.c \
-	./src/signal.c \
+	./src/Lexer/lexer_lists_utils.c \
+	./src/Lexer/lexer_word.c \
+	./src/Lexer/lexer.c \
+	./src/utils.c \
+	./src/Parsing/Parser.c \
+	./src/Parsing/Parsing_utils.c
 
 OBJ = $(SRC:.c=.o)
 
 $(NAME) : $(OBJ)
 	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline -I/usr/local/opt/readline/include
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
 
 
 all : $(NAME)

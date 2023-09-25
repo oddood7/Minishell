@@ -14,7 +14,7 @@
 
 int    add_w_dig(char *str, int i, int j)
 {
-    while (str[i + j] && !is_operateur(str[i + j]))
+    while (str[i + j] && !is_ope(str[i + j]))
     {
         if (str[i + j] == 34)
         {
@@ -58,7 +58,7 @@ int    get_to_quote(char *str, int i)
     int    j;
 
     j = 0;
-    while (str[i + j] && !is_operateur(str[i + j]) && str[i + j] != ' ')
+    while (str[i + j] && !is_ope(str[i + j]) && str[i + j] != ' ')
     {
         if (str[i + j] == 34)
         {
@@ -82,7 +82,7 @@ int    different_get_to_quote(char *str, int i, int j)
 {
     if (!str[i])
         return (0);
-    while (((i + j) < (int)ft_strlen(str)) && !is_operateur(s[i + j])
+    while (((i + j) < (int)ft_strlen(str)) && !is_ope(str[i + j])
         && str[i + j] != ' ')
     {
         if (str[i + j] == 34 && str[i + j + 1] != 34)

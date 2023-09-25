@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/22 21:50:05 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:21:27 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_lexer	*new_lexer(t_main *mini, char *str, int operateur)
 	t_lexer *new;
 	static int i;
 
+	(void)mini;
 	new = malloc(sizeof(t_lexer));
 	if (!new)
 		return (NULL); //fonction erreur malloc;
@@ -47,7 +48,7 @@ int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 	int j;
 	char *tmp;
 
-	if (count_double_quote(str, i) > 2 || count_simple_quote(str, i) > 2)
+	if (count_double_quote(str, i) > 2 || count_single_quote(str, i) > 2)
 		j = get_to_quote(str, i);
 	else
 		j = different_get_to_quote(str, i, 0);
@@ -64,6 +65,51 @@ int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 	return (j);
 }
 
+t_operateurs	is_ope(int c)
+{
+	int i;
+	static int	tab_ope[3][2] = {
+	{'|', PIPE},
+	{'>', RIGHT},
+	{'<', LEFT},
+	};
+
+	i = 0;
+	while (i < 3)
+	{
+		if (tab_ope[i][0] == c)
+			return (tab_ope[i][1]);
+		i++;
+	}
+	return (0);
+}
+
+int	add_operateur(t_main *mini, char *str, int i, t_lexer **list)
+{
+	t_operateurs ope;
+
+	ope = is_ope(str[i]);
+	if (ope == RIGHT && is_ope(str[i + 1]) == RIGHT)
+	{
+		if(!ft_listadd(mini, NULL, RIGHT_RIGHT, list))
+			return (-1);
+		return (2);
+	}
+	else if (ope == LEFT && is_ope(str[i + 1]) == LEFT)
+	{
+		if (!ft_listadd(mini, NULL, LEFT_LEFT, list))
+			return (-1);
+		return (2);
+	}
+	else if (ope)
+	{
+		if (!ft_listadd(mini, NULL, ope, list))
+			return (-1);
+		return (1);
+	}
+	return (0);
+}
+
 int	do_lexer(t_main *mini)
 {
 	long unsigned int 	i;
@@ -77,14 +123,14 @@ int	do_lexer(t_main *mini)
 			i++;
 		if (mini->input_line[i] == '\0')
 			break ;
-		if (is_ope(data->input_line[i]))
+		if (is_ope(mini->input_line[i]))
 			j = add_operateur(mini, mini->input_line, i, &mini->lexer_list);
 		else
-			j = word_add_list(data, data->input_line, i, &data->lexer_list);
-		if (j < 0);
+			j = word_add_list(mini, mini->input_line, i, &mini->lexer_list);
+		if (j < 0)
 			return (0);
 		i += j;
-		if (i >= ft_strlen(data->input_line))
+		if (i >= ft_strlen(mini->input_line))
 			break ;
 	}
 	return (1);
