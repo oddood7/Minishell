@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 14:08:58 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:27:05 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stddef.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/uio.h>
@@ -91,7 +92,7 @@ typedef struct s_parsermain
 
 int init_minishell(t_main *mini, char *str);
 void main_loop(t_main *minishell);
-int main(int ac, char **av);
+int main(int ac, char **av, char **env);
 
 /*****LEXER*****/
 
@@ -112,9 +113,16 @@ void	ft_delfirst(t_lexer **lst);
 void	ft_lstaddback(t_lexer **lst, t_lexer *new);
 t_lexer *ft_delone(t_lexer **lst);
 
-/****UTILS*****/
+/****UTILS&ERRORS*****/
 
 int	ft_whitespace(char c);
+void ft_free_tab(char **tab);
+void    free_lexer(t_lexer *list);
+void	erreur_mall(t_main *mini);
+
+/*****ENV*****/
+
+void	do_env(t_main *mini, char **env);
 
 /*****PARSING*****/
 
@@ -126,3 +134,9 @@ int	count_lex(t_lexer *list);
 t_parsermain	init_parser_data(t_lexer *list, t_main *mini);
 void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data);
 void	redirections(t_main *mini, t_parsermain *data);
+
+/*****BUILTINS*****/
+
+void env_pwd_exec(t_main *mini, t_parsing *parse);
+int	env_builtin(t_main *mini);
+int		pwd_builtin(t_main *mini, t_parsing *parse);

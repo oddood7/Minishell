@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/09/25 14:08:04 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/09/25 19:29:24 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,14 @@ SRC = ./src/main.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
 	./src/Lexer/lexer.c \
-	./src/utils.c \
+	./src/Error_and_Utils/utils.c \
+	./src/Error_and_Utils/env.c \
+	./src/Error_and_Utils/errors.c \
 	./src/Parsing/Parser.c \
 	./src/Parsing/Parsing_redirections.c \
-	./src/Parsing/Parsing_utils.c 
+	./src/Parsing/Parsing_utils.c \
+	./src/Builtins/builtin_env.c \
+	./src/Builtins/exec_builtins.c
 
 OBJ = $(SRC:.c=.o)
 
