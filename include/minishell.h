@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 13:44:20 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:08:58 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ typedef struct s_parsing
     struct s_parsing   *prev;
 }                        t_parsing;
 
-typedef struct s_parser_data
+typedef struct s_parsermain
 {
     t_lexer                *lexer_list;
     t_lexer                *redirection;
     int                    num_redir;
     struct s_main        *data;
-}                        t_parser_data;
+}                        t_parsermain;
 
 /*****MAIN*****/
 
@@ -119,8 +119,10 @@ int	ft_whitespace(char c);
 /*****PARSING*****/
 
 int parsing(t_main *mini);
-t_parsing	*init_cmd(t_main *mini, t_parser_data *data, int n_word);
+t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word);
 t_parsing *parse_new(t_main *mini, char **tab, int redir, t_lexer *red);
 void	parse_addback(t_parsing **lst, t_parsing *new);
 int	count_lex(t_lexer *list);
-t_parser_data	init_parser_data(t_lexer *list, t_main *mini);
+t_parsermain	init_parser_data(t_lexer *list, t_main *mini);
+void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data);
+void	redirections(t_main *mini, t_parsermain *data);

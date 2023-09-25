@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:26:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 13:40:00 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:07:17 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	count_lex(t_lexer *list)
 	return (i);
 }
 
-t_parser_data	init_parser_data(t_lexer *list, t_main *mini)
+t_parsermain	init_parser_data(t_lexer *list, t_main *mini)
 {
-	t_parser_data data;
+	t_parsermain data;
 
 	data.lexer_list = list;
 	data.redirection = NULL;

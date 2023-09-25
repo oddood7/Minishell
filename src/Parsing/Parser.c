@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 13:39:17 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:07:01 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_parsing *parse_new(t_main *mini, char **tab, int redir, t_lexer *red)
 	return (new);
 }
 
-t_parsing	*init_cmd(t_main *mini, t_parser_data *data, int n_word)
+t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 {
 	char **tab;
 	t_lexer *ongoing;
@@ -37,6 +37,7 @@ t_parsing	*init_cmd(t_main *mini, t_parser_data *data, int n_word)
 	int i;
 
 	i = 0;
+	redirections(mini, data);
 	n_word = count_lex(data->lexer_list);
 	tab = malloc(sizeof(char *) * (n_word + 1));
 	if (!tab)
@@ -61,7 +62,7 @@ t_parsing	*init_cmd(t_main *mini, t_parser_data *data, int n_word)
 int parsing(t_main *mini)
 {
 	t_parsing *node;
-	t_parser_data data;
+	t_parsermain data;
 
 	while (mini->lexer_list)
 	{

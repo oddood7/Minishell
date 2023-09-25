@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/09/23 19:42:39 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/09/25 14:08:04 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC = ./src/main.c \
 	./src/Lexer/lexer.c \
 	./src/utils.c \
 	./src/Parsing/Parser.c \
-	./src/Parsing/Parsing_utils.c
+	./src/Parsing/Parsing_redirections.c \
+	./src/Parsing/Parsing_utils.c 
 
 OBJ = $(SRC:.c=.o)
 
