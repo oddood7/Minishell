@@ -6,17 +6,12 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 21:23:02 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/23 18:48:07 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:37:41 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_main	*init_env(char **envp)
-{
-	t_main *env;
-	
-}
 int init_minishell(t_main *mini, char *str)
 {
 	mini->input_line = malloc(sizeof(char) * (ft_strlen(str) + 1));

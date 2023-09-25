@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/23 19:42:02 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:44:20 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_main
     char                *input_line;
     int                    pipe_count;
     t_lexer                *lexer_list;
-    struct s_cmd_parse    *cmd_parse;
+    struct s_parsing    *cmd_parse;
     char                	**env;
     char                **env_exp;
     char                **hidetab;
@@ -70,13 +70,13 @@ typedef struct s_main
 typedef struct s_parsing
 {
     char                **cmd_tab;
-    int                    (*builtin)(t_main *, struct s_cmd_parse *);
+    int                    (*builtin)(t_main *, struct s_parsing *);
     int                    num_redirection;
     t_lexer                *redirection;
     int                    doubl;
     int                    single;
-    struct s_cmd_parse    *next;
-    struct s_cmd_parse    *prev;
+    struct s_parsing    *next;
+    struct s_parsing   *prev;
 }                        t_parsing;
 
 typedef struct s_parser_data
@@ -123,3 +123,4 @@ t_parsing	*init_cmd(t_main *mini, t_parser_data *data, int n_word);
 t_parsing *parse_new(t_main *mini, char **tab, int redir, t_lexer *red);
 void	parse_addback(t_parsing **lst, t_parsing *new);
 int	count_lex(t_lexer *list);
+t_parser_data	init_parser_data(t_lexer *list, t_main *mini);
