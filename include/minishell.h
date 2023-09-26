@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 00:52:56 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/27 01:15:19 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,9 @@ t_lexer *ft_delone(t_lexer **lst);
 int	ft_whitespace(char c);
 void ft_free_tab(char **tab);
 void   ft_free_lexer(t_lexer *list);
-void	erreur_mall(t_main *mini);
+void    free_cmd_tab(t_main *mini);
+void    free_cmd_lst(t_parsing *lst);
+void	err_mall(t_main *mini);
 int		directory_err(t_main *mini, char *str, int ok);
 int		handle_error(t_main *mini, char *str, int rv);
 int		is_rchar(char c, char v);

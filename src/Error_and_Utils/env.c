@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:37:01 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 19:06:04 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/27 01:22:31 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	do_env(t_main *mini, char **env)
 		i++;
 	mini->env = malloc(sizeof(char *) * i + 1);
 	if (!mini->env)
-		return (erreur_mall(mini));
+		return (err_mall(mini));
 	i = 0;
 	while (env[i])
 	{

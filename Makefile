@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/09/27 00:49:24 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/09/27 01:14:45 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = ./src/main.c \
 	./src/Error_and_Utils/utils.c \
 	./src/Error_and_Utils/env.c \
 	./src/Error_and_Utils/errors.c \
+	./src/Error_and_Utils/frees.c \
 	./src/Parsing/Parser.c \
 	./src/Parsing/Parsing_redirections.c \
 	./src/Parsing/Parsing_utils.c \

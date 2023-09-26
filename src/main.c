@@ -6,17 +6,19 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 21:23:02 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 00:53:33 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/27 01:23:53 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// a revoir clairement avec l'exec et tout
+
 int init_minishell(t_main *mini, char *str)
 {
 	mini->input_line = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (!mini->input_line)
-		return (0);
+		return (err_mall(mini));
 	do_lexer(mini);
 	if (!do_lexer(mini))
 		printf("failed to lex");
@@ -43,8 +45,8 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	if (ac != 1)
 		return (printf("more than one argument"));
-	do_env(&minishell, env);
-	//parsing(&minishell); seg_fault avec, revoir le probleme
+	/* do_env(&minishell, env);
+	parsing(&minishell); */ 
 	main_loop(&minishell);
 	return (0);
 }
