@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 19:35:17 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/27 00:43:32 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int parsing(t_main *mini)
 	t_parsing *node;
 	t_parsermain data;
 
+	if (operateur_handle(mini) || check_all(mini))
+		return (0);
 	while (mini->lexer_list)
 	{
 		data = init_parser_data(mini->lexer_list, mini);

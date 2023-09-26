@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 21:23:02 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 19:51:30 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/27 00:53:33 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int main(int ac, char **av, char **env)
 	if (ac != 1)
 		return (printf("more than one argument"));
 	do_env(&minishell, env);
-	parsing(&minishell);
+	//parsing(&minishell); seg_fault avec, revoir le probleme
 	main_loop(&minishell);
 	return (0);
 }

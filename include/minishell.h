@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 19:27:05 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/27 00:52:56 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <unistd.h>
 # include <dirent.h>
 
+
 typedef enum s_operateurs
 {
     DEFAULT,
@@ -35,12 +36,12 @@ typedef enum s_operateurs
     RIGHT_RIGHT,
     LEFT,
     LEFT_LEFT,
-}                        t_operateurs;
+}				t_operateurs;
 
 typedef struct s_lexer
 {
     char                *str;
-    t_operateurs        operateur;
+    t_operateurs		operateur;
     int                    i;
     struct s_lexer        *next;
     struct s_lexer        *prev;
@@ -117,8 +118,12 @@ t_lexer *ft_delone(t_lexer **lst);
 
 int	ft_whitespace(char c);
 void ft_free_tab(char **tab);
-void    free_lexer(t_lexer *list);
+void   ft_free_lexer(t_lexer *list);
 void	erreur_mall(t_main *mini);
+int		directory_err(t_main *mini, char *str, int ok);
+int		handle_error(t_main *mini, char *str, int rv);
+int		is_rchar(char c, char v);
+int 	ft_size_list(t_lexer *list);
 
 /*****ENV*****/
 
@@ -134,6 +139,24 @@ int	count_lex(t_lexer *list);
 t_parsermain	init_parser_data(t_lexer *list, t_main *mini);
 void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data);
 void	redirections(t_main *mini, t_parsermain *data);
+int		left_check(t_main *mini, t_lexer *ope);
+int    right_check(t_main *mini, t_lexer *ope);
+int		pipe_check(t_main *mini, t_lexer *ope);
+int    left2_check(t_main *data, t_lexer *ope);
+int    right2_check(t_main *data, t_lexer *ope);
+int		single_handle(t_main *mini, t_lexer *ongoing);
+int		double_handle(t_main *mini, t_lexer *ongoing);
+int		operateur_handle(t_main *mini);
+int 	weird_check(t_main *mini, char *str);
+int 	check_all(t_main *mini);
+int		err_syn(t_main *mini, char *str);
+int		two_pipes(t_main *mini, t_lexer *ongoing);
+int		slash_manage(t_main *mini, char *str);
+int		string_syn(t_main *mini, char *str);
+int		string_syn_plus(t_main *mini, char *str, int i);
+int    	string_syn2(t_main *mini, t_lexer *ongoing);
+int    syntax_check(t_main *mini, int size);
+
 
 /*****BUILTINS*****/
 
