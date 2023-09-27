@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 21:23:02 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 01:23:53 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:54:04 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int init_minishell(t_main *mini, char *str)
 {
 	mini->input_line = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (!mini->input_line)
-		return (err_mall(mini));
+		err_mall(mini);
 	do_lexer(mini);
 	if (!do_lexer(mini))
 		printf("failed to lex");
