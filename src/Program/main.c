@@ -6,11 +6,11 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 21:23:02 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/29 18:04:32 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/29 23:03:02 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 // a revoir clairement avec l'exec et tout
 

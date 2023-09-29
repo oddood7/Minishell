@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/09/29 18:03:47 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/09/29 23:09:35 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CFLAGS = -Wall -Wextra -Werror -g3
 LIBFT_PATH = include/libft/
 LIBFT = $(LIBFT_PATH)libft.a
 
-SRC = ./src/main.c \
+SRC = ./src/Program/main.c \
+	./src/Program/env.c \
+	./src/Program/utils_program.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
 	./src/Lexer/lexer.c \

@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/29 18:02:59 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/29 23:08:44 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ typedef struct s_lexer
     struct s_lexer        *next;
     struct s_lexer        *prev;
 }                        t_lexer;
+
+typedef	struct s_list
+{
+	char	*var;
+	struct s_list	*next;
+}					t_list;
 
 typedef struct s_main
 {
@@ -129,7 +135,11 @@ int 	ft_size_list(t_lexer *list);
 
 /*****ENV*****/
 
-void	do_env(t_main *mini, char **env);
+t_list	*get_env_list(char **env);
+void get_env_tab(t_list *env, t_main *mini);
+int    dup_env(t_main *mini, char *tmp, int i);
+void	get_env_export(t_main *mini);
+void	env_export2(t_main *mini, char *add);
 
 /*****PARSING*****/
 
