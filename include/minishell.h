@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 01:15:19 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/29 18:02:59 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,3 +165,8 @@ int    syntax_check(t_main *mini, int size);
 void env_pwd_exec(t_main *mini, t_parsing *parse);
 int	env_builtin(t_main *mini);
 int		pwd_builtin(t_main *mini, t_parsing *parse);
+int	n_check(char *str);
+void	print_echo(char **tab, int j);
+int	echo_builtin(t_main *mini, t_parsing *parse);
+int	exit_builtin(t_main *mini, t_parsing *parse);
+int	stop_arguments(char **tab, int i);

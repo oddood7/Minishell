@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 21:23:02 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 13:54:04 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/29 18:04:32 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ int init_minishell(t_main *mini, char *str)
 	if (!mini->input_line)
 		err_mall(mini);
 	do_lexer(mini);
+	parsing(mini);
 	if (!do_lexer(mini))
 		printf("failed to lex");
+	/* if (!parsing)
+		printf("parsing failed"); */
 	return (0);
 }
 
@@ -34,6 +37,7 @@ void main_loop(t_main *minishell)
 		if (buff)
 			add_history(buff);
 		init_minishell(minishell, buff);
+		
 		free (buff);
 	}
 	clear_history();

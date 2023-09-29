@@ -6,13 +6,12 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 01:24:26 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/09/29 18:01:59 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-//pourquoi ca marche pour ryan de return un void ? A revoir, marche pas;
 void	err_mall(t_main *mini)
 {
 	ft_free_tab(mini->env);
