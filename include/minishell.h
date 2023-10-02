@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/02 19:11:40 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/03 00:14:18 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,16 @@ int		string_syn(t_main *mini, char *str);
 int		string_syn_plus(t_main *mini, char *str, int i);
 int    	string_syn2(t_main *mini, t_lexer *ongoing);
 int    syntax_check(t_main *mini, int size);
+char    *malloc_space(t_main *mini, t_parsing *node, int i);
+int    count_quotes(char *str, int quote);
+char    *check_4_strim(t_main *mini, t_parsing *node, int i, int quote);
+int    rm_quote(t_main *mini, t_parsing *node, int i, int quote);
+int    quotes(t_main *mini, t_parsing *node, int i);
+int    check_set(char c, int quote);
+char    *ft_trim(t_main *mini, char const *s1, int quote);
+char    *cpquote(t_main *mini, char *s, int j, int quote);
+char    *rm_quote_redir(t_main *mini, char *s, int quote, int j);
+void    check_quote_redir(t_main *mini, t_lexer *node);
 
 
 /*****BUILTINS*****/

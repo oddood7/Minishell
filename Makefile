@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/09/29 23:09:35 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/03 00:15:57 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ LIBFT = $(LIBFT_PATH)libft.a
 
 SRC = ./src/Program/main.c \
 	./src/Program/env.c \
+	./src/Program/Signal.c \
 	./src/Program/utils_program.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
@@ -33,8 +34,9 @@ SRC = ./src/Program/main.c \
 	./src/Parsing/Operateurs_Utils.c \
 	./src/Parsing/Syntax_utils.c \
 	./src/Parsing/Syntax.c \
+	./src/Parsing/Quote_utils.c \
+	./src/Parsing/Quote.c \
 	./src/Builtins/builtin_env.c \
-	./src/Builtins/exec_builtins.c \
 	./src/Builtins/builtin_echo.c \
 	./src/Builtins/builtin_exit.c
 
