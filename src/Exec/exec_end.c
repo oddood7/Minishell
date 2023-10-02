@@ -52,10 +52,9 @@ void	built_in_free(t_main *mini)
 	free_tab(mini->cmd_paths);
 	free_tab(mini->env);
 	free_tab(mini->env_exp);
-	free_tab(mini->hidetab);
 	if (mini->here_doc)
 		free(mini->here_doc);
-	reset_stuff(mini);
+	resets(mini);
 }
 
 int	close_error(int in, int out)
