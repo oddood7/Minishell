@@ -16,7 +16,7 @@ void	free_process(t_main *mini)
 		free(mini->here_doc);
 	}
 	if (mini->cmd_paths)
-		free_tab(mini->cmd_paths);
+		ft_free_tab(mini->cmd_paths);
 }
 
 void	wait_exec(t_main *mini)
@@ -49,9 +49,9 @@ void	exit_error_redir(t_main *mini, int fd[2])
 
 void	built_in_free(t_main *mini)
 {
-	free_tab(mini->cmd_paths);
-	free_tab(mini->env);
-	free_tab(mini->env_exp);
+	ft_free_tab(mini->cmd_paths);
+	ft_free_tab(mini->env);
+	ft_free_tab(mini->env_exp);
 	if (mini->here_doc)
 		free(mini->here_doc);
 	resets(mini);

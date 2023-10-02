@@ -7,11 +7,10 @@ void	no_command(t_main *mini, t_parsing *node)
 	i = 0;
 	if (!node->redirection)
 		print_no_command(mini, node->cmd_tab[0], 0);
-	free_tab(mini->cmd_paths);
-	free_tab(mini->env);
-	free_tab(mini->env_exp);
-	free_tab(mini->hidetab);
-	reset_stuff(mini);
+	ft_free_tab(mini->cmd_paths);
+	ft_free_tab(mini->env);
+	ft_free_tab(mini->env_exp);
+	resets(mini);
 	while (i < mini->hd_count)
 	{
 		if (mini->here_doc[i].fd[0] > -1)
@@ -85,9 +84,9 @@ void	ft_execve(t_main *mini, t_parsing *node, char *cmd)
 		no_command(mini, node);
 	signal(SIGQUIT, SIG_DFL);
 	execve(cmd, node->cmd_tab, mini->env);
-	free_tab(mini->cmd_paths);
-	free_tab(mini->env);
-	free_tab(mini->env_exp);
-	reset_stuff(mini);
+	ft_free_tab(mini->cmd_paths);
+	ft_free_tab(mini->env);
+	ft_free_tab(mini->env_exp);
+	resets(mini);
 	exit(1);
 }

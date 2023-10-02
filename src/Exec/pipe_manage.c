@@ -100,7 +100,7 @@ void	execute_cmd(t_main *mini)
 	pipe_init(mini, node);
 	if (here_doc_init(mini, node, 0) == 42)
 	{
-		free_tab(mini->cmd_paths);
+		ft_free_tab(mini->cmd_paths);
 		free(mini->here_doc);
 		mini->return_value = 130;
 		return ;
