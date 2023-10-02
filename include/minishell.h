@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/29 23:08:44 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:11:40 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
 # include <unistd.h>
 # include <dirent.h>
 
+
+typedef struct s_here_doc
+{
+	int fd[2];
+	int pos;
+}				t_here_doc;
 
 typedef enum s_operateurs
 {
@@ -67,6 +73,7 @@ typedef struct s_main
     int                    return_value;
     int                    hd_count;
     int                    hd_pos;
+	struct s_here_doc		*here_doc;
     char                **tab_input_blank;
     int                    *pipe_fd;
     char                *path;
@@ -80,7 +87,10 @@ typedef struct s_parsing
     char                **cmd_tab;
     int                    (*builtin)(t_main *, struct s_parsing *);
     int                    num_redirection;
+	char				*hd_file_name;
     t_lexer                *redirection;
+	int						hd_check;
+	int						hdc;
     int                    doubl;
     int                    single;
     struct s_parsing    *next;

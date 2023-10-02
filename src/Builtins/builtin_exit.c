@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:49:41 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/29 18:03:34 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:09:58 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	stop_arguments(char **tab, int i)
 	return (ft_atoi(tab[1]));
 }
 
-int	exit_builtin(t_main *mini, t_parsing *parse)
+int	built_exit(t_main *mini, t_parsing *parse)
 {
 	int j;
 
@@ -63,6 +63,6 @@ int	exit_builtin(t_main *mini, t_parsing *parse)
 			mini->return_value = j;
 	}
 	resets(mini);
-	free_end(mini); // a revoir
+	free_kill(mini);
 	exit (mini->return_value);
 }

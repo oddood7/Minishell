@@ -6,13 +6,13 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:14:51 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/25 19:41:36 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:07:15 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	env_builtin(t_main *mini)
+int	built_env(t_main *mini)
 {
 	int i;
 
@@ -23,7 +23,7 @@ int	env_builtin(t_main *mini)
 	return (0);
 }
 
-int		pwd_builtin(t_main *mini, t_parsing *parse)
+int		built_pwd(t_main *mini, t_parsing *parse)
 {
 	char *cwd;
 

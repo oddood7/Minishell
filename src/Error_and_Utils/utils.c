@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 14:37:14 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 01:10:49 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:09:46 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,12 @@ void    resets(t_main *mini)
     }
     mini->syntaxe_check = 0;
     mini->cmd_parse = NULL;
+}
+
+void    free_kill(t_main *mini)
+{
+    free_tab(mini->env);
+    mini->env = NULL;
+    free_tab(mini->env_exp);
+    mini->env_exp = NULL;
 }

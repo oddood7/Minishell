@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/29 18:01:59 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:10:27 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	err_mall(t_main *mini)
 {
-	ft_free_tab(mini->env);
 	resets(mini);
+	free_kill(mini);
 	exit (1);
 }
 

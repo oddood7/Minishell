@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:31:36 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/30 16:51:49 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:07:05 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_echo(char **tab, int j)
 	return ;
 }
 
-int	echo_builtin(t_main *mini, t_parsing *parse)
+int	built_echo(t_main *mini, t_parsing *parse)
 {
 	int i;
 
