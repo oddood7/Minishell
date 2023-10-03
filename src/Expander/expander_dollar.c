@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_dollar.c                                    :+:      :+:    :+:   */
+/*   expander_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:03:10 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/01 22:29:22 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:32:41 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* #include "../../include/minishell.h"
+#include "../../include/minishell.h"
 
 int	expander_doll(t_main *mini, t_parsing *node, int i, int j)
 {
@@ -111,4 +111,4 @@ void    expanding(t_main *mini, t_parsing *node, int i, int j)
         }
         j++;
     }
-} */
+}

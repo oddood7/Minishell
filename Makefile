@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/03 00:15:57 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/03 22:40:42 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,13 @@ SRC = ./src/Program/main.c \
 	./src/Lexer/lexer_word.c \
 	./src/Lexer/lexer.c \
 	./src/Error_and_Utils/utils.c \
-	./src/Error_and_Utils/env.c \
 	./src/Error_and_Utils/errors.c \
 	./src/Error_and_Utils/frees.c \
+	./src/Error_and_Utils/utils2.c \
+	./src/Expander/expander_dollar.c \
+	./src/Expander/expander_quote.c \
+	./src/Expander/expander_utils.c\
+	./src/Expander/expander_utils2.c \
 	./src/Parsing/Parser.c \
 	./src/Parsing/Parsing_redirections.c \
 	./src/Parsing/Parsing_utils.c \
@@ -38,7 +42,10 @@ SRC = ./src/Program/main.c \
 	./src/Parsing/Quote.c \
 	./src/Builtins/builtin_env.c \
 	./src/Builtins/builtin_echo.c \
-	./src/Builtins/builtin_exit.c
+	./src/Builtins/builtin_exit.c \
+	./src/Builtins/builtin_export.c \
+	./src/Builtins/builtin_unset.c \
+	./src/Builtins/builtin_cd.c
 
 OBJ = $(SRC:.c=.o)
 

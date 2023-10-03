@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/03 00:14:18 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:40:00 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,21 +146,23 @@ int 	ft_size_list(t_lexer *list);
 /*****ENV*****/
 
 t_list	*get_env_list(char **env);
-void get_env_tab(t_list *env, t_main *mini);
-int    dup_env(t_main *mini, char *tmp, int i);
+void 	get_env_tab(t_list *env, t_main *mini);
+int    	dup_env(t_main *mini, char *tmp, int i);
 void	get_env_export(t_main *mini);
 void	env_export2(t_main *mini, char *add);
+char 	*find_var(t_list *env, char *var);
+char	*get_var_name(char *str, t_main *mini);
 
 /*****PARSING*****/
 
-int parsing(t_main *mini);
-t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word);
-t_parsing *parse_new(t_main *mini, char **tab, int redir, t_lexer *red);
-void	parse_addback(t_parsing **lst, t_parsing *new);
-int	count_lex(t_lexer *list);
+int 			parsing(t_main *mini);
+t_parsing		*init_cmd(t_main *mini, t_parsermain *data, int n_word);
+t_parsing 		*parse_new(t_main *mini, char **tab, int redir, t_lexer *red);
+void			parse_addback(t_parsing **lst, t_parsing *new);
+int				count_lex(t_lexer *list);
 t_parsermain	init_parser_data(t_lexer *list, t_main *mini);
-void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data);
-void	redirections(t_main *mini, t_parsermain *data);
+void			input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data);
+void			redirections(t_main *mini, t_parsermain *data);
 int		left_check(t_main *mini, t_lexer *ope);
 int    right_check(t_main *mini, t_lexer *ope);
 int		pipe_check(t_main *mini, t_lexer *ope);
@@ -189,14 +191,40 @@ char    *cpquote(t_main *mini, char *s, int j, int quote);
 char    *rm_quote_redir(t_main *mini, char *s, int quote, int j);
 void    check_quote_redir(t_main *mini, t_lexer *node);
 
+/*****EXPANDER*****/
+
+int	expander_doll(t_main *mini, t_parsing *node, int i, int j);
+int get_rv(t_main *mini, t_parsing *node, int i, int j);
+int    expanding_bis(t_main *mini, t_parsing *node, int i, int j);
+int    second_expand(t_main *mini, t_parsing *node, int i, int j);
+void    expanding(t_main *mini, t_parsing *node, int i, int j);
+char    *add_qt(t_main *mini, char *s);
+char    *keep_good_str_qt(char **env, int nb_env);
+int    check_env_bis_qt(char **env, char *str_dol);
+int    check_env_variable_qt(t_main *mini, char *s, int j);
+int    expand_dol_qt(t_main *mini, t_parsing *node, int i, int j);
+int    rm_dollard(t_main *mini, t_parsing *node, int i, int j);
+char    *copy_without_dol(t_parsing *node, int i, int j, char *s);
+int    while_dol(t_main *mini, t_parsing *node, int i, int dol);
+int    check_env_var(t_main *mini, char *s, int j);
+int    check_env_bis(char **env, char *dollar);
+char    *check_char_after(t_parsing *node, int i, int j_dol);
+int    copy_bis(char *s1, char *s2, int i, int ok);
+int    copy_past(t_parsing *cmd_node, int i, int j_dol, char *str_replace);
+char    *keep_good_str(char **env, int nb_env);
+char    *go_itoa_replace(t_main *data, char *s);
 
 /*****BUILTINS*****/
 
-void env_pwd_exec(t_main *mini, t_parsing *parse);
-int	env_builtin(t_main *mini);
-int		pwd_builtin(t_main *mini, t_parsing *parse);
+int	built_env(t_main *mini);
+int		built_pwd(t_main *mini, t_parsing *parse);
 int	n_check(char *str);
 void	print_echo(char **tab, int j);
-int	echo_builtin(t_main *mini, t_parsing *parse);
-int	exit_builtin(t_main *mini, t_parsing *parse);
+int	built_echo(t_main *mini, t_parsing *parse);
+int	built_exit(t_main *mini, t_parsing *parse);
 int	stop_arguments(char **tab, int i);
+int	check_ex(t_main *mini, char *str);
+t_list	*for_export(t_list *env, char *str, t_main *mini);
+t_list	*export1(t_list *env, char **cmd, t_main *mini);
+t_list *built_export(t_list *env, t_main *mini);
+void	built_unset(t_main *mini, t_list *env);

@@ -1,5 +1,7 @@
 #include "../../include/minishell.h"
 
+
+// a revoir avec unset + export avec t_list
 void	find_3(t_main *mini, t_parsing *node, char *cmd, int len)
 {
 	if (!ft_strncmp(cmd, "unset", len) && len == 5)

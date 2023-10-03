@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/02 19:10:27 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:14:26 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,23 @@ int	handle_error(t_main *mini, char *str, int rv)
 	else
 		mini->return_value = rv;
 	return (1);
+}
+
+int	err_export(char *str, int ok)
+{
+	int i;
+
+	i = 0;
+	if (ok)
+	{
+		ft_putstr_fd("export : ", 2);
+		while (str[i] && str[i] != '=')
+		{	
+			ft_putchar_fd(str[i], 2);
+			i++;
+		}
+		ft_putstr_fd(" : not a valid argument\n", 2);
+		return (1);
+	}
+	return (0);
 }
