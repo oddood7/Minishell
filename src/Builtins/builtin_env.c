@@ -6,14 +6,15 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:14:51 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/02 19:07:15 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:42:04 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	built_env(t_main *mini)
+int	built_env(t_main *mini, t_parsing *node)
 {
+	(void)node;
 	int i;
 
 	i = 0;

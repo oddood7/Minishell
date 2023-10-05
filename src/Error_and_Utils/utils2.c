@@ -6,29 +6,12 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/03 16:37:23 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:45:37 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char *find_var(t_list *env, char *var)
-{
-	char *tmp;
-	int len;
-
-	len = ft_strlen(tmp);
-	while (env)
-	{
-		if (!ft_strncmp(tmp, env->var, len) && (env->var[len] == '=' || env->var[len] == '\0'))
-		{
-			tmp = env->var;
-			return (tmp);
-		}
-		env = env->next;
-	}
-	return (NULL);
-}
 
 char	*get_var_name(char *str, t_main *mini)
 {
@@ -51,4 +34,20 @@ char	*get_var_name(char *str, t_main *mini)
 	}
 	tmp[i] = '\0';
 	return (tmp);
+}
+
+int    arg_check(t_main *mini, char **tab)
+{
+    int    i;
+
+    i = 0;
+    while (tab[i])
+        i++;
+    if (i > 2)
+    {
+        ft_putendl_fd("bash: cd: too many arguments", 2);
+        mini->return_value = 1;
+        return (1);
+    }
+    return (0);
 }

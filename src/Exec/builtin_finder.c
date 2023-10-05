@@ -1,18 +1,11 @@
 #include "../../include/minishell.h"
 
 
-// a revoir avec unset + export avec t_list
 void	find_3(t_main *mini, t_parsing *node, char *cmd, int len)
 {
 	if (!ft_strncmp(cmd, "unset", len) && len == 5)
 	{
 		built_unset(mini, node);
-		built_in_free(mini);
-		exit(mini->return_value);
-	}
-	if (contains_char(cmd, '=') && cmd[0] != '=')
-	{
-		add_v_to_hidetab(mini, cmd);
 		built_in_free(mini);
 		exit(mini->return_value);
 	}

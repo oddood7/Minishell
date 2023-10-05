@@ -37,7 +37,7 @@ int	open_outfile(t_main *mini, t_parsing *node, int old_fd)
 	{
 		perror(node->redirection->str);
 		ft_free_tab(mini->cmd_paths);
-		ft_free_tab(mini->env_bis);
+		ft_free_tab(mini->env);
 		ft_free_tab(mini->env_exp);
 		return (-2);
 	}

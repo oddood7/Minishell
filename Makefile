@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/03 22:40:42 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/05 19:29:22 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRC = ./src/Program/main.c \
 	./src/Program/env.c \
 	./src/Program/Signal.c \
 	./src/Program/utils_program.c \
+	./src/Program/utils_program2.c \
+	./src/Program/utils3.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
 	./src/Lexer/lexer.c \
@@ -45,7 +47,19 @@ SRC = ./src/Program/main.c \
 	./src/Builtins/builtin_exit.c \
 	./src/Builtins/builtin_export.c \
 	./src/Builtins/builtin_unset.c \
-	./src/Builtins/builtin_cd.c
+	./src/Builtins/builtin_utils_unset.c \
+	./src/Builtins/builtin_cd.c \
+	./src/Builtins/builtin_utils.c \
+	./src/Builtins/cd_export.c \
+	./src/Exec/builtin_finder.c \
+	./src/Exec/exec_builtins.c \
+	./src/Exec/exec_end.c \
+	./src/Exec/exec_utils.c \
+	./src/Exec/exec_utils.c \
+	./src/Exec/fd_utils.c \
+	./src/Exec/file_redirect.c \
+	./src/Exec/pipe_manage.c \
+	./src/Exec/process.c 
 
 OBJ = $(SRC:.c=.o)
 

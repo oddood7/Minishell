@@ -6,38 +6,66 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:39:31 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/03 22:30:01 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:16:08 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// a revoir avec unset + export avec t_list
-
-void	built_unset(t_main *mini, t_list *env)
+int for_unset(t_main *mini, char *str, int len)
 {
-	char **cmd;
-	t_list *tmp;
-	t_list *tmpbis;
-	int i;
+	char **tab;
 
-	tmp = env;
+	tab = new_tab_env(mini, mini->env, str, len);
+	dup_classic_env(mini, tab);
+	mini->return_value = 0;
+	return (1);
+}
+
+void	do_for_exp(t_main *mini, char *str, int len)
+{
+	int i;
+	char **tab;
+	char *decla;
+
 	i = 0;
-	while (cmd[i++])
+	decla = ft_strjoin("declare -x ", str);
+	while (mini->env_exp[i])
 	{
-		while (env->next)
+		if (!ft_strncmp(mini->env_exp[i], decla, len + 11) && mini->env_exp[i][len + 11] == '=')
 		{
-			if (!ft_strncmp(env->next->var, cmd[i], ft_strlen(cmd[i])))
-			{
-				tmpbis = env->next->next;
-				free(env->next->var);
-				free(env->next);
-				env->next = tmpbis;
-				break;
-			}
-			env = env->next;
+			tab = new_tab_exp(mini, mini->env_exp, decla, len);
+			dup_exp(mini, tab);
+			break ;
 		}
-		env = tmp;
+		i++;
+	}
+	free(decla);
+	return ;
+}
+
+int	built_unset(t_main *mini, t_parsing *cmd)
+{
+	int i;
+	int j;
+	int len;
+
+	i = 1;
+	if (cmd->cmd_tab[i])
+	{
+		j = 0;
+		len = ft_strlen(cmd->cmd_tab[i]);
+		while (mini->env[j])
+		{
+			if (!ft_strncmp(mini->env[j], cmd->cmd_tab[i], len) && mini->env[j][len] == '=')
+			{
+				for_unset(mini, cmd->cmd_tab[i], len);
+				break ;
+			}
+			j++;
+		}
+		do_for_exp(mini, cmd->cmd_tab[i], len);
 	}
 	mini->return_value = 0;
+	return (1);
 }
