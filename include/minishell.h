@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 19:49:42 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:55:49 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <dirent.h>
 
 
-typedef struct s_here_doc
+typedef struct	s_here_doc
 {
 	int fd[2];
 	int pos;
@@ -47,48 +47,48 @@ typedef enum s_operateurs
 
 typedef struct s_lexer
 {
-    char                *str;
-    t_operateurs		operateur;
-    int                 i;
-    struct s_lexer      *next;
-    struct s_lexer      *prev;
+	char			*str;
+	t_operateurs	operateur;
+	int				i;
+	struct s_lexer	*next;
+	struct s_lexer	*prev;
 }                      	t_lexer;
 
 typedef struct s_main
 {
-    int                 ok;
-    int                 pid_last;
-    char                *input_line;
-    int                 pipe_count;
-    t_lexer             *lexer_list;
-    struct s_parsing    *cmd_parse;
-    char                **env;
-    char                **env_exp;
-    char                **hidetab;
-    int                 return_value;
-    int                 hd_count;
-    int                 hd_pos;
+	int					ok;
+	int					pid_last;
+	char				*input_line;
+	int					pipe_count;
+	t_lexer				*lexer_list;
+	struct s_parsing	*cmd_parse;
+	char				**env;
+	char				**env_exp;
+	char				**hidetab;
+	int					return_value;
+	int					hd_count;
+	int					hd_pos;
 	struct s_here_doc	*here_doc;
-    char                **tab_input_blank;
-    int                 *pipe_fd;
-    char                *path;
-    char                **cmd_paths;
-    char                *test;
-    int                 syntaxe_check;
+	char				**tab_input_blank;
+	int					*pipe_fd;
+	char				*path;
+	char				**cmd_paths;
+	char				*test;
+	int					syntaxe_check;
 }                       t_main;
 
 typedef struct s_parsing
 {
-    char                **cmd_tab;
-    int                 num_redirection;
+	char				**cmd_tab;
+	int                 num_redirection;
 	char				*hd_file_name;
-    t_lexer             *redirection;
+	t_lexer				*redirection;
 	int					hd_check;
 	int					hdc;
-    int                 doubl;
-    int                 single;
-    struct s_parsing    *next;
-    struct s_parsing   	*prev;
+	int					doubl;
+	int					single;
+	struct s_parsing	*next;
+	struct s_parsing	*prev;
 }                       t_parsing;
 
 typedef struct s_parsermain
