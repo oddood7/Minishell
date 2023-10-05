@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:18:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/30 17:21:04 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:45:03 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int    copy_past(t_parsing *cmd_node, int i, int j_dol, char *str_replace)
         copy_bis(tmp_str, s_after, k, 1);
     free(cmd_node->cmd_tab[i]);
     cmd_node->cmd_tab[i] = ft_strdup(tmp_str);
-    return (copy_past_return(s_after, tmp_str));
+    return (util_free_expand(s_after, tmp_str));
 }
 
 char    *keep_good_str(char **env, int nb_env)
@@ -120,7 +120,7 @@ char    *go_itoa_replace(t_main *data, char *s)
     tmp_rv = ft_itoa(data->return_value);
     ok = malloc(sizeof(char) * ft_strlen(s) + 2);
     if (!ok)
-        error_mallc(data);
+        err_mall(data);
     while (s[i] != '$')
     {
         ok[i] = s[i];

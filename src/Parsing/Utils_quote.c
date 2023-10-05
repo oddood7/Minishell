@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Quote_Utils.c                                      :+:      :+:    :+:   */
+/*   Utils_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 22:45:54 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/01 22:54:23 by lde-mais         ###   ########.fr       */
+/*   Created: 2023/10/05 23:49:41 by lde-mais          #+#    #+#             */
+/*   Updated: 2023/10/05 23:51:42 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char    *cpquote(t_main *mini, char *s, int j, int quote)
     char    *ok;
 
     i = 0;
-    ok = malloc(sizeof(char) * ft_strlen(s) - nb_quote(s, quote) + 1);
+    ok = malloc(sizeof(char) * ft_strlen(s) - count_quotes(s, quote) + 1);
     if (!ok)
         err_mall(mini);
     while (s[i])
@@ -74,10 +74,10 @@ char    *rm_quote_redir(t_main *mini, char *s, int quote, int j)
 {
     char    *new;
 
-    if (nb_quote(s, quote))
+    if (count_quotes(s, quote))
     {
-        if (nb_quote(s, quote) == 2)
-            new = ft_strim(mini, s, quote);
+        if (count_quotes(s, quote) == 2)
+            new = ft_trim(mini, s, quote);
         else
             new = cpquote(mini, s, j, quote);
         return (new);
@@ -96,13 +96,13 @@ void    check_quote_redir(t_main *mini, t_lexer *node)
     {
         if (tmp->str)
         {
-            if (nb_quote(tmp->str, 39))
+            if (count_quotes(tmp->str, 39))
             {
                 s_trim = rm_quote_redir(mini, tmp->str, 39, 0);
                 free(tmp->str);
                 tmp->str = s_trim;
             }
-            else if (nb_quote(tmp->str, 34))
+            else if (count_quotes(tmp->str, 34))
             {
                 s_trim = rm_quote_redir(mini, tmp->str, 34, 0);
                 free(tmp->str);

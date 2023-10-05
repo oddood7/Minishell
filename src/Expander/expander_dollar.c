@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:03:10 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/03 22:32:41 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:40:01 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ int    expanding_bis(t_main *mini, t_parsing *node, int i, int j)
         if (nb_env == 999)
             return (expand_dol_qt(mini, node, i, j));
         else
-            return (expand_dollard(mini, node, i, j));
+            return (expander_doll(mini, node, i, j));
     }
     else if (nb_env == -1)
         return (rm_dollard(mini, node, i, j));
     else if (nb_env == -2)
         return (1);
     else if (nb_env == -3)
-        return (return_value(mini, node, i, j));
+        return (get_rv(mini, node, i, j));
     return (0);
 }
 

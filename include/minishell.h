@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 19:55:49 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 00:02:41 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <stddef.h>
 # include <sys/stat.h>
@@ -225,6 +225,8 @@ int    	while_dol(t_main *mini, t_parsing *node, int i, int dol);
 int    	check_env_var(t_main *mini, char *s, int j);
 int    	check_env_bis(char **env, char *dollar);
 char    *check_char_after(t_parsing *node, int i, int j_dol);
+char    *just_alloc(int len, int j_dol, char *s_af);
+int		util_free_expand(char *str, char *tmp);
 int    	copy_bis(char *s1, char *s2, int i, int ok);
 int    	copy_past(t_parsing *cmd_node, int i, int j_dol, char *str_replace);
 char    *keep_good_str(char **env, int nb_env);
@@ -278,6 +280,7 @@ char	*get_command(t_main *mini, char **paths, char *cmd);
 char	*find_path(char **envp);
 void	close_pipe(t_main *mini, int count);
 void	no_command(t_main *mini, t_parsing *node);
+void    print_no_command(t_main *mini, char *s, int i);
 void	hdc_init(t_main *mini);
 void	first_pinit(t_main *mini);
 void	pipe_init(t_main *mini, t_parsing *node);

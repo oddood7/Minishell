@@ -24,12 +24,12 @@ void	find_2(t_main *mini, t_parsing *node, char *cmd, int len)
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
-	else if (!ft_strncmp(cmd, "export", len) && len == 6)
+	/* else if (!ft_strncmp(cmd, "export", len) && len == 6)
 	{
 		built_export(mini, node);
 		built_in_free(mini);
 		exit (mini->return_value);
-	}
+	} */
 	else if (!ft_strncmp(cmd, "pwd", len) && len == 3)
 	{
 		built_pwd(mini, node);
@@ -37,7 +37,7 @@ void	find_2(t_main *mini, t_parsing *node, char *cmd, int len)
 		exit (mini->return_value);
 	}
 	else
-		finder_3(mini, node, cmd, len);
+		find_3(mini, node, cmd, len);
 }
 
 void	find(t_main *mini, t_parsing *node)
@@ -62,5 +62,5 @@ void	find(t_main *mini, t_parsing *node)
 		exit (mini->return_value);
 	}
 	else
-		finder_2(mini, node, cmd, len);
+		find_2(mini, node, cmd, len);
 }

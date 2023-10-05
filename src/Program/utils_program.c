@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:03:33 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 16:42:24 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:36:58 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void    parsing_tab_help(t_main *mini, t_parsing *node, int i, int len)
     int        ok;
     int        sizetab;
 
+	ok = 0;
     sizetab = sizeof(node->cmd_tab);
     while (++i <= sizetab)
     {
@@ -80,7 +81,7 @@ void    parsing_tab_help(t_main *mini, t_parsing *node, int i, int len)
     parse_dup(node, sizetab, ok, s);
     tab = ft_split(s, ' ');
     free(s);
-    free_tab(node->cmd_tab);
+    ft_free_tab(node->cmd_tab);
     node->cmd_tab = tab;
 }
 

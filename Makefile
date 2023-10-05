@@ -6,13 +6,13 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/05 19:29:22 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/06 00:09:54 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 
+CFLAGS = -Wall -Wextra -Werror -lreadline -I/usr/local/opt/readline/include/readline
 LIBFT_PATH = include/libft/
 LIBFT = $(LIBFT_PATH)libft.a
 
@@ -40,8 +40,8 @@ SRC = ./src/Program/main.c \
 	./src/Parsing/Operateurs_Utils.c \
 	./src/Parsing/Syntax_utils.c \
 	./src/Parsing/Syntax.c \
-	./src/Parsing/Quote_utils.c \
 	./src/Parsing/Quote.c \
+	./src/Parsing/Utils_quote.c \
 	./src/Builtins/builtin_env.c \
 	./src/Builtins/builtin_echo.c \
 	./src/Builtins/builtin_exit.c \
@@ -55,7 +55,7 @@ SRC = ./src/Program/main.c \
 	./src/Exec/exec_builtins.c \
 	./src/Exec/exec_end.c \
 	./src/Exec/exec_utils.c \
-	./src/Exec/exec_utils.c \
+	./src/Exec/exec_utils2.c \
 	./src/Exec/fd_utils.c \
 	./src/Exec/file_redirect.c \
 	./src/Exec/pipe_manage.c \
@@ -65,7 +65,7 @@ OBJ = $(SRC:.c=.o)
 
 $(NAME) : $(OBJ)
 	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 
 all : $(NAME)

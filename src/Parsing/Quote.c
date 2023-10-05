@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:42:07 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/01 22:53:36 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:48:40 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char    *check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
     int        len;
 
     len = ft_strlen(node->cmd_tab[i]);
-    if (node->cmd_tab[i][0] == quote && nb_quote(node->cmd_tab[i], quote) == 2
+    if (node->cmd_tab[i][0] == quote && count_quotes(node->cmd_tab[i], quote) == 2
         && node->cmd_tab[i][len - 1] == quote)
     {
         new = ft_trim(mini, node->cmd_tab[i], quote);
@@ -58,7 +58,7 @@ char    *check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
         return (NULL);
 }
 
-int    rm_quote(t_main *mini, t_parsing *node, int i, int quote)
+int    rm_quote(t_main *mini, t_parsing *node, int index, int quote)
 {
     char    *new;
     int        j;
@@ -69,17 +69,17 @@ int    rm_quote(t_main *mini, t_parsing *node, int i, int quote)
     new = check_4_strim(mini, node, i, quote);
     if (!new)
     {
-        new = malloc_space(mini, node, i);
-        while (node->cmd_tab[i][j])
+        new = malloc_space(mini, node, index);
+        while (node->cmd_tab[index][j])
         {
-            if (node->cmd_tab[i][j] == quote)
+            if (node->cmd_tab[index][j] == quote)
                 j++;
             else
-                new[i++] = node->cmd_tab[i][j++];
+                new[i++] = node->cmd_tab[index][j++];
         }
         new[i] = '\0';
-        free(node->cmd_tab[i]);
-        node->cmd_tab[i] = ft_strdup(new);
+        free(node->cmd_tab[index]);
+        node->cmd_tab[index] = ft_strdup(new);
     }
     free(new);
     if (quote == 39)

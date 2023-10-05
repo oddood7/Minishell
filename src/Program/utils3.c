@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:23:39 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 16:57:46 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:37:14 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int    error_quote2(t_main *mini, char *str, int sep)
     else
     {
         mini->return_value = 2;
-        return (error(mini, "should close quote.", 2));
+        return (handle_error(mini, "should close quote.", 2));
     }
 }
 
