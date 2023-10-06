@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 13:52:46 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 00:24:29 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 	i = 0;
 	redirections(mini, data);
 	n_word = count_lex(data->lexer_list);
-	tab = malloc(sizeof(char *) * (n_word + 1));
+	tab = (char **)malloc(sizeof(char *) * (n_word + 1));
 	if (!tab)
 		err_mall(mini);
 	ongoing = data->lexer_list;

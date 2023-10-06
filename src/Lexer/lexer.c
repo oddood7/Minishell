@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 13:52:53 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:52:07 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ t_lexer	*new_lexer(t_main *mini, char *str, int operateur)
 	t_lexer *new;
 	static int i;
 
-	(void)mini;
-	new = malloc(sizeof(t_lexer));
+	new = (t_lexer *)malloc(sizeof(t_lexer));
 	if (!new)
 		err_mall(mini);
 	new->str = str;
@@ -40,6 +39,7 @@ int	ft_listadd(t_main *mini, char *str, t_operateurs operateur, t_lexer **lst)
 		*lst = node;
 	else
 		ft_lstaddback(lst, node);
+	//printf("Extracted word: %s\n", node->str);
 	return (1);
 }
 
@@ -54,12 +54,14 @@ int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 		j = different_get_to_quote(str, i, 0);
 	if (j == 1)
 	{
-		tmp = ft_substr(str, i, j);
+		printf("Index start: %d, Length: %d\n", i, j);
+		tmp = ft_substr(str, i, j - i);
+		printf("Extracted word: %s\n", tmp);
 		if (!ft_listadd(mini, tmp, 0, list))
 			return (free(tmp), -1);
 		return (j);
 	}
-	tmp = ft_substr(str, i, j);
+	tmp = ft_substr(str, i, j - i);
 	if (!ft_listadd(mini, tmp, 0, list))
 		return (free(tmp), -1);
 	return (j);

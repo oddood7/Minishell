@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 16:59:22 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:40:43 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ int    start_in_loop(t_main *mini, char *input)
     ft_strlcpy(mini->input_line, input, ft_strlen(input));
     if (!do_lexer(mini))
 		main_space("lexer failed.");
+	pr(mini->lexer_list);
     if (!parsing(mini))
     {
         mini->syntaxe_check = 1;
         return (1);
     }
+	prrr(mini->cmd_parse, 1);
     handle_quote_n_expand(mini);
     check_tab(mini);
+	prrr(mini->cmd_parse, 0);
     return (0);
 }
 

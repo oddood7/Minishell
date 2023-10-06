@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:23:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2022/11/14 14:22:34 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:57:57 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	j = 0;
 	if (size > 0)
 	{
-		while (src[i] && i < (size - 1))
+		while (src[i] && i < size)
 		{
 			dst[i] = src[i];
 			i++;

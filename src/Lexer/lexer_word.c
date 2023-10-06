@@ -82,9 +82,13 @@ int    different_get_to_quote(char *str, int i, int j)
 {
     if (!str[i])
         return (0);
-    while (((i + j) < (int)ft_strlen(str)) && !is_ope(str[i + j])
+	printf("Starting i: %d, j: %d\n", i, j);
+    while (((i + j) < (int)ft_strlen(str) + 1) && !is_ope(str[i + j])
         && str[i + j] != ' ')
     {
+		j++;
+		/* if (is_ope(str[i + j]) || str[i + j] == ' ')
+        	break; */
         if (str[i + j] == 34 && str[i + j + 1] != 34)
         {
             j++;
@@ -103,6 +107,7 @@ int    different_get_to_quote(char *str, int i, int j)
         }                                        
         j++;
     }
+	printf("Ending i: %d, j: %d\n", i, j);
     return (j);
 }
 

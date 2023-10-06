@@ -6,13 +6,13 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/06 00:09:54 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/06 13:26:07 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -lreadline -I/usr/local/opt/readline/include/readline
+CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include/readline
 LIBFT_PATH = include/libft/
 LIBFT = $(LIBFT_PATH)libft.a
 
@@ -22,6 +22,7 @@ SRC = ./src/Program/main.c \
 	./src/Program/utils_program.c \
 	./src/Program/utils_program2.c \
 	./src/Program/utils3.c \
+	./src/Program/tests.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
 	./src/Lexer/lexer.c \
@@ -65,7 +66,7 @@ OBJ = $(SRC:.c=.o)
 
 $(NAME) : $(OBJ)
 	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -lreadline -o $(NAME)
 
 
 all : $(NAME)

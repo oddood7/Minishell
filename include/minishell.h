@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/06 00:02:41 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:25:49 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,5 +303,11 @@ void	execute_cmd(t_main *mini);
 void	init_ex(t_main *mini, int fd[2], int old_fd[2], int *i);
 int		last_redir(t_main *mini, t_parsing *node, int *in, int *out);
 void	last_process(t_main *mini, t_parsing *node, char *cmd, int fd[2]);
+
+/*****TESTS*****/
+
+void    pr(t_lexer *lexer_list);
+void    pr_redir(t_lexer *lexer_list);
+void    prrr(t_parsing *cmd_parse, int ok);
 
 #endif
