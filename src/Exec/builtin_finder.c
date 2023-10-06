@@ -44,23 +44,28 @@ void	find(t_main *mini, t_parsing *node)
 {
 	char	*cmd;
 	int		len;
+	char	*cleaned_cmd;
 
 	if (node->cmd_tab[0] == NULL)
 		return ;
 	cmd = node->cmd_tab[0];
-	len = ft_strlen(cmd);
-	if (!ft_strncmp(cmd, "cd", len) && len == 2)
+	cleaned_cmd = ft_strtrim(cmd, " ");
+	len = ft_strlen(cleaned_cmd);
+	if (!ft_strncmp(cleaned_cmd, "cd", len) && len == 2)
 	{
+		printf("About to call built_cd\n");
 		built_cd(mini, node);
 		built_in_free(mini);
+		printf("Finished calling built_cd\n");
 		exit (mini->return_value);
 	}
-	else if (!ft_strncmp(cmd, "env", len) && len == 3)
+	else if (!ft_strncmp(cleaned_cmd, "env", len) && len == 3)
 	{
 		built_env(mini, node);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
 	else
-		find_2(mini, node, cmd, len);
+		find_2(mini, node, cleaned_cmd, len);
+	free(cleaned_cmd);
 }

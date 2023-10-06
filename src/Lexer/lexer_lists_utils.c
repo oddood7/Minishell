@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:04:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/22 21:00:20 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:04:44 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_lexer *ft_delone(t_lexer **lst)
 	*lst = NULL;
 	return (NULL);
 }
+
 void	ft_lstaddback(t_lexer **lst, t_lexer *new)
 {
 	t_lexer *tmp;

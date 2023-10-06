@@ -13,8 +13,11 @@ int	first_builtins2(t_main *mini, t_parsing *node, int len)
 		&& len == 2)
 	{
 		if (mini->pipe_count)
+		{
 			return (0);
-		return (built_cd(mini, node));
+		}
+		built_cd(mini, node);
+		return (1);
 	}
 	return (0);
 }

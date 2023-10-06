@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:26:51 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 23:56:42 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:45:45 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	change_path_env(t_main *mini, char *pwd, char *oldpwd)
 
 	i = 0;
 	pwd = ft_strjoin("PWD=", pwd);
-	while (mini->env)
+	while (mini->env[i])
 		i++;
 	tab = malloc(sizeof(char *) * i + 1);
 	if (!tab)
@@ -81,7 +81,7 @@ void	change_path2(t_main *mini)
 	oldpwd = copy_pwd(mini, oldpwd, i);
 	change_path_env(mini, oldpwd, pwd);
 	free(oldpwd);
-	change_path_exp2(mini, pwd);
+	//change_path_exp2(mini, pwd);
 }
 
 void cd_no_args(t_main *mini)
@@ -101,8 +101,7 @@ void cd_no_args(t_main *mini)
 int built_cd(t_main *mini, t_parsing *cmd)
 {
 	int i;
-
-	if (cmd->cmd_tab[1])
+	if (!cmd->cmd_tab[1])
 	{
 		cd_no_args(mini);
 		change_path2(mini);
@@ -114,6 +113,7 @@ int built_cd(t_main *mini, t_parsing *cmd)
 	i = chdir(cmd->cmd_tab[1]);
 	if (i == -1)
 	{
+		//perror("Error with chdir");
 		ft_putstr_fd("cd :", 2);
 		ft_putstr_fd(cmd->cmd_tab[1], 2);
 		ft_putendl_fd(" : No such file or directory", 2);

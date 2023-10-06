@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/06 14:52:07 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:43:11 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 		j = different_get_to_quote(str, i, 0);
 	if (j == 1)
 	{
-		printf("Index start: %d, Length: %d\n", i, j);
-		tmp = ft_substr(str, i, j - i);
-		printf("Extracted word: %s\n", tmp);
+		tmp = ft_substr(str, i, j);
 		if (!ft_listadd(mini, tmp, 0, list))
 			return (free(tmp), -1);
 		return (j);
 	}
-	tmp = ft_substr(str, i, j - i);
+	if (str[i + j - 1] == ' ')
+    j--;
+	tmp = ft_substr(str, i, j);
 	if (!ft_listadd(mini, tmp, 0, list))
 		return (free(tmp), -1);
 	return (j);

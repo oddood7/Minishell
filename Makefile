@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/06 13:26:07 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/06 16:08:27 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = ./src/Program/main.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
 	./src/Lexer/lexer.c \
+	./src/Lexer/lexer_utils.c \
 	./src/Error_and_Utils/utils.c \
 	./src/Error_and_Utils/errors.c \
 	./src/Error_and_Utils/frees.c \

@@ -80,34 +80,37 @@ int    get_to_quote(char *str, int i)
 
 int    different_get_to_quote(char *str, int i, int j)
 {
-    if (!str[i])
+	if (!str[i])
         return (0);
-	printf("Starting i: %d, j: %d\n", i, j);
-    while (((i + j) < (int)ft_strlen(str) + 1) && !is_ope(str[i + j])
-        && str[i + j] != ' ')
+    while ((i + j) < (int)ft_strlen(str))
     {
-		j++;
-		/* if (is_ope(str[i + j]) || str[i + j] == ' ')
-        	break; */
-        if (str[i + j] == 34 && str[i + j + 1] != 34)
+        // Check for space and operator outside of quotes
+        if (str[i + j] == ' ' || is_ope(str[i + j]))
+            break;
+
+        // Check for double quotes
+        if (str[i + j] == 34)
         {
             j++;
             while (str[i + j] && str[i + j] != 34)
                 j++;
-            if (str[i + j] == 34 && str[i + j + 1] == ' ')
-                return (j + 1);
-        }                
-        else if (str[i + j] == 39 && str[i + j + 1] != 39)
+            j++;  // to include the quote itself
+        }
+        // Check for single quotes
+        else if (str[i + j] == 39)
         {
             j++;
             while (str[i + j] && str[i + j] != 39)
                 j++;
-            if (str[i + j] == 39 && str[i + j + 1] == ' ')
-                return (j + 1);
-        }                                        
-        j++;
+            j++;  // to include the quote itself
+        }
+        else
+        {
+            j++;
+        }
     }
-	printf("Ending i: %d, j: %d\n", i, j);
+    while (j > 0 && str[i + j - 1] == ' ')
+        j--;
     return (j);
 }
 

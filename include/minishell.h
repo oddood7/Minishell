@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/06 13:25:49 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:37:37 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,9 @@ void			ft_delid(t_lexer **list, int id);
 void			ft_delfirst(t_lexer **lst);
 void			ft_lstaddback(t_lexer **lst, t_lexer *new);
 t_lexer 		*ft_delone(t_lexer **lst);
+void			clean_lexed_list(t_lexer **list);
+char			*ft_trim_space(char const *s);
+char 			*trim_whitespace(char *str);
 
 /****UTILS&ERRORS*****/
 
