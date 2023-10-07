@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/07 15:35:29 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/07 21:52:58 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ LIBFT = $(LIBFT_PATH)libft.a
 
 SRC = ./src/Program/main.c \
 	./src/Program/env.c \
-	./src/Program/Signal.c \
+	./src/Program/env_utils.c \
+	./src/Program/signal.c \
 	./src/Program/shlvl.c \
 	./src/Program/utils_program.c \
 	./src/Program/utils_program2.c \

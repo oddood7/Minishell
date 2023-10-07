@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/06 16:07:28 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:51:09 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int    main(int ac, char **av, char **env)
     init_main(&mini);
     get_env(&mini, env);
     get_env_export(&mini);
-    //get_shlvl(&mini, mini.env);
+    do_shlvl(&mini, mini.env);
     mini_loop(&mini);
     return (0);
 }

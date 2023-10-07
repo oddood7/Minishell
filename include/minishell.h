@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/07 15:32:01 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:52:36 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,11 @@ void    get_env(t_main *mini, char **env);
 void	get_env_export(t_main *mini);
 char	*get_var_name(char *str, t_main *mini);
 int		print_env_exp(t_main *mini);
+char 	*value_env_var(t_main *mini, char *str);
+void	change_var_value(t_main *mini, char *new, char *old);
+char	*find_var_env(char **env, char *var);
+int		shlvl_err(char *str);
+void	do_shlvl(t_main *mini, char **env);
 
 /*****PARSING*****/
 
