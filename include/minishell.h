@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/06 17:37:37 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:32:01 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,9 @@ int    	arg_check(t_main *mini, char **tab);
 void    resets(t_main *mini);
 int 	main_space(char *str);
 void    free_kill(t_main *mini);
+int    	err_exp(char *s, int j);
+int    	is_equals(char *s);
+int    	check_identifier(char c);
 
 
 /*****ENV*****/
@@ -169,6 +172,7 @@ void    env_export_cpy(t_main *mini, char *decla);
 void    get_env(t_main *mini, char **env);
 void	get_env_export(t_main *mini);
 char	*get_var_name(char *str, t_main *mini);
+int		print_env_exp(t_main *mini);
 
 /*****PARSING*****/
 
@@ -264,6 +268,18 @@ void    dup_classic_env(t_main *mini, char **tab);
 void    dup_exp(t_main *mini, char **tab);
 char    **new_tab_env(t_main *mini, char **old_tab, char *s, int len);
 char    **new_tab_exp(t_main *mini, char **old_tab, char *s, int len);
+char    *exp_var_name(t_main *mini, char *str);
+int    	exp_var_quotes(char *str1, char *str2);
+int    	exist_in_exp(t_main *mini, char *str);
+int    	exist_in_env(t_main *mini, char *str);
+void    var_to_env(t_main *mini, char *str);
+void    var_to_exp(t_main *mini, char *str);
+void    remove_env_var(t_main *mini, int index);
+void    remove_exp_var(t_main *mini, int index);
+int    	export_error_check(char *str);
+void    everything_add(t_main *mini, char *str);
+void    export_support(t_main *mini, char *str);
+int    built_export(t_main *mini, t_parsing *cmd);
 
 /*****EXEC*****/
 

@@ -6,9 +6,9 @@ int	first_builtins2(t_main *mini, t_parsing *node, int len)
 	if (!ft_strncmp(node->cmd_tab[0], "unset", len) && node->next == NULL
 		&& len == 5)
 		return (built_unset(mini, node));
-/* 	if (!ft_strncmp(node->cmd_tab[0], "export", len) && node->next == NULL
+	if (!ft_strncmp(node->cmd_tab[0], "export", len) && node->next == NULL
 		&& len == 6)
-		return (built_export(mini, node)); */
+		return (built_export(mini, node));
 	if (!ft_strncmp(node->cmd_tab[0], "cd", len) && node->next == NULL
 		&& len == 2)
 	{

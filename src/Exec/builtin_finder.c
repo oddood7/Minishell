@@ -24,12 +24,12 @@ void	find_2(t_main *mini, t_parsing *node, char *cmd, int len)
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
-	/* else if (!ft_strncmp(cmd, "export", len) && len == 6)
+	else if (!ft_strncmp(cmd, "export", len) && len == 6)
 	{
 		built_export(mini, node);
 		built_in_free(mini);
 		exit (mini->return_value);
-	} */
+	}
 	else if (!ft_strncmp(cmd, "pwd", len) && len == 3)
 	{
 		built_pwd(mini, node);
@@ -53,10 +53,8 @@ void	find(t_main *mini, t_parsing *node)
 	len = ft_strlen(cleaned_cmd);
 	if (!ft_strncmp(cleaned_cmd, "cd", len) && len == 2)
 	{
-		printf("About to call built_cd\n");
 		built_cd(mini, node);
 		built_in_free(mini);
-		printf("Finished calling built_cd\n");
 		exit (mini->return_value);
 	}
 	else if (!ft_strncmp(cleaned_cmd, "env", len) && len == 3)

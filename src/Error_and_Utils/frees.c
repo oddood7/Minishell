@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 01:05:42 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 01:09:13 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:27:11 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 void ft_free_tab(char **tab)
 {
-	int i;
+	int        i;
+    int        j;
 
-	i = 0;
-	while (tab && tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
+    j = 0;
+    i = 0;
+    if (!tab)
+        return ;
+    while (tab[j])
+        j++;
+    if (j == i)
+    {
+        free(tab);
+        return ;
+    }
+    while (i <= j)
+        free(tab[i++]);
+    free(tab);
 }
 
 void    ft_free_lexer(t_lexer *list)

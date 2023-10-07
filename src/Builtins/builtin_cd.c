@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:26:51 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/06 17:45:45 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:32:11 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	change_path2(t_main *mini)
 	oldpwd = copy_pwd(mini, oldpwd, i);
 	change_path_env(mini, oldpwd, pwd);
 	free(oldpwd);
-	//change_path_exp2(mini, pwd);
+	change_path_exp2(mini, pwd);
 }
 
 void cd_no_args(t_main *mini)

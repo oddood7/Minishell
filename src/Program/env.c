@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:37:01 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 16:39:37 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:23:03 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,18 @@ void    get_env(t_main *mini, char **env)
         i++;
     }
     mini->env[i] = 0;
+}
+
+int	print_env_exp(t_main *mini)
+{
+	int i;
+
+	i = 0;
+	while (mini->env_exp[i])
+	{
+		ft_putendl_fd(mini->env_exp[i], 1);
+		i++;
+	}
+	mini->return_value = 0;
+	return (1);
 }

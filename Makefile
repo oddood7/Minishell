@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/06 16:08:27 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/07 15:35:29 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ LIBFT = $(LIBFT_PATH)libft.a
 SRC = ./src/Program/main.c \
 	./src/Program/env.c \
 	./src/Program/Signal.c \
+	./src/Program/shlvl.c \
 	./src/Program/utils_program.c \
 	./src/Program/utils_program2.c \
-	./src/Program/utils3.c \
+	./src/Program/utils_program3.c \
 	./src/Program/tests.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
@@ -31,6 +32,7 @@ SRC = ./src/Program/main.c \
 	./src/Error_and_Utils/errors.c \
 	./src/Error_and_Utils/frees.c \
 	./src/Error_and_Utils/utils2.c \
+	./src/Error_and_Utils/utils3.c \
 	./src/Expander/expander_dollar.c \
 	./src/Expander/expander_quote.c \
 	./src/Expander/expander_utils.c\
@@ -52,6 +54,8 @@ SRC = ./src/Program/main.c \
 	./src/Builtins/builtin_utils_unset.c \
 	./src/Builtins/builtin_cd.c \
 	./src/Builtins/builtin_utils.c \
+	./src/Builtins/builtin_utils_export.c \
+	./src/Builtins/builtin_export_addremove.c \
 	./src/Builtins/cd_export.c \
 	./src/Exec/builtin_finder.c \
 	./src/Exec/exec_builtins.c \
