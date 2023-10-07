@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 00:42:24 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:02:03 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	single_handle(t_main *mini, t_lexer *ongoing)
 		if (ongoing->next->operateur == PIPE)
 		{
 			if (ongoing->next->next && ongoing->next->next->operateur == PIPE)
-				return(err_syn(mini, "parse error near '||'"));
+				return(err_syn(mini, "near unexpected token '||'"));
 			else
-				return(err_syn(mini, "parse error near '|'"));
+				return(err_syn(mini, "near unexpected token '|'"));
 		}
 		else if (left_check(mini, ongoing))
 			return (1);
@@ -59,16 +59,16 @@ int	operateur_handle(t_main *mini)
 	if (ongoing->operateur == PIPE)
 	{
 		if (ongoing->next && ongoing->next->operateur == PIPE)
-			return (err_syn(mini, "parse error near '||'"));
+			return (err_syn(mini, "near unexpected token '||'"));
 		else
-			return (err_syn(mini, "parse error near '|'"));
+			return (err_syn(mini, "near unexpected token '|'"));
 	}
 	while (ongoing)
 	{
 		if (!(ongoing->next))
 		{
 			if (ongoing->operateur > 1 && ongoing->operateur < 6)
-				return (err_syn(mini, "parse error near '\n'"));
+				return (err_syn(mini, "near unexpected token '\n'"));
 			return (0);
 		}
 		if (single_handle(mini, ongoing))
