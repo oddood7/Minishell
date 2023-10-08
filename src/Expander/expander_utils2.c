@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:18:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 23:45:03 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 15:49:40 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ char    *check_char_after(t_parsing *node, int i, int j_dol)
     {
         if (node->cmd_tab[i][j_dol + 1] == '\0')
             return (NULL);
-        else if (node->cmd_tab[i][j_dol + 1] == '$'
-            || node->cmd_tab[i][j_dol + 1] == '-'
-            || node->cmd_tab[i][j_dol + 1] == ':'
-            || node->cmd_tab[i][j_dol + 1] == '.')
+        else if (node->cmd_tab[i][j_dol + 1] == '$' || node->cmd_tab[i][j_dol + 1] == '-' || node->cmd_tab[i][j_dol + 1] == ':' || node->cmd_tab[i][j_dol + 1] == '.')
         {
             j_dol += 1;
             break ;

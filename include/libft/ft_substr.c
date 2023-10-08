@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:32:39 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/06 14:55:56 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 15:51:11 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ char    *ft_substr(const char *s, unsigned int start, size_t len)
         len = 0;
     else if (ft_strlen(s + start) < len)
         len = ft_strlen(s + start);
-    str = malloc(sizeof(char) * len + 1);
+    str = malloc(sizeof(char) * len + 2);
     if (!str)
         return (NULL);
     if (len != 0)
-        ft_strlcpy(str, s + start, len + 1);
+        ft_strlcpy(str, s + start, len);
     else
         *str = 0;
     return (str);
