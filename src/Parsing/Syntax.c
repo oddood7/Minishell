@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:07:53 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/09/27 00:50:08 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/09 01:41:05 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ int	string_syn(t_main *mini, char *str)
         if (is_rchar(str[i], '&'))
         {
             if (is_rchar(str[i + 1], '&'))
-                return (err_syn(mini, "parse error near `&&'"));
-            return (err_syn(mini, "parse error near `&'"));
+                return (err_syn(mini, "near unexpected token`&&'"));
+            return (err_syn(mini, "near unexpected token`&'"));
         }
         else if (is_rchar(str[i], ';'))
         {
             if (is_rchar(str[i + 1], ';'))
-                return (err_syn(mini, "parse error near `;;'"));
-            return (err_syn(mini, "parse error near `;'"));
+                return (err_syn(mini, "near unexpected token`;;'"));
+            return (err_syn(mini, "near unexpected token`;'"));
         }
         else if (string_syn_plus(mini, str, i))
             return (1);
