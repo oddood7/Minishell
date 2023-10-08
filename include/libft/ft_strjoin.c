@@ -6,38 +6,37 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:44:16 by lde-mais          #+#    #+#             */
-/*   Updated: 2022/11/17 17:44:43 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 20:05:24 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+static char	*ft_cpy(char *dest, char *src, unsigned int n)
 {
-	int		i;
-	int		j;
-	char	*str;
-	int		len;
+	unsigned int	i;
 
-	if (!s1)
-		return (NULL);
 	i = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(sizeof(char) * (len + 1));
-	if (s1 == NULL || s2 == NULL || !str)
-		return (NULL);
-	while (s1[i])
+	while (src[i] && i < n)
 	{
-		str[i] = s1[i];
+		dest[i] = src[i];
 		i++;
 	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i + j] = s2[j];
-		j++;
-	}
-	str[i + j] = '\0';
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (!str)
+		return (NULL);
+	ft_cpy(str, (char *)s1, ft_strlen(s1));
+	ft_cpy(str + ft_strlen(s1), (char *)s2, ft_strlen(s2));
 	return (str);
 }
 

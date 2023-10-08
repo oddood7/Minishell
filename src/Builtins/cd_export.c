@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:45:28 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 23:57:24 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 20:12:26 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,22 @@ void	change_path_env_exp(t_main *mini, char *pwd, char *oldpwd)
 	char **tabexp;
 
 	i = 0;
-	while (mini->env_exp)
+	while (mini->env_exp[i])
 		i++;
-	tabexp = malloc(sizeof(char *) * i + 1);
+	tabexp = malloc(sizeof(char *) * (i + 1));
 	if (!tabexp)
 		err_mall(mini);
 	tabexp = get_tabexp(mini, tabexp, pwd, oldpwd);
 	ft_free_tab(mini->env_exp);
-	mini->env_exp = malloc(sizeof(char *) * i + 1);
+	mini->env_exp = malloc(sizeof(char *) * (i + 1));
 	if (!mini->env_exp)
 		err_mall(mini);
-	while (tabexp[i++])
+	i = 0;
+	while (tabexp[i])
+	{
 		mini->env_exp[i] = ft_strdup(tabexp[i]);
+		i++;
+	}
 	mini->env_exp[i] = 0;
 	ft_free_tab(tabexp);
 }
@@ -61,7 +65,7 @@ void	change_path_exp2(t_main *mini, char *pwd)
 	i = 0;
 	while (mini->env_exp[i])
 	{
-		if (!ft_strncmp(mini->env_exp[i], "declar -x PWD", 14))
+		if (!ft_strncmp(mini->env_exp[i], "declare -x PWD", 14))
 			break ;
 		i++;
 	}
@@ -70,7 +74,7 @@ void	change_path_exp2(t_main *mini, char *pwd)
 		err_mall(mini);
 	oldpwd = copy_declarex(mini, oldpwd, i);
 	pwd = add_quote(mini, pwd);
-	change_path_env_exp(mini, oldpwd, pwd);
+	change_path_env_exp(mini, pwd, oldpwd);
 	free(oldpwd);
 	free(pwd);
 }

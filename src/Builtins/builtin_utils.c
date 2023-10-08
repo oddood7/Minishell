@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:41:36 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/05 15:43:11 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 20:17:03 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ char    *copy_pwd(t_main *mini, char *s, int i)
 {
     int        j;
     int        k;
-    char    *ok;
+    char    *old;
 
     j = 4;
     k = 0;
     while (mini->env[i][j])
         s[k++] = mini->env[i][j++];
     s[k] = '\0';
-    ok = ft_strjoin("OLDPWD=", s);
+    old = ft_strjoin("OLDPWD=", s);
     free(s);
-    return (ok);
+    return (old);
 }
 
 char    *copy_declarex(t_main *mini, char *s, int i)

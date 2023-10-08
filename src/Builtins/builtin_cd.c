@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:26:51 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/07 15:32:11 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 20:17:35 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,20 @@ void	change_path_env(t_main *mini, char *pwd, char *oldpwd)
 	pwd = ft_strjoin("PWD=", pwd);
 	while (mini->env[i])
 		i++;
-	tab = malloc(sizeof(char *) * i + 1);
+	tab = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!tab)
 		err_mall(mini);
 	tab = get_tab(mini, tab, pwd, oldpwd);
 	ft_free_tab(mini->env);
-	mini->env = malloc(sizeof(char *) * i + 1);
+	mini->env = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!mini->env)
 		err_mall(mini);
-	while (tab[i++])
+	i = 0;
+	while (tab[i])
+	{
 		mini->env[i] = ft_strdup(tab[i]);
+		i++;
+	}
 	mini->env[i] = 0;
 	ft_free_tab(tab);
 	free(pwd);
@@ -57,7 +61,7 @@ void	change_path_env(t_main *mini, char *pwd, char *oldpwd)
 
 void	change_path2(t_main *mini)
 {
-	char 		pwd[2048];
+	char 		pwd[4096];
 	char 		*oldpwd;
 	int 		i;
 
@@ -79,7 +83,7 @@ void	change_path2(t_main *mini)
 	if (!oldpwd)
 		err_mall(mini);
 	oldpwd = copy_pwd(mini, oldpwd, i);
-	change_path_env(mini, oldpwd, pwd);
+	change_path_env(mini, pwd, oldpwd);
 	free(oldpwd);
 	change_path_exp2(mini, pwd);
 }
@@ -92,6 +96,8 @@ void cd_no_args(t_main *mini)
 	i = 0;
 	while (ft_strncmp(mini->env[i], "HOME", 4))
 		i++;
+	if (!mini->env[i])
+		return ;
 	str = ft_substr(mini->env[i], 5, ft_strlen(mini->env[i]) - 5);
 	chdir(str);
 	free(str);
@@ -101,6 +107,7 @@ void cd_no_args(t_main *mini)
 int built_cd(t_main *mini, t_parsing *cmd)
 {
 	int i;
+
 	if (!cmd->cmd_tab[1])
 	{
 		cd_no_args(mini);
