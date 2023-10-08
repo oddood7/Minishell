@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   Signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 19:12:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/07 21:33:26 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/09 00:22:39 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	sig_init(void)
 
 void	handle_eot(t_main *mini)
 {
+	printf("Exit Minishell with CTRL-D");
 	free_kill(mini);
 	clear_history();
 	exit(0);
