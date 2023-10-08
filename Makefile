@@ -6,7 +6,7 @@
 #    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/08 16:42:30 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/08 23:39:32 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC = ./src/Program/main.c \
 	./src/Expander/expander_utils2.c \
 	./src/Parsing/Parser.c \
 	./src/Parsing/Parsing_redirections.c \
+	./src/Parsing/Redir_utils.c \
 	./src/Parsing/Parsing_utils.c \
 	./src/Parsing/Operateurs.c \
 	./src/Parsing/Operateurs_Utils.c \

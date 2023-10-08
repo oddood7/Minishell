@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/07 22:02:03 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 23:41:13 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@ int check_all(t_main *mini)
 
 	tmp = mini->lexer_list;
 	len = ft_size_list(mini->lexer_list);
-	//check si var aussi;
 	if (syntax_check(mini, len))
+		return (1);
+	if (var_check(mini, mini->lexer_list))
 		return (1);
 	while (tmp)
 	{

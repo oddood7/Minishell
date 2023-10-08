@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/03 16:14:26 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 23:35:10 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,11 @@ int	err_export(char *str, int ok)
 		return (1);
 	}
 	return (0);
+}
+
+int    ft_perror(char *str)
+{
+    (void)str;
+    ft_putendl_fd(" Is a directory", 2);
+    return (1);
 }

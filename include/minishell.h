@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/08 16:42:25 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/08 23:44:45 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void    free_cmd_lst(t_parsing *lst);
 void	err_mall(t_main *mini);
 int		directory_err(t_main *mini, char *str, int ok);
 int		handle_error(t_main *mini, char *str, int rv);
+int    	ft_perror(char *str);
 int		is_rchar(char c, char v);
 int 	ft_size_list(t_lexer *list);
 int		*rv_static(int *rv);
@@ -218,6 +219,9 @@ char    		*rm_quote_redir(t_main *mini, char *s, int quote, int j);
 void    		check_quote_redir(t_main *mini, t_lexer *node);
 void    		parsing_tab_help(t_main *mini, t_parsing *node, int i, int len);
 void    		check_tab(t_main *mini);
+int    			var_check(t_main *mini, t_lexer *list);
+int    			dir_file_check(t_main *mini, char *str);
+int    			finding_var(t_main *mini, char *str, int len);
 
 /*****EXPANDER*****/
 
