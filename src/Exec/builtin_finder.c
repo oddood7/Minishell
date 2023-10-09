@@ -1,23 +1,23 @@
 #include "../../include/minishell.h"
 
 
-void	find_3(t_main *mini, t_parsing *node, char *cmd, int len)
+void	find_3(t_main *mini, char *cmd, int len)
 {
 	if (!ft_strncmp(cmd, "unset", len) && len == 5)
 	{
-		built_unset(mini, node);
+		ft_unset(mini->lexer_list, mini->shell, mini->env_list);
 		built_in_free(mini);
 		exit(mini->return_value);
 	}
 	if (!ft_strncmp(cmd, "echo", len) && len == 4)
 	{
-		built_echo(mini, node);
+		ft_echo(mini->lexer_list, &mini->env_list, mini->shell);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
 }
 
-void	find_2(t_main *mini, t_parsing *node, char *cmd, int len)
+void	find_2(t_main *mini, char *cmd, int len)
 {
 	if (!ft_strncmp(cmd, "exit", len) && len == 4)
 	{
@@ -26,18 +26,18 @@ void	find_2(t_main *mini, t_parsing *node, char *cmd, int len)
 	}
 	else if (!ft_strncmp(cmd, "export", len) && len == 6)
 	{
-		built_export(mini, node);
+		ft_export(mini->lexer_list, mini->shell, &mini->env_list);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
 	else if (!ft_strncmp(cmd, "pwd", len) && len == 3)
 	{
-		built_pwd(mini, node);
+		ft_pwd(mini->shell, &mini->env_list);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
 	else
-		find_3(mini, node, cmd, len);
+		find_3(mini, cmd, len);
 }
 
 void	find(t_main *mini, t_parsing *node)
@@ -53,17 +53,17 @@ void	find(t_main *mini, t_parsing *node)
 	len = ft_strlen(cleaned_cmd);
 	if (!ft_strncmp(cleaned_cmd, "cd", len) && len == 2)
 	{
-		built_cd(mini, node);
+		ft_cd(mini->lexer_list, mini->shell, mini->env_list);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
 	else if (!ft_strncmp(cleaned_cmd, "env", len) && len == 3)
 	{
-		built_env(mini, node);
+		ft_env(mini->lexer_list, &mini->env_list, mini->shell);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
 	else
-		find_2(mini, node, cleaned_cmd, len);
+		find_2(mini, cleaned_cmd, len);
 	free(cleaned_cmd);
 }

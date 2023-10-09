@@ -32,7 +32,7 @@ void	wait_exec(t_main *mini)
 		waitpid(-1, NULL, 0);
 		i++;
 	}
-	signal(SIGINT, handle_sig);
+	signal(SIGINT, signal_handler);
 	if (WIFEXITED(status))
 		mini->return_value = WEXITSTATUS(status);
 }

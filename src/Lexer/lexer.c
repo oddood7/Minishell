@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/06 17:43:11 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:12:43 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	ft_listadd(t_main *mini, char *str, t_operateurs operateur, t_lexer **lst)
 		*lst = node;
 	else
 		ft_lstaddback(lst, node);
-	//printf("Extracted word: %s\n", node->str);
+	// printf("Extracted word: %s\n", ->str);
+	// printf("test next : %s\n", node->next->str);
 	return (1);
 }
 
@@ -133,7 +134,9 @@ int	do_lexer(t_main *mini)
 			return (0);
 		i += j;
 		if (i >= ft_strlen(mini->input_line))
-			break ;
+			break ;	
 	}
+	printf("list str : %s\n", mini->lexer_list->str);
+	printf("list str : %s\n", mini->lexer_list->next->str);
 	return (1);
 }

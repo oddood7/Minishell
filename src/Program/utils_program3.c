@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_program3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:34:21 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/07 15:34:40 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:28:41 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int    error_quote(t_main *mini, char *str, int sep1, int sep2)
 void	init_main(t_main *mini)
 {
 	mini->lexer_list = NULL;
+    mini->env_list = NULL;
 	mini->cmd_parse = NULL;
 	mini->return_value = 0;
 	mini->syntaxe_check = 0;

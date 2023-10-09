@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
+#    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/08 23:39:32 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/09 19:26:19 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,18 @@ SRC = ./src/Program/main.c \
 	./src/Builtins/builtin_utils_export.c \
 	./src/Builtins/builtin_export_addremove.c \
 	./src/Builtins/cd_export.c \
+	./src/Builtins_Awe/cd_comand.c \
+	./src/Builtins_Awe/echo.c \
+	./src/Builtins_Awe/env_concerns.c \
+	./src/Builtins_Awe/exit.c \
+	./src/Builtins_Awe/help_cmd_bis.c \
+	./src/Builtins_Awe/export_cmd.c \
+	./src/Builtins_Awe/help_cmd.c \
+	./src/Builtins_Awe/local_cmd.c \
+	./src/Builtins_Awe/shlvl.c \
+	./src/Builtins_Awe/utils_thing.c \
+	./src/Builtins_Awe/utils_built2.c \
+	./src/Builtins_Awe/utils_built.c \
 	./src/Exec/builtin_finder.c \
 	./src/Exec/exec_builtins.c \
 	./src/Exec/exec_end.c \

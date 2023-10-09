@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/08 23:44:45 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:16:27 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef MINIshell_H
+# define MINIshell_H
 
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+#include <errno.h>
 # include <signal.h>
 # include <stdlib.h>
 # include <stddef.h>
@@ -28,6 +29,27 @@
 # include <unistd.h>
 # include <dirent.h>
 
+/// MAIN CODE ///
+
+//AWENA///
+
+extern int	g_error;
+
+typedef struct s_shell
+{
+	char	*home;
+	char	*pwd;
+	char	*is_pwd;
+	char	*is_oldpwd;
+	char	*oldpwd;
+	char	*path;
+	char	*shlvl;
+	char	**cmd_paths;
+	char	**input;
+	int		is_work;
+	char	*input_bis;
+	int		error;
+}	t_shell;
 
 typedef struct	s_here_doc
 {
@@ -61,6 +83,8 @@ typedef struct s_main
 	char				*input_line;
 	int					pipe_count;
 	t_lexer				*lexer_list;
+	t_lexer				*env_list;
+	t_shell				*shell;
 	struct s_parsing	*cmd_parse;
 	char				**env;
 	char				**env_exp;
@@ -98,6 +122,61 @@ typedef struct s_parsermain
     int                    	num_redir;
     struct s_main        	*data;
 }                        	t_parsermain;
+
+//////////////////// TEST AWENA ///////////////////
+
+//Bultins
+int			ft_echo(t_lexer *list, t_lexer **env_list, t_shell *shell);
+int			ft_cd(t_lexer *list, t_shell *shell, t_lexer *env_list);
+int			ft_pwd(t_shell *shell, t_lexer **env_list);
+int			ft_env(t_lexer *list, t_lexer **env_list, t_shell *shell);
+int			ft_unset(t_lexer *list, t_shell *shell, t_lexer *env_list);
+int			ft_export(t_lexer *list, t_shell *shell, t_lexer **env_list);
+int			ft_exit(t_lexer *list, t_lexer *env_list, \
+	t_shell *shell);
+
+//Other commands
+int			all_cmd(t_lexer *arg, t_shell *shell, t_main **list, \
+	t_lexer **env_list);
+void		change_env_cd(t_lexer **env_list, char *new_str, \
+	char *change_value);
+int			cd_move_and_change(t_lexer *env_list, t_shell *shell);
+int			change_env_exp(t_lexer **env_list, char *name_env, char *value);
+int			update_last_ve(t_lexer *list, t_lexer **env_list);
+int			parse_export(t_lexer *list);
+int			searchin_env(t_lexer **env_list, t_lexer *list);
+char		*is_path_or_cmd(char **paths, char *cmd, t_shell *shell, \
+	t_lexer **env_list);
+void		shell_change(t_shell *shell, char *str, char *value);
+int			set_env(t_lexer **env_list, char **env, t_shell *shell);
+void		add_env(t_lexer **env_list, char *str);
+int			ft_plus_shell(t_shell *shell, t_lexer **env_list);
+void		signal_handler(int sig);
+int			export_out_main(t_lexer **env_list, t_shell *shell);
+int			change_error(t_lexer **env_list, t_shell *shell, int value);
+int			handle_error_bis(int code_err);
+int			handle_env(t_shell *shell);
+void		code_error(int code);
+//Helpful function
+char		*ft_strdupto_n(char *str, char c);
+char		*ft_strdup_from(char *str, char c);
+char		*ft_strjoin_free(char *s1, char *s2);
+char		*from_end_to_char(char *str, char c);
+int			is_only_equal(char *str, char c);
+int			len_targs(t_lexer *list);
+void		free_everything(t_shell *shell, t_lexer *list, t_lexer *env_list);
+
+int			ft_strlen_double(char **str);
+int			count_back(char	*str);
+int			count_dir(t_shell *shell);
+char		**dup_double_string(t_lexer **e_list);
+int			is_numeric(char *str);
+t_lexer		*copy_list(t_lexer* source);
+char		**ft_sort(t_lexer **env_list);
+int			ft_strcmp(const char *s1, const char *s2);
+//Lists
+void		clear_args_list(t_lexer **list);
+////////////////////////////////////////////////////////
 
 /*****MAIN*****/
 
@@ -293,8 +372,8 @@ int    built_export(t_main *mini, t_parsing *cmd);
 /*****EXEC*****/
 
 void	find(t_main *mini, t_parsing *node);
-void	find_2(t_main *mini, t_parsing *node, char *cmd, int len);
-void	find_3(t_main *mini, t_parsing *node, char *cmd, int len);
+void	find_2(t_main *mini, char *cmd, int len);
+void	find_3(t_main *mini, char *cmd, int len);
 int		first_builtins(t_main *mini, t_parsing *node);
 int		first_builtins2(t_main *mini, t_parsing *node, int len);
 void	free_process(t_main *mini);
