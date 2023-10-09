@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 12:37:52 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 18:12:07 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/09 19:54:52 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	ft_echo(t_lexer *list, t_lexer **env_list, t_shell *shell)
 {
 	int	bools;
 
+	printf("list str 1 : %s\n", list->str);
 	bools = 0;
 	if (list == NULL)
 	{

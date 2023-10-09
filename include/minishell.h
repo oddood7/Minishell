@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 19:16:27 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/09 19:44:13 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_main
 	int					pipe_count;
 	t_lexer				*lexer_list;
 	t_lexer				*env_list;
-	t_shell				*shell;
+	t_shell				shell;
 	struct s_parsing	*cmd_parse;
 	char				**env;
 	char				**env_exp;
@@ -148,14 +148,14 @@ int			searchin_env(t_lexer **env_list, t_lexer *list);
 char		*is_path_or_cmd(char **paths, char *cmd, t_shell *shell, \
 	t_lexer **env_list);
 void		shell_change(t_shell *shell, char *str, char *value);
-int			set_env(t_lexer **env_list, char **env, t_shell *shell);
+int			set_env(t_main *mini, char **env);
 void		add_env(t_lexer **env_list, char *str);
 int			ft_plus_shell(t_shell *shell, t_lexer **env_list);
 void		signal_handler(int sig);
 int			export_out_main(t_lexer **env_list, t_shell *shell);
 int			change_error(t_lexer **env_list, t_shell *shell, int value);
 int			handle_error_bis(int code_err);
-int			handle_env(t_shell *shell);
+int			handle_env(t_main *mini);
 void		code_error(int code);
 //Helpful function
 char		*ft_strdupto_n(char *str, char c);

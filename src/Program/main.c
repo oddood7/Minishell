@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 19:28:55 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/09 19:57:10 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ int    main(int ac, char **av, char **env)
         return (main_space("run ./minishell without arg"));
     if (!env[0])
         return (main_space("env is missing"));
-    printf("je suis la\n");
     init_main(&mini);
     get_env(&mini, env);
-    get_env_export(&mini);
-    do_shlvl(&mini, mini.env);
+    // get_env_export(&mini);
+    // do_shlvl(&mini, mini.env);
+    // printf("shl home = %s\nshl pwd = %s\nshl path = %s\n", mini.shell.home, mini.shell.pwd, mini.shell.path);
     mini_loop(&mini);
     return (0);
 }

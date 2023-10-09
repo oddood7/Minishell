@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:37:01 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:46:39 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/09 19:49:34 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,21 @@ void    env_export_cpy(t_main *mini, char *decla)
     mini->env_exp[i] = 0;
 }
 
-void    get_env_export(t_main *mini)
-{
-    int        i;
-    char    *decla;
+// void    get_env_export(t_main *mini)
+// {
+//     int        i;
+//     char    *decla;
 
-    i = 0;
-    decla = "declare -x ";
-    while (mini->env[i])
-        i++;
-    mini->env_exp = malloc(sizeof(char *) * (i + 1));
-    if (!mini->env_exp)
-        err_mall(mini);
-    i = 0;
-    env_export_cpy(mini, decla);
-}
+//     i = 0;
+//     decla = "declare -x ";
+//     while (mini->env[i])
+//         i++;
+//     mini->env_exp = malloc(sizeof(char *) * (i + 1));
+//     if (!mini->env_exp)
+//         err_mall(mini);
+//     i = 0;
+//     env_export_cpy(mini, decla);
+// }
 
 void    get_env(t_main *mini, char **env)
 {
@@ -95,7 +95,7 @@ void    get_env(t_main *mini, char **env)
         i++;
     }
     mini->env[i] = 0;
-    set_env(&mini->env_list, env, mini->shell);
+    set_env(mini, env);
 }
 
 int	print_env_exp(t_main *mini)

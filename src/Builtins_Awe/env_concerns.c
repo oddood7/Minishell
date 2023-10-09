@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:59:01 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 19:13:37 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/09 19:49:02 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,13 +231,13 @@ static int	help_set_env(t_lexer **env_list, char **env, int *i,
 /*
  * Permet de norme set_env
 */
-static int	help_set_env2(t_lexer **env_list, t_shell **shell, char **identifier,
+static int	help_set_env2(t_lexer **env_list, t_shell *shell, char **identifier,
 		int *i)
 {
 	if (ft_strcmp(*identifier, "SHLVL") == 0
 		&& ft_strlen(*identifier) == 5)
 	{
-		if (ft_plus_shell(*shell, env_list) == 1)
+		if (ft_plus_shell(shell, env_list) == 1)
 			return (-1);
 	}
 	free(*identifier);
@@ -248,27 +248,23 @@ static int	help_set_env2(t_lexer **env_list, t_shell **shell, char **identifier,
 /* 
  * Initialise liste d'env 
 */
-int	set_env(t_lexer **env_list, char **env, t_shell *shell)
+int	set_env(t_main *mini, char **env)
 {
 	int		i;
 	char	*identifier;
 
-	// if (*env == NULL)
-	// {
-	// 	set_empty_env(shell, env_list);
-	// 	return (0);
-	// }
-	if (handle_env(shell) == -1)
+	if (handle_env(mini) == -1)
 		return (-1);
 	i = 0;
 	while (env[i])
 	{
-		if (help_set_env(env_list, env, &i, &identifier) == -1)
+		if (help_set_env(&mini->env_list, env, &i, &identifier) == -1)
 			return (-1);
-		if (help_set_env2(env_list, &shell, &identifier, &i) == -1)
+		if (help_set_env2(&mini->env_list, &mini->shell, &identifier, &i) == -1)
 			return (-1);
+		i ++;
 	}
-	add_env(env_list, "?=0");
+	add_env(&mini->env_list, "?=0");
 	return (0);
 }
 

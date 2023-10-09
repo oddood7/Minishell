@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:49:57 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 19:13:32 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/09 19:48:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ static char *get_env_var(const char *name)
  * Creer les maillons shell->str en fonction de getenv
  * Check cas d'erreurs
 */
-int	handle_env(t_shell *shell)
+int	handle_env(t_main *mini)
 {
-	shell->home = get_env_var("HOME");
-	shell->pwd = get_env_var("PWD");
-	shell->is_pwd = get_env_var("PWD");
-	shell->is_oldpwd = get_env_var("OLDPWD");
-	shell->oldpwd = get_env_var("OLDPWD");
-	shell->path = get_env_var("PATH");
-	shell->shlvl = get_env_var("SHLVL");
-	shell->error = 0;
-	if (shell->path != NULL && shell->path[0] != '\0')
+	mini->shell.home = get_env_var("HOME");
+	mini->shell.pwd = get_env_var("PWD");
+	mini->shell.is_pwd = get_env_var("PWD");
+	mini->shell.is_oldpwd = get_env_var("OLDPWD");
+	mini->shell.oldpwd = get_env_var("OLDPWD");
+	mini->shell.path = get_env_var("PATH");
+	mini->shell.shlvl = get_env_var("SHLVL");
+	mini->shell.error = 0;
+	if (mini->shell.path != NULL && mini->shell.path[0] != '\0')
 	{
-		shell->cmd_paths = ft_split(shell->path + 5, ':');
-		if (! shell->cmd_paths)
+		mini->shell.cmd_paths = ft_split(mini->shell.path + 5, ':');
+		if (! mini->shell.cmd_paths)
 			return (-1);
 	}
 	return (0);
