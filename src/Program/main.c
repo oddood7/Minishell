@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 19:57:10 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/09 20:15:07 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int    start_in_loop(t_main *mini, char *input)
 		main_space("lexer failed.");
 	clean_lexed_list(&mini->lexer_list);
 	pr(mini->lexer_list);
+    // printf("list str : %s\n", mini->lexer_list->str);
+	// printf("list str : %s\n", mini->lexer_list->next->str);
     if (!parsing(mini))
     {
         mini->syntaxe_check = 1;

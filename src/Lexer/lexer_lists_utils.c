@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:04:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 20:05:03 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/09 20:18:03 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ void	ft_delid(t_lexer **list, int id)
 
 	start = *list;
 	tmp = start;
-	printf("hey : %s\n", (*list)->str);
 	if ((*list)->i == id)
 	{
-		printf("hey\n");
 		ft_delfirst(list);
 		return ;
 	}
