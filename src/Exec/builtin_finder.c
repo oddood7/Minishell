@@ -11,7 +11,6 @@ void	find_3(t_main *mini, char *cmd, int len)
 	}
 	if (!ft_strncmp(cmd, "echo", len) && len == 4)
 	{
-		printf("yolo\n");
 		ft_echo(mini, mini->cmd_parse);
 		built_in_free(mini);
 		exit (mini->return_value);
