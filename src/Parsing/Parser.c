@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 20:03:21 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 12:34:18 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ int parsing(t_main *mini)
 
 	if (operateur_handle(mini) || check_all(mini))
 		return (0);
+	ft_memset(&data, 0, sizeof data);
 	while (mini->lexer_list)
 	{
-		data = init_parser_data(mini->lexer_list, mini);
+		init_parser_data(&data, mini->lexer_list, mini);
 		node = init_cmd(mini, &data, 0);
 		if (!node)
 			exit (1);

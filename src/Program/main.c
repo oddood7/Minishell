@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 20:15:07 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 10:57:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int    start_in_loop(t_main *mini, char *input)
 		main_space("lexer failed.");
 	clean_lexed_list(&mini->lexer_list);
 	pr(mini->lexer_list);
-    // printf("list str : %s\n", mini->lexer_list->str);
-	// printf("list str : %s\n", mini->lexer_list->next->str);
+    printf("list str : %s\n", mini->lexer_list->str);
+	printf("list str : %s\n", mini->lexer_list->next->str);
     if (!parsing(mini))
     {
         mini->syntaxe_check = 1;
@@ -54,6 +54,7 @@ int    start_in_loop(t_main *mini, char *input)
     handle_quote_n_expand(mini);
     check_tab(mini);
 	prrr(mini->cmd_parse, 0);
+   
     return (0);
 }
 
@@ -71,7 +72,9 @@ void    mini_loop(t_main *mini)
             if (input[0] != '\0')
             {
                 if (!start_in_loop(mini, input))
+                {
                     execute_cmd(mini);
+                }
                 resets(mini);
             }
         }

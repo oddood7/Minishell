@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:26:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 11:44:08 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ int	count_lex(t_lexer *list)
 	return (i);
 }
 
-t_parsermain	init_parser_data(t_lexer *list, t_main *mini)
+void	init_parser_data(t_parsermain *data, \
+t_lexer *list, t_main *mini)
 {
-	t_parsermain data;
-
-	data.lexer_list = list;
-	data.redirection = NULL;
-	data.num_redir = 0;
-	data.data = mini;
-	return (data);
+	data->lexer_list = list;
+	data->redirection = NULL;
+	data->num_redir = 0;
+	data->data = mini;
 }
 
 void	parse_addback(t_parsing **lst, t_parsing *new)

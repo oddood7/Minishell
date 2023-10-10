@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 12:37:52 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 19:54:52 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 12:55:03 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,33 @@ static int	find_opt(char *s1)
 /* 
  * Affiche caractere par caractere la liste.
  * Suite de ft_echo.
- * // if (list->token == TOKEN_TEMP_VAR)
-	// 	process_not_s_quotes(list, env_list, 2);
 */
-static int	iter_echo(t_lexer *list)
+static int	iter_echo(char	*str)
 {
 	int		i;
 
 	i = 0;
-	if (list->str == NULL)
+	if (str == NULL)
 		return (0);
-	while (list->str[i])
+	while (str[i])
 	{
-		write (1, &list->str[i], 1);
+		write (1, &str[i], 1);
 		i ++;
 	}
 	return (0);
 }
 
-static void	echo_loop(t_lexer *list, t_shell *shell)
+static void	echo_loop(char **cmd_tab, int i, t_shell *shell)
 {
-	if (ft_strcmp("$?", list->str) == 0 && ft_strlen(list->str) == 2)
+	if (ft_strcmp("$?", cmd_tab[i]) == 0 && ft_strlen(cmd_tab[i]) == 2)
 		printf("%d", shell->error);
 	else
 	{
-		while (list)
+		while (cmd_tab[i])
 		{
-			if (iter_echo(list) == 0 && list->next != NULL)
+			if (iter_echo(cmd_tab[i]) == 0 && cmd_tab[i + 1] != NULL)
 				write (1, " ", 1);
-			list = list->next;
+			i ++;
 		}
 	}
 }
@@ -73,28 +71,29 @@ static void	echo_loop(t_lexer *list, t_shell *shell)
  * Affiche caractere par caractere les arguments en ignorant les quotes.
  * (Attention: cas particuliers, quotes a l'interieur de d'autres).
 */
-int	ft_echo(t_lexer *list, t_lexer **env_list, t_shell *shell)
+int	ft_echo(t_main *mini, t_parsing *parse)
 {
 	int	bools;
+	int	i;
 
-	printf("list str 1 : %s\n", list->str);
 	bools = 0;
-	if (list == NULL)
+	i = 1;
+	if (!parse->cmd_tab[i])
 	{
 		write (1, "\n", 1);
 		return (1);
 	}
-	while (list && ft_strcmp(list->str, "\t") == 0)
-		list = list->next;
-	while (list && find_opt(list->str) == 1)
+	while (parse->cmd_tab[i] && ft_strcmp(parse->cmd_tab[i], "\t") == 0)
+		i ++;
+	while (parse->cmd_tab[i] && find_opt(parse->cmd_tab[i]) == 1)
 	{
-		list = list->next;
+		i ++;
 		bools = 1;
 	}
-	echo_loop(list, shell);
+	echo_loop(parse->cmd_tab, i, &mini->shell);
 	if (bools == 0)
 		write (1, "\n", 1);
-	if (change_error(env_list, shell, 0) == 1)
+	if (change_error(&mini->env_list, &mini->shell, 0) == 1)
 		return (1);
 	return (0);
 }

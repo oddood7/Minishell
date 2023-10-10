@@ -6,13 +6,13 @@
 #    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/09 19:26:19 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/10 11:18:26 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include/readline
+CFLAGS = -Wall -Wextra -Werror
 LIBFT_PATH = include/libft/
 LIBFT = $(LIBFT_PATH)libft.a
 
