@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:34:51 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/10 15:16:51 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:43:20 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,16 @@ static char	*is_two_points(t_shell *shell, t_parsing *parse, t_lexer *env_list)
 	char	*temp;
 	char	*buf;
 
+	if (ft_strcmp(shell->is_pwd, getenv("PWD")))
+	{
+		free(shell->is_pwd);
+		shell->is_pwd = get_env_var("PWD");
+	}
 	temp = from_end_to_char(shell->is_pwd, '/');
 	if (!temp)
 		return (NULL);
 	dir = opendir(temp);
+	printf("temp = %s\n", temp);
 	if (dir == NULL)
 		return (help_itp1(env_list, &shell, &dir, &temp));
 	buf = ft_strdup(parse->cmd_tab[parse->incr +1]);

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 16:56:36 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:44:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_shell
 	char	*home;
 	char	*pwd;
 	char	*is_pwd;
+	char	*user;
 	char	*is_oldpwd;
 	char	*oldpwd;
 	char	*path;
@@ -157,6 +158,7 @@ int			export_out_main(t_lexer **env_list, t_shell *shell);
 int			change_error(t_lexer **env_list, t_shell *shell, int value);
 int			handle_error_bis(int code_err);
 int			handle_env(t_main *mini);
+char 		*get_env_var(const char *name);
 void		code_error(int code);
 //Helpful function
 char		*ft_strdupto_n(char *str, char c);
@@ -175,7 +177,7 @@ int			is_numeric(char *str);
 t_lexer		*copy_list(t_lexer* source);
 char		**ft_sort(t_lexer **env_list);
 int			ft_strcmp(const char *s1, const char *s2);
-//Lists
+char		*prompt_cmd(t_shell *shell, char *user);
 void		clear_args_list(t_lexer **list);
 ////////////////////////////////////////////////////////
 

@@ -6,7 +6,7 @@
 #    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/10 11:18:26 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/10 17:27:21 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = ./src/Program/main.c \
 	./src/Program/utils_program2.c \
 	./src/Program/utils_program3.c \
 	./src/Program/tests.c \
+	./src/Program/prompt.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
 	./src/Lexer/lexer_utils.c \

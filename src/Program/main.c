@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 17:02:40 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:28:37 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,13 @@ int    start_in_loop(t_main *mini, char *input)
 void    mini_loop(t_main *mini)
 {
     char    *input;
+    char    *prompt_char;
 
     while (42)
     {
-        input = readline("$> ");
+        prompt_char = prompt_cmd(&mini->shell, mini->shell.user);
+        input = readline(prompt_char);
+        free(prompt_char);
         if (!input)
             handle_eot(mini);
         if (check_space(input) && !error_quote(mini, input, 34, 39))
@@ -70,9 +73,7 @@ void    mini_loop(t_main *mini)
             if (input[0] != '\0')
             {
                 if (!start_in_loop(mini, input))
-                {
                     execute_cmd(mini);
-                }
                 resets(mini);
             }
         }

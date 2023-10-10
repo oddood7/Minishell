@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:49:57 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 19:48:11 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:43:55 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * Si oui, renvoit une chaine vide
  * Renvoit un char * de la valeur de la ve enregistree
 */
-static char *get_env_var(const char *name)
+char *get_env_var(const char *name)
 {
 	char	*env_var;
 
@@ -34,6 +34,7 @@ static char *get_env_var(const char *name)
 int	handle_env(t_main *mini)
 {
 	mini->shell.home = get_env_var("HOME");
+	mini->shell.user = get_env_var("USER");
 	mini->shell.pwd = get_env_var("PWD");
 	mini->shell.is_pwd = get_env_var("PWD");
 	mini->shell.is_oldpwd = get_env_var("OLDPWD");
