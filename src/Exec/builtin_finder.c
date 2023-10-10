@@ -53,7 +53,7 @@ void	find(t_main *mini, t_parsing *node)
 	len = ft_strlen(cleaned_cmd);
 	if (!ft_strncmp(cleaned_cmd, "cd", len) && len == 2)
 	{
-		ft_cd(mini->lexer_list, &mini->shell, mini->env_list);
+		ft_cd(mini, mini->cmd_parse);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}

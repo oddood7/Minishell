@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 12:43:57 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:12:24 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_main
 typedef struct s_parsing
 {
 	char				**cmd_tab;
+	int					incr;
 	int                 num_redirection;
 	char				*hd_file_name;
 	t_lexer				*redirection;
@@ -121,13 +122,13 @@ typedef struct s_parsermain
     t_lexer                	*redirection;
     int                    	num_redir;
     struct s_main        	*data;
-}                        	t_parsermain;
+}							t_parsermain;
 
 //////////////////// TEST AWENA ///////////////////
 
 //Bultins
 int			ft_echo(t_main *mini, t_parsing *parse);
-int			ft_cd(t_lexer *list, t_shell *shell, t_lexer *env_list);
+int			ft_cd(t_main *mini, t_parsing *parse);
 int			ft_pwd(t_shell *shell, t_lexer **env_list);
 int			ft_env(t_lexer *list, t_lexer **env_list, t_shell *shell);
 int			ft_unset(t_lexer *list, t_shell *shell, t_lexer *env_list);

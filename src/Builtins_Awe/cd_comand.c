@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:34:51 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 18:09:32 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:16:51 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
  * Change de repertoire en fonction du buf envoye.
  * Agit reellement comme la commande cd.
 */
-int	cd_real_version(char *buf, t_shell *shell, t_lexer *env_list, t_lexer *list)
+int	cd_real_version(char *buf, t_shell *shell, t_lexer *env_list, t_parsing *parse)
 {
 	if (chdir(buf) == -1)
 	{
-		printf("%s: %s: %s\n", list->str, buf, strerror(errno));
+		printf("%s: %s: %s\n", parse->cmd_tab[parse->incr], buf, strerror(errno));
 		change_error(&env_list, shell, handle_error_bis(errno -1));
 		return (1);
 	}
@@ -33,7 +33,7 @@ int	cd_real_version(char *buf, t_shell *shell, t_lexer *env_list, t_lexer *list)
 }
 
 /*
- * Permet de normer is_two_point
+ * Code erreur cd :fichier introuvable et return.
 */
 static char *help_itp1(t_lexer *env_list, t_shell **shell, DIR **dir,
 		char **temp)
@@ -46,8 +46,7 @@ static char *help_itp1(t_lexer *env_list, t_shell **shell, DIR **dir,
 }
 
 /*
- * Permet de normer is_two_points
- * fonction recurrente dans le code
+ * Free and close in cd
 */
 static char	*help_itp2(DIR **dir, char **temp)
 {
@@ -58,9 +57,8 @@ static char	*help_itp2(DIR **dir, char **temp)
 
 /*
  * Cas ou cd.., suite de la commande cd principale
- * Fonction normee, conservation du code commente au cas ou
 */
-static char	*is_two_points(t_shell *shell, t_lexer *list, t_lexer *env_list)
+static char	*is_two_points(t_shell *shell, t_parsing *parse, t_lexer *env_list)
 {
 	DIR		*dir;
 	char	*temp;
@@ -72,35 +70,15 @@ static char	*is_two_points(t_shell *shell, t_lexer *list, t_lexer *env_list)
 	dir = opendir(temp);
 	if (dir == NULL)
 		return (help_itp1(env_list, &shell, &dir, &temp));
-//	{
-//		buf = NULL; pourquoi set a NULL alors qu on return?
-//		printf("cd : No such file or directory\n");
-//		change_error(&env_list, shell, 0);
-//		closedir(dir);
-//		free(temp);
-//		return (NULL);
-//	}
-	buf = ft_strdup(list->next->str);
+	buf = ft_strdup(parse->cmd_tab[parse->incr +1]);
 	if (! buf)
 		help_itp2(&dir, &temp);
-//	{
-//		free(temp);
-//		closedir(dir);
-//		return (NULL);
-//	}
 	if (shell->pwd == NULL)
 	{
 		if (!cd_move_and_change(env_list, shell))
 			return(help_itp2(&dir, &temp));
-//		{
-//			free(temp);
-//			closedir(dir);
-//			return (NULL);
-//		}
 	}
 	help_itp2(&dir, &temp);
-//	free(temp);
-//	closedir(dir);
 	return (buf);
 }
 
@@ -108,28 +86,21 @@ static char	*is_two_points(t_shell *shell, t_lexer *list, t_lexer *env_list)
  * Check les arguments de cd
  * Gere cas d'erreurs premiers
 */
-int	check_cd(t_lexer *list, t_shell *shell, t_lexer *env_list)
+int	check_cd(t_parsing *parse, t_shell *shell, t_lexer *env_list)
 {
-	if (list->next != NULL && list->next->str[0] == '\0')
+	if (parse->cmd_tab[parse->incr +1] && parse->cmd_tab[parse->incr +1][0] == '\0')
 		return (1);
-	if (list->next == NULL || ft_strncmp(list->next->str, "~",
-			ft_strlen(list->next->str)) == 0)
+	if (parse->cmd_tab[parse->incr +1] == NULL || ft_strncmp(parse->cmd_tab[parse->incr +1], "~",
+			ft_strlen(parse->cmd_tab[parse->incr +1])) == 0)
 	{
 		if (shell->home == NULL)
 		{
-			printf("%s: 'HOME' not defined\n", list->str);
+			printf("%s: 'HOME' not set\n", parse->cmd_tab[parse->incr]);
 			change_error(&env_list, shell, 1);
 			return (1);
 		}
 		return (2);
 	}
-	// else if (list->next->next && list->next->next->token != TOKEN_AND
-	// 	&& list->next->next->token != TOKEN_OR)
-	// {
-	// 	printf("%s: too many arguments\n", list->str);
-	// 	change_error(&env_list, shell, 1);
-	// 	return (1);
-	// }
 	return (0);
 }
 
@@ -138,24 +109,27 @@ int	check_cd(t_lexer *list, t_shell *shell, t_lexer *env_list)
  * Agit en fonction des cas speciaux, un peu comme une gestionnaire
  * d'arguments pour cd specifiquement.
 */
-int	ft_cd(t_lexer *list, t_shell *shell, t_lexer *env_list)
+int	ft_cd(t_main *mini, t_parsing *parse)
 {
 	char	*buf;
 	int		cod;
 	int		err;
 
-	cod = check_cd(list, shell, env_list);
+	parse->incr = 0;
+	printf("str : %s\n", parse->cmd_tab[0]);
+	cod = check_cd(parse, &mini->shell, mini->env_list);
 	if (cod == 1)
 		return (1);
 	if (cod == 2)
-		buf = ft_strdup(shell->home);
-	else if (ft_strncmp(list->next->str, "..", ft_strlen(list->next->str)) == 0)
-		buf = is_two_points(shell, list, env_list);
+		buf = ft_strdup(mini->shell.home);
+	else if (ft_strncmp(parse->cmd_tab[parse->incr +1], "..", ft_strlen(parse->cmd_tab[parse->incr +1])) == 0)
+		buf = is_two_points(&mini->shell, parse, mini->env_list);
 	else
-		buf = ft_strdup(list->next->str);
+		buf = ft_strdup(parse->cmd_tab[parse->incr +1]);
 	if (!buf)
 		return (1);
-	err = cd_real_version(buf, shell, env_list, list);
+	err = cd_real_version(buf, &mini->shell, mini->env_list, parse);
 	free(buf);
-	return (err || change_error(&env_list, shell, 0) == 1);
+	parse->incr = 0;
+	return (err || change_error(&mini->env_list, &mini->shell, 0) == 1);
 }

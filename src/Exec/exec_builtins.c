@@ -12,11 +12,12 @@ int	first_builtins2(t_main *mini, t_parsing *node, int len)
 	if (!ft_strncmp(node->cmd_tab[0], "cd", len) && node->next == NULL
 		&& len == 2)
 	{
+		printf("je suis la moi\n");
 		if (mini->pipe_count)
 		{
 			return (0);
 		}
-		built_cd(mini, node);
+		ft_cd(mini, mini->cmd_parse);
 		return (1);
 	}
 	return (0);

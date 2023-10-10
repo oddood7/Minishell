@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 14:50:43 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:18:07 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int    start_in_loop(t_main *mini, char *input)
         mini->syntaxe_check = 1;
         return (1);
     }
-	printf("je suis la moi\n");
 	prrr(mini->cmd_parse, 1);
     handle_quote_n_expand(mini);
     check_tab(mini);
