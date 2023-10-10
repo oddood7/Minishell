@@ -5,7 +5,7 @@ void	find_3(t_main *mini, char *cmd, int len)
 {
 	if (!ft_strncmp(cmd, "unset", len) && len == 5)
 	{
-		ft_unset(mini->lexer_list, &mini->shell, mini->env_list);
+		ft_unset(mini, mini->cmd_parse, &mini->env_list);
 		built_in_free(mini);
 		exit(mini->return_value);
 	}

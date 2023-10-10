@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 15:30:21 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 16:24:47 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int			ft_echo(t_main *mini, t_parsing *parse);
 int			ft_cd(t_main *mini, t_parsing *parse);
 int			ft_pwd(t_shell *shell, t_lexer **env_list);
 int			ft_env(t_main *mini, t_parsing *parse, t_lexer **env_list);
-int			ft_unset(t_lexer *list, t_shell *shell, t_lexer *env_list);
+int			ft_unset(t_main *mini, t_parsing *parse, t_lexer **env_list);
 int			ft_export(t_lexer *list, t_shell *shell, t_lexer **env_list);
 int			ft_exit(t_lexer *list, t_lexer *env_list, \
 	t_shell *shell);
@@ -145,7 +145,7 @@ int			cd_move_and_change(t_lexer *env_list, t_shell *shell);
 int			change_env_exp(t_lexer **env_list, char *name_env, char *value);
 int			update_last_ve(t_parsing *parse, t_lexer **env_list);
 int			parse_export(t_lexer *list);
-int			searchin_env(t_lexer **env_list, t_lexer *list);
+int			searchin_env(t_lexer **env_list, char *str);
 char		*is_path_or_cmd(char **paths, char *cmd, t_shell *shell, \
 	t_lexer **env_list);
 void		shell_change(t_shell *shell, char *str, char *value);

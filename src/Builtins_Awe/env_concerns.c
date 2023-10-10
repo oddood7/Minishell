@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:59:01 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/10 15:39:44 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 16:22:28 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int	change_env_exp(t_lexer **env_list, char *name_env, char *value)
  * Boucle principale d'unset.
  * Cherche une VE et la supprime s'il la trouve.
 */
-int	searchin_env(t_lexer **env_list, t_lexer *list)
+int	searchin_env(t_lexer **env_list, char *str)
 {
 	t_lexer	*current;
 	t_lexer	*temp;
@@ -165,13 +165,13 @@ int	searchin_env(t_lexer **env_list, t_lexer *list)
 	size_t	len;
 
 	current = *env_list;
-	len = ft_strlen(list->next->str);
+	len = ft_strlen(str);
 	while (current && current->next)
 	{
 		name_env = ft_strdupto_n(current->next->str, '=');
 		if (!name_env)
 			return (1);
-		if (ft_strncmp(list->next->str, name_env, len) == 0 && \
+		if (ft_strncmp(str, name_env, len) == 0 && \
 		len == ft_strlen(name_env))
 			// return (help_s_e(&temp, &current, &name_env));
 		{
