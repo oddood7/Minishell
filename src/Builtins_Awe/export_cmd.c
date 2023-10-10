@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 18:05:40 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 16:39:15 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@
  * check si l'argument est NULL ou s'il existe mais qu'il est vide
  * ATTENTION: voir cas speciaux et faire mini parsing des args avant d'export.
 */
-int	export_errors(t_lexer *list, t_lexer **env_list, t_shell *shell)
+int	export_errors(t_parsing *parse, t_lexer **env_list, t_shell *shell)
 {
-	if (ft_strlen(list->str) == 6 && ft_strcmp(list->str, "export") == 0
-		&& !list->next)
+	if (ft_strlen(parse->cmd_tab[parse->incr]) == 6 && ft_strcmp(parse->cmd_tab[parse->incr], "export") == 0
+		&& !parse->cmd_tab[parse->incr +1])
 	{
 		export_out_main(env_list, shell);
 		return (1);
 	}
-	if (list && list->str[0] == '\0')
+	if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr][0] == '\0')
 	{
 		printf("export : \"\": invalid identifier\n");
 		change_error(env_list, shell, 1);
 		return (1);
 	}
-	if (list && parse_export(list) == 2)
+	if (parse->cmd_tab[parse->incr] && parse_export(parse->cmd_tab[parse->incr]) == 2)
 		return (0);
-	else if (list && parse_export(list) == 1)
+	else if (parse->cmd_tab[parse->incr] && parse_export(parse->cmd_tab[parse->incr]) == 1)
 	{
-		printf("export : \"%s\" : invalid identifier\n", list->str);
+		printf("export : \"%s\" : invalid identifier\n", parse->cmd_tab[parse->incr]);
 		change_error(env_list, shell, 1);
 		return (1);
 	}
@@ -70,38 +70,41 @@ static void	ft_more_export(t_shell *shell, char *v_env, char *value)
  * Gere le cas ou il y a plusieurs creation/remplacement de VE
 
 */
-int	ft_export(t_lexer *list, t_shell *shell, t_lexer **env_list)
+int	ft_export(t_main *mini, t_parsing *parse)
 {
 	char	*value;
 	char	*v_env;
 	int		result_change_env;
 
-	if (export_errors(list, env_list, shell) == 1)
+	if (export_errors(parse, &mini->env_list, &mini->shell) == 1)
 	{
-		if (list->next)
-			ft_export(list->next, shell, env_list);
+		if (parse->cmd_tab[parse->incr +1])
+		{
+			parse->incr ++;
+			ft_export(mini, parse);
+		}
 		return (1);
 	}
-	if (ft_strlen(list->str) == 6 && ft_strcmp(list->str, "export") == 0)
-		list = list->next;
-	if (ft_strchr(list->str, '='))
+	if (ft_strlen(parse->cmd_tab[parse->incr]) == 6 && ft_strcmp(parse->cmd_tab[parse->incr], "export") == 0)
+		parse->incr ++;
+	if (ft_strchr(parse->cmd_tab[parse->incr], '='))
 	{
-		v_env = ft_strdupto_n(list->str, '=');
+		v_env = ft_strdupto_n(parse->cmd_tab[parse->incr], '=');
 		if (! v_env)
 			return (1);
-		value = ft_strdup_from(list->str, '=');
+		value = ft_strdup_from(parse->cmd_tab[parse->incr], '=');
 		if (! value)
 		{
 			free(v_env);
 			return (1);
 		}
-		result_change_env = change_env_exp(env_list, v_env, value);
+		result_change_env = change_env_exp(&mini->env_list, v_env, value);
 		if (result_change_env == 0)
-			ft_more_export(shell, v_env, value);
+			ft_more_export(&mini->shell, v_env, value);
 		else if (result_change_env == 1)
 		{
-			add_env(env_list, list->str);
-			ft_more_export(shell, v_env, value);
+			add_env(&mini->env_list, parse->cmd_tab[parse->incr]);
+			ft_more_export(&mini->shell, v_env, value);
 		}
 		else
 		{
@@ -112,9 +115,12 @@ int	ft_export(t_lexer *list, t_shell *shell, t_lexer **env_list)
 		free(v_env);
 		free(value);
 	}
-	if (list->next != NULL)
-		ft_export(list->next, shell, env_list);
-	if (change_error(env_list, shell, 0) == 1)
+	if (parse->cmd_tab[parse->incr +1] != NULL)
+	{
+		parse->incr ++;
+		ft_export(mini, parse);
+	}
+	if (change_error(&mini->env_list, &mini->shell, 0) == 1)
 		return (1);
 	return (0);
 }
@@ -162,25 +168,25 @@ int	export_out_main(t_lexer **env_list, t_shell *shell)
  * Check si le nom est conforme, juste des chiffres, des lettres et des
  * underscores
 */
-int	parse_export(t_lexer *list)
+int	parse_export(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (!(list->str[0] >= 'A' && list->str[0] <= 'Z') && !(list->str[0] >= 'a'
-			&& list->str[0] <= 'z'))
+	if (!(str[0] >= 'A' && str[0] <= 'Z') && !(str[0] >= 'a'
+			&& str[0] <= 'z'))
 		return (1);
-	while (list->str[i] && list->str[i] != '=')
+	while (str[i] && str[i] != '=')
 	{
-		if (!(list->str[i] >= '0' && list->str[i] <= '9') && !(list->str[i] \
-			>= 'A' && list->str[i] <= 'Z') && !(list->str[i] >= 'a' \
-			&& list->str[i] <= 'z') && list->str[i] != '_')
+		if (!(str[i] >= '0' && str[i] <= '9') && !(str[i] \
+			>= 'A' && str[i] <= 'Z') && !(str[i] >= 'a' \
+			&& str[i] <= 'z') && str[i] != '_')
 		{
 			return (1);
 		}
 		i ++;
 	}
-	if (list->str[i] == '=')
+	if (str[i] == '=')
 		return (0);
 	return (2);
 }

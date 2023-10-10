@@ -8,7 +8,7 @@ int	first_builtins2(t_main *mini, t_parsing *node, int len)
 		return (ft_unset(mini, node, &mini->env_list));
 	if (!ft_strncmp(node->cmd_tab[0], "export", len) && node->next == NULL
 		&& len == 6)
-		return (built_export(mini, node));
+		return (ft_export(mini, node));
 	if (!ft_strncmp(node->cmd_tab[0], "cd", len) && node->next == NULL
 		&& len == 2)
 	{
@@ -26,6 +26,7 @@ int	first_builtins(t_main *mini, t_parsing *node)
 {
 	int	len;
 
+	node->incr = 0;
 	if (node->cmd_tab[0])
 		len = ft_strlen(node->cmd_tab[0]);
 	if (node->cmd_tab[0] == NULL)

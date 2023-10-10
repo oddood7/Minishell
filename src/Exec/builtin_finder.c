@@ -26,7 +26,7 @@ void	find_2(t_main *mini, char *cmd, int len)
 	}
 	else if (!ft_strncmp(cmd, "export", len) && len == 6)
 	{
-		ft_export(mini->lexer_list, &mini->shell, &mini->env_list);
+		ft_export(mini, mini->cmd_parse);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}
@@ -48,6 +48,7 @@ void	find(t_main *mini, t_parsing *node)
 
 	if (node->cmd_tab[0] == NULL)
 		return ;
+	mini->cmd_parse->incr = 0;
 	cmd = node->cmd_tab[0];
 	cleaned_cmd = ft_strtrim(cmd, " ");
 	len = ft_strlen(cleaned_cmd);
