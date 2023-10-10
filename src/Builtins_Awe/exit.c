@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:09:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 18:05:40 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:03:13 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,31 +64,32 @@ void	free_everything(t_shell *shell, t_lexer *list, t_lexer *env_list)
  * :warning:
  * wait(100) supprime de la premiere ligne pour la norme
 */
-int	ft_exit(t_lexer *list, t_lexer *env_list, t_shell *shell)
+int	ft_exit(t_main *mini, t_parsing *parse)
 {
 	int	code_err;
 
 	code_err = 0;
-	(void)shell;
 	printf("exit\n");
-	if (list && list->next && is_numeric(list->next->str) == 1)
+	if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1] \
+		&& is_numeric(parse->cmd_tab[parse->incr +1]) == 1)
 	{
-		printf("%s: %s: numeric argument required\n", list->str,
-			list->next->str);
+		printf("%s: %s: numeric argument required\n", parse->cmd_tab[parse->incr],
+			parse->cmd_tab[parse->incr +1]);
 		code_err = 2;
 	}
-	else if (list && list->next && list->next->next)
+	else if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1] \
+		&& parse->cmd_tab[parse->incr +2])
 	{
-		printf("%s: too many arguments\n", list->str);
-		change_error(&env_list, shell, 1);
+		printf("%s: too many arguments\n", parse->cmd_tab[parse->incr]);
+		change_error(&mini->env_list, &mini->shell, 1);
 		return (1);
 	}
-	else if (list && list->next)
-		code_err = ft_atoi(list->next->str) % 256;
-	else if (shell->error == 0 && g_error != 0)
+	else if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1])
+		code_err = ft_atoi(parse->cmd_tab[parse->incr +1]) % 256;
+	else if (mini->shell.error == 0 && g_error != 0)
 		code_err = g_error;
 	else
-		code_err = shell->error;
-	free_everything(shell, list, env_list);
+		code_err = mini->shell.error;
+	built_in_free(mini);
 	exit(code_err);
 }

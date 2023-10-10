@@ -47,13 +47,61 @@ void	exit_error_redir(t_main *mini, int fd[2])
 	exit (1);
 }
 
+/* Free tous les char * et char ** de la struct shell */
+static void	free_shell_var(t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	if (shell->is_oldpwd)
+		free(shell->is_oldpwd);
+	if (shell->is_pwd)
+		free(shell->is_pwd);
+	if (shell->oldpwd)
+		free(shell->oldpwd);
+	if (shell->pwd)
+		free(shell->pwd);
+	if (shell->home)
+		free(shell->home);
+	if (shell->path)
+		free(shell->path);
+	if (shell->input_bis)
+		free(shell->input_bis);
+	if (shell->shlvl)
+		free(shell->shlvl);
+	if (shell->cmd_paths)
+	{
+		while (shell->cmd_paths[i])
+			free(shell->cmd_paths[i++]);
+		free(shell->cmd_paths);
+	}
+	i = 0;
+	if (shell->input)
+	{
+		while (shell->input[i])
+			free(shell->input[i++]);
+		free(shell->input);
+	}
+}
+
+//a voir: avec les trucs en commentaires ca segfault
+//regarder si c'est bien allouer sur la heap pour pouvoir les free
 void	built_in_free(t_main *mini)
 {
-	ft_free_tab(mini->cmd_paths);
-	ft_free_tab(mini->env);
-	ft_free_tab(mini->env_exp);
-	if (mini->here_doc)
-		free(mini->here_doc);
+	// if (mini->cmd_paths)
+	// {
+	// 	ft_free_tab(mini->cmd_paths);
+	// }
+	if (mini->env)
+		ft_free_tab(mini->env);
+	// if (mini->env_exp)
+	// {
+	// 	ft_free_tab(mini->env_exp);
+	// }
+	free_shell_var(&mini->shell);
+	free(mini->env_list);
+	// if (mini->here_doc)
+	// 	free(mini->here_doc);
 	resets(mini);
 }
 

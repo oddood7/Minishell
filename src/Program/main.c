@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 15:38:43 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:02:40 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void    mini_loop(t_main *mini)
     }
     if (mini->tab_input_blank)
         ft_free_tab(mini->tab_input_blank);
-    clear_history();
+    rl_clear_history();
+
 }
 
 int    main(int ac, char **av, char **env)
@@ -100,5 +101,6 @@ int    main(int ac, char **av, char **env)
     // do_shlvl(&mini, mini.env);
     // printf("shl home = %s\nshl pwd = %s\nshl path = %s\n", mini.shell.home, mini.shell.pwd, mini.shell.path);
     mini_loop(&mini);
+    printf("out !\n");
     return (0);
 }

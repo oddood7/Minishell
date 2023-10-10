@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:03:17 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 19:50:51 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:12:03 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static int	shell_change_path(t_shell *shell, char *value)
 	i = 0;
 	free(shell->path);
 	shell->path = ft_strdup(value);
-	printf("value of path : %s\n", shell->path);
 	if (!shell->path)
 	{
 		while (shell->cmd_paths[i])

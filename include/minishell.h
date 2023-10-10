@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 16:40:34 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 16:56:36 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 /// MAIN CODE ///
 
-//AWENA///
+///////////AWENA///////////
 
 extern int	g_error;
 
@@ -50,6 +50,7 @@ typedef struct s_shell
 	char	*input_bis;
 	int		error;
 }	t_shell;
+///////////////////////////
 
 typedef struct	s_here_doc
 {
@@ -133,8 +134,7 @@ int			ft_pwd(t_shell *shell, t_lexer **env_list);
 int			ft_env(t_main *mini, t_parsing *parse, t_lexer **env_list);
 int			ft_unset(t_main *mini, t_parsing *parse, t_lexer **env_list);
 int			ft_export(t_main *mini, t_parsing *parse);
-int			ft_exit(t_lexer *list, t_lexer *env_list, \
-	t_shell *shell);
+int			ft_exit(t_main *mini, t_parsing *parse);
 
 //Other commands
 int			all_cmd(t_lexer *arg, t_shell *shell, t_main **list, \
