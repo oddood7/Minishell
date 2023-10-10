@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:59:01 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 19:49:02 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:39:44 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,15 +192,16 @@ int	searchin_env(t_lexer **env_list, t_lexer *list)
  * Affiche l'environnement du shell en entier
  * (Attention : env -i ./minishell doit afficher PWD, SHLVL et _)
 */
-int	ft_env(t_lexer *list, t_lexer **env_list, t_shell *shell)
+int	ft_env(t_main *mini, t_parsing *parse, t_lexer **env_list)
 {
 	t_lexer	*current;
 
-	update_last_ve(list, env_list);
+	parse->incr = 0;
+	update_last_ve(parse, env_list);
 	current = *env_list;
-	if (list->next != NULL)
+	if (parse->cmd_tab[parse->incr] == NULL)
 		return (1);
-	while (current != NULL && current->str != NULL)
+	while (current)
 	{
 		if (ft_strncmp(current->str, "?=", 2) == 0)
 			current = current->next;
@@ -210,7 +211,7 @@ int	ft_env(t_lexer *list, t_lexer **env_list, t_shell *shell)
 			current = current->next;
 		}
 	}
-	if (change_error(env_list, shell, 0) == 1)
+	if (change_error(env_list, &mini->shell, 0) == 1)
 		return (1);
 	return (0);
 }
@@ -256,7 +257,7 @@ int	set_env(t_main *mini, char **env)
 	if (handle_env(mini) == -1)
 		return (-1);
 	i = 0;
-	while (env[i])
+	while (env[i] != NULL)
 	{
 		if (help_set_env(&mini->env_list, env, &i, &identifier) == -1)
 			return (-1);

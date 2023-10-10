@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 08:42:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 18:00:49 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:25:35 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,26 @@ int	cd_move_and_change(t_lexer *env_list, t_shell *shell)
  * Mis a jour a chaque tour de boucle prompt
  * Exception pour env
 */
-int	update_last_ve(t_lexer *list, t_lexer **env_list)
+int	update_last_ve(t_parsing *parse, t_lexer **env_list)
 {
 	char	*last_arg;
 
-	if (ft_strcmp("env", list->str) == 0 && ft_strlen(list->str) == 3)
+	if (ft_strcmp("env", parse->cmd_tab[parse->incr]) == 0 && ft_strlen(parse->cmd_tab[parse->incr]) == 3)
 	{
 		if (change_env_exp(env_list, "_", "/usr/bin/env") == 2)
 			return (1);
 		return (0);
 	}
-	while (list)
+	while (parse->cmd_tab[parse->incr])
 	{
-		if (list->next == NULL)
+		if (parse->cmd_tab[parse->incr + 1] == NULL)
 		{
-			last_arg = ft_strdup(list->str);
+			last_arg = ft_strdup(parse->cmd_tab[parse->incr]);
 			if (!last_arg)
 				return (1);
 			break ;
 		}
-		list = list->next;
+		parse->incr ++;
 	}
 	if (change_env_exp(env_list, "_", last_arg) == 2)
 	{

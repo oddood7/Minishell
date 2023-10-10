@@ -59,7 +59,7 @@ void	find(t_main *mini, t_parsing *node)
 	}
 	else if (!ft_strncmp(cleaned_cmd, "env", len) && len == 3)
 	{
-		ft_env(mini->lexer_list, &mini->env_list, &mini->shell);
+		ft_env(mini, mini->cmd_parse, &mini->env_list);
 		built_in_free(mini);
 		exit (mini->return_value);
 	}

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:37:01 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 19:49:34 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:35:28 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void    get_env(t_main *mini, char **env)
     int    i;
 
     i = 0;
+    set_env(mini, env);
     while (env[i])
         i++;
     mini->env = malloc(sizeof(char *) * (i + 1));
@@ -95,7 +96,6 @@ void    get_env(t_main *mini, char **env)
         i++;
     }
     mini->env[i] = 0;
-    set_env(mini, env);
 }
 
 int	print_env_exp(t_main *mini)

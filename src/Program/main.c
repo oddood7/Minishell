@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 15:18:07 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:38:43 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void    mini_loop(t_main *mini)
 
 int    main(int ac, char **av, char **env)
 {
-    t_main		mini;	
+    t_main		mini;
 
     (void)av;
     if (ac != 1)
