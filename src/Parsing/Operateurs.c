@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 13:28:55 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:19:51 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,15 @@ int check_all(t_main *mini)
 			if ((!ft_strncmp(tmp->str, "!", 1) || !ft_strncmp(tmp->str, ":", 1)) && ft_strlen(tmp->str) == 1)
 				return (weird_check(mini, tmp->str));
 			else if (!ft_strncmp(tmp->str, ".", 1) && ft_strlen(tmp->str) == 1)
-				return (change_error(&mini->env_list, &mini->shell, handle_error_bis(2)));
+			{
+				mini->shell.error = handle_error_bis(2);
+				return (mini->shell.error);
+			}
 			else if (!ft_strncmp(tmp->str, "..", 2) && ft_strlen(tmp->str) == 2)
-				return (change_error(&mini->env_list, &mini->shell, handle_error_bis(127)));
+			{
+				mini->shell.error = handle_error_bis(127);
+				return (mini->shell.error);
+			}
 		}
 		tmp = tmp->next;
 	}

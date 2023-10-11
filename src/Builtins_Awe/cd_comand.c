@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:34:51 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 13:30:34 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:09:51 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
  * Change de repertoire en fonction du buf envoye.
  * Agit reellement comme la commande cd.
 */
-int	cd_real_version(char *buf, t_shell *shell, t_lexer *env_list, t_parsing *parse)
+int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
 {
 	if (chdir(buf) == -1)
 	{
 		printf("%s: %s: %s\n", parse->cmd_tab[parse->incr], buf, strerror(errno));
-		change_error(&env_list, shell, handle_error_bis(errno -1));
+		mini->shell.error = handle_error_bis(errno -1);
 		return (1);
 	}
 	else
 	{
-		if (!cd_move_and_change(env_list, shell))
+		if (!cd_move_and_change(mini->env_list, &mini->shell))
 			return (1);
 	}
 	return (0);
@@ -35,11 +35,11 @@ int	cd_real_version(char *buf, t_shell *shell, t_lexer *env_list, t_parsing *par
 /*
  * Code erreur cd :fichier introuvable et return.
 */
-static char *help_itp1(t_lexer *env_list, t_shell **shell, DIR **dir,
+static char *help_itp1(t_main *mini, DIR **dir,
 		char **temp)
 {
 	printf("cd : No such file of directory\n");
-	change_error(&env_list, *shell, 0);
+	mini->shell.error = handle_error_bis(0);
 	closedir(*dir);
 	free(*temp);
 	return (NULL);
@@ -58,30 +58,30 @@ static char	*help_itp2(DIR **dir, char **temp)
 /*
  * Cas ou cd.., suite de la commande cd principale
 */
-static char	*is_two_points(t_shell *shell, t_parsing *parse, t_lexer *env_list)
+static char	*is_two_points(t_main *mini, t_parsing *parse)
 {
 	DIR		*dir;
 	char	*temp;
 	char	*buf;
 
-	if (ft_strcmp(shell->is_pwd, getenv("PWD")))
+	if (ft_strcmp(mini->shell.is_pwd, getenv("PWD")))
 	{
-		free(shell->is_pwd);
-		shell->is_pwd = get_env_var("PWD");
+		free(mini->shell.is_pwd);
+		mini->shell.is_pwd = get_env_var("PWD");
 	}
-	temp = from_end_to_char(shell->is_pwd, '/');
+	temp = from_end_to_char(mini->shell.is_pwd, '/');
 	if (!temp)
 		return (NULL);
 	dir = opendir(temp);
 	printf("temp = %s\n", temp);
 	if (dir == NULL)
-		return (help_itp1(env_list, &shell, &dir, &temp));
+		return (help_itp1(mini, &dir, &temp));
 	buf = ft_strdup(parse->cmd_tab[parse->incr +1]);
 	if (! buf)
 		help_itp2(&dir, &temp);
-	if (shell->pwd == NULL)
+	if (mini->shell.pwd == NULL)
 	{
-		if (!cd_move_and_change(env_list, shell))
+		if (!cd_move_and_change(mini->env_list, &mini->shell))
 			return(help_itp2(&dir, &temp));
 	}
 	help_itp2(&dir, &temp);
@@ -92,17 +92,17 @@ static char	*is_two_points(t_shell *shell, t_parsing *parse, t_lexer *env_list)
  * Check les arguments de cd
  * Gere cas d'erreurs premiers
 */
-int	check_cd(t_parsing *parse, t_shell *shell, t_lexer *env_list)
+static int	check_cd(t_parsing *parse, t_main *mini)
 {
 	if (parse->cmd_tab[parse->incr +1] && parse->cmd_tab[parse->incr +1][0] == '\0')
 		return (1);
 	if (parse->cmd_tab[parse->incr +1] == NULL || ft_strncmp(parse->cmd_tab[parse->incr +1], "~",
 			ft_strlen(parse->cmd_tab[parse->incr +1])) == 0)
 	{
-		if (shell->home == NULL)
+		if (mini->shell.home == NULL)
 		{
 			printf("%s: 'HOME' not set\n", parse->cmd_tab[parse->incr]);
-			change_error(&env_list, shell, 1);
+			mini->shell.error = handle_error_bis(1);
 			return (1);
 		}
 		return (2);
@@ -122,20 +122,20 @@ int	ft_cd(t_main *mini, t_parsing *parse)
 	int		err;
 
 	parse->incr = 0;
-	printf("str : %s\n", parse->cmd_tab[0]);
-	cod = check_cd(parse, &mini->shell, mini->env_list);
+	cod = check_cd(parse, mini);
 	if (cod == 1)
 		return (1);
 	if (cod == 2)
 		buf = ft_strdup(mini->shell.home);
 	else if (ft_strncmp(parse->cmd_tab[parse->incr +1], "..", ft_strlen(parse->cmd_tab[parse->incr +1])) == 0)
-		buf = is_two_points(&mini->shell, parse, mini->env_list);
+		buf = is_two_points(mini, parse);
 	else
 		buf = ft_strdup(parse->cmd_tab[parse->incr +1]);
 	if (!buf)
 		return (1);
-	err = cd_real_version(buf, &mini->shell, mini->env_list, parse);
+	err = cd_real_version(buf, mini, parse);
 	free(buf);
 	parse->incr = 0;
-	return (change_error(&mini->env_list, &mini->shell, err) == 1);
+	mini->shell.error = handle_error_bis(err);
+	return (0);
 }

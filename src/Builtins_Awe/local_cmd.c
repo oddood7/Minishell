@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:22 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 11:36:01 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:18:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,16 @@
  * Affiche le repertoire courrant 
  * Fonction a l'image de 'pwd'
 */
-int	ft_pwd(t_shell *shell, t_lexer **env_list)
+int	ft_pwd(t_main *mini)
 {
-	if (shell->is_pwd == NULL)
+	if (mini->shell.is_pwd == NULL)
 	{
-		change_error(env_list, shell, errno);
+		mini->shell.error = handle_error_bis(errno);
 		return (1);
 	}
 	else
-		printf("%s\n", shell->is_pwd);
-	if (change_error(env_list, shell, 0) == 1)
-		return (1);
+		printf("%s\n", mini->shell.is_pwd);
+	mini->shell.error = handle_error_bis(0);
 	return (0);
 }
 
@@ -47,7 +46,6 @@ int	ft_unset(t_main *mini, t_parsing *parse, t_lexer **env_list)
 		parse->incr ++;
 		ft_unset(mini, parse, env_list);
 	}
-	if (change_error(env_list, &mini->shell, 0) == 1)
-		return (1);
+	mini->shell.error = handle_error_bis(0);
 	return (0);
 }

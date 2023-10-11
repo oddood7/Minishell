@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:09:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 13:48:52 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:12:37 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_exit(t_main *mini, t_parsing *parse)
 		&& parse->cmd_tab[parse->incr +2])
 	{
 		printf("%s: too many arguments\n", parse->cmd_tab[parse->incr]);
-		change_error(&mini->env_list, &mini->shell, 1);
+		mini->shell.error = handle_error_bis(1);
 		return (1);
 	}
 	else if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1])

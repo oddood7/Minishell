@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:49:57 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 13:24:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 15:53:23 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	handle_error_bis(int code_err)
 		final_error = 126;
 	else if (code_err == 11)
 		final_error = 127;
+	else if (code_err == 0 && g_error != 0)
+		final_error = g_error;
 	else
 		final_error = code_err;
 	return (final_error);

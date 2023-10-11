@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:34:21 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 13:29:14 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:22:34 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int    error_quote2(t_main *mini, char *str, int sep)
         return (0);
     else
     {
-        mini->shell.error = 2;
-        return (change_error(&mini->env_list, &mini->shell, handle_error_bis(2)));
+        mini->shell.error = handle_error_bis(2);
+        return (mini->shell.error);
     }
 }
 

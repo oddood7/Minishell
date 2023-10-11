@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:34:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 13:28:30 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:22:05 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ int    var_check(t_main *mini, t_lexer *list)
             if (list->str[0] == '$')
             {
                 if (len == 1)
-                    return (change_error(&mini->env_list, &mini->shell, handle_error_bis(127)));
+                {
+                    mini->shell.error = handle_error_bis(127);
+                    return (mini->shell.error);
+                }
                 if (!ft_strncmp(list->str + 1, "?", 1) && len == 2)
                     return (0);
                 if (!ft_strncmp(list->str + 1, "PWD", 3) && len == 4)

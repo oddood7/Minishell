@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 11:36:13 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:16:20 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
  * check si l'argument est NULL ou s'il existe mais qu'il est vide
  * ATTENTION: voir cas speciaux et faire mini parsing des args avant d'export.
 */
-int	export_errors(t_parsing *parse, t_lexer **env_list, t_shell *shell)
+static int	export_errors(t_parsing *parse, t_main *mini)
 {
 	if (ft_strlen(parse->cmd_tab[parse->incr]) == 6 && ft_strcmp(parse->cmd_tab[parse->incr], "export") == 0
 		&& !parse->cmd_tab[parse->incr +1])
 	{
-		export_out_main(env_list, shell);
+		export_out_main(mini);
 		return (1);
 	}
 	else if (ft_strlen(parse->cmd_tab[parse->incr]) == 6 && ft_strcmp(parse->cmd_tab[parse->incr], "export") == 0)
@@ -30,7 +30,7 @@ int	export_errors(t_parsing *parse, t_lexer **env_list, t_shell *shell)
 	if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr][0] == '\0')
 	{
 		printf("export : \"\": invalid identifier\n");
-		change_error(env_list, shell, 1);
+		mini->shell.error = handle_error_bis(1);
 		return (1);
 	}
 	if (parse->cmd_tab[parse->incr] && parse_export(parse->cmd_tab[parse->incr]) == 2)
@@ -38,7 +38,7 @@ int	export_errors(t_parsing *parse, t_lexer **env_list, t_shell *shell)
 	else if (parse->cmd_tab[parse->incr] && parse_export(parse->cmd_tab[parse->incr]) == 1)
 	{
 		printf("export : \"%s\" : invalid identifier\n", parse->cmd_tab[parse->incr]);
-		change_error(env_list, shell, 1);
+		mini->shell.error = handle_error_bis(1);
 		return (1);
 	}
 	return (0);
@@ -78,7 +78,7 @@ int	ft_export(t_main *mini, t_parsing *parse)
 	char	*v_env;
 	int		result_change_env;
 
-	if (export_errors(parse, &mini->env_list, &mini->shell) == 1)
+	if (export_errors(parse, mini) == 1)
 	{
 		if (parse->cmd_tab[parse->incr +1] != NULL)
 		{
@@ -120,8 +120,7 @@ int	ft_export(t_main *mini, t_parsing *parse)
 		parse->incr ++;
 		ft_export(mini, parse);
 	}
-	if (change_error(&mini->env_list, &mini->shell, 0) == 1)
-		return (1);
+	mini->shell.error = handle_error_bis(0);
 	return (0);
 }
 
@@ -129,7 +128,7 @@ int	ft_export(t_main *mini, t_parsing *parse)
  * Gere export sans args
  * Affiche: declare -x VE env
 */
-int	export_out_main(t_lexer **env_list, t_shell *shell)
+int	export_out_main(t_main *mini)
 {
 	char	*bfore;
 	char	*after;
@@ -138,7 +137,7 @@ int	export_out_main(t_lexer **env_list, t_shell *shell)
 
 	bfore = NULL;
 	after = NULL;
-	env_sort = ft_sort(env_list);
+	env_sort = ft_sort(&mini->env_list);
 	i = 0;
 	while (env_sort[i])
 	{
@@ -156,10 +155,7 @@ int	export_out_main(t_lexer **env_list, t_shell *shell)
 	while (env_sort[i])
 		free(env_sort[i++]);
 	free(env_sort);
-	if (change_error(env_list, shell, 0) == 1)
-	{
-		return (1);
-	}
+	mini->shell.error = handle_error_bis(0);
 	return (0);
 }
 

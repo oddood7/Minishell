@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:59:01 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 13:10:11 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:11:04 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,15 +204,14 @@ int	ft_env(t_main *mini, t_parsing *parse, t_lexer **env_list)
 	while (current)
 	{
 		// if (ft_strncmp(current->str, "?=", 2) == 0)
-		// 	current = current->next;
+			// current = current->next;
 		// else
 		// {
 			printf("%s\n", current->str);
 			current = current->next;
 		// }
 	}
-	if (change_error(env_list, &mini->shell, 0) == 1)
-		return (1);
+	mini->shell.error = handle_error_bis(0);
 	return (0);
 }
 

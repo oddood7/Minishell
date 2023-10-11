@@ -32,7 +32,7 @@ void	find_2(t_main *mini, char *cmd, int len)
 	}
 	else if (!ft_strncmp(cmd, "pwd", len) && len == 3)
 	{
-		ft_pwd(&mini->shell, &mini->env_list);
+		ft_pwd(mini);
 		built_in_free(mini);
 		exit (mini->shell.error);
 	}

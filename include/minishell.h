@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 13:27:27 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:17:25 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ typedef struct s_parsermain
 //Bultins
 int			ft_echo(t_main *mini, t_parsing *parse);
 int			ft_cd(t_main *mini, t_parsing *parse);
-int			ft_pwd(t_shell *shell, t_lexer **env_list);
+int			ft_pwd(t_main *mini);
 int			ft_env(t_main *mini, t_parsing *parse, t_lexer **env_list);
 int			ft_unset(t_main *mini, t_parsing *parse, t_lexer **env_list);
 int			ft_export(t_main *mini, t_parsing *parse);
@@ -154,7 +154,7 @@ int			set_env(t_main *mini, char **env);
 void		add_env(t_lexer **env_list, char *str);
 int			ft_plus_shell(t_shell *shell, t_lexer **env_list);
 void		signal_handler(int sig);
-int			export_out_main(t_lexer **env_list, t_shell *shell);
+int			export_out_main(t_main *mini);
 int			change_error(t_lexer **env_list, t_shell *shell, int value);
 int			handle_error_bis(int code_err);
 int			handle_env(t_main *mini);

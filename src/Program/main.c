@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 15:20:23 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:30:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,11 @@ void    mini_loop(t_main *mini)
         free(prompt_char);
         if (!input)
             handle_eot(mini);
+        if (g_error != 0)
+	    {
+	    	mini->shell.error = g_error;
+	    	g_error = 0;
+	    }
         if (check_space(input) && !error_quote(mini, input, 34, 39))
         {
             if (input[0] != '\0')
@@ -97,6 +102,7 @@ void    mini_loop(t_main *mini)
                 resets(mini);
             }
         }
+       
         bool = handle_history(mini, bool, input);
 		if  (bool == 2)
 			return (free(input));
