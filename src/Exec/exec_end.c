@@ -25,14 +25,19 @@ void	wait_exec(t_main *mini)
 	int	status;
 
 	i = 0;
-	signal(SIGINT, SIG_IGN);
+	printf("->%s.\n", mini->cmd_parse->cmd_tab[0]);
+	if (ft_strcmp("./minishell", mini->cmd_parse->cmd_tab[0]) != 0)
+	{
+		signal(SIGQUIT, signal_handler);
+		g_error = 2;
+	}
 	waitpid(mini->pid_last, &status, 0);
 	while (i < mini->pipe_count)
 	{
 		waitpid(-1, NULL, 0);
 		i++;
 	}
-	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
 	if (WIFEXITED(status))
 		mini->shell.error = WEXITSTATUS(status);
 }
@@ -102,7 +107,7 @@ void	built_in_free(t_main *mini)
 	free(mini->env_list);
 	// if (mini->here_doc)
 	// 	free(mini->here_doc);
-	resets(mini);
+	// resets(mini);
 }
 
 int	close_error(int in, int out)

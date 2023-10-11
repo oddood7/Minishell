@@ -47,7 +47,7 @@ void	last_process(t_main *mini, t_parsing *node, char *cmd, int fd[2])
 	cmd = get_command(mini, mini->cmd_paths, node->cmd_tab[0]);
 	if (cmd == NULL)
 		no_command(mini, node);
-	signal(SIGQUIT, SIG_DFL);
+	signal(SIGQUIT, signal_handler);
 	execve(cmd, node->cmd_tab, mini->env);
 	ft_free_tab(mini->cmd_paths);
 	ft_free_tab(mini->env);
