@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 11:08:10 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,24 @@ int	handle_error(t_main *mini, char *str, int rv)
 	return (1);
 }
 
-int	err_export(char *str, int ok)
-{
-	int i;
+// int	err_export(char *str, int ok)
+// {
+// 	int i;
 
-	i = 0;
-	if (ok)
-	{
-		ft_putstr_fd("export : ", 2);
-		while (str[i] && str[i] != '=')
-		{	
-			ft_putchar_fd(str[i], 2);
-			i++;
-		}
-		ft_putstr_fd(" : not a valid argument\n", 2);
-		return (1);
-	}
-	return (0);
-}
+// 	i = 0;
+// 	if (ok)
+// 	{
+// 		ft_putstr_fd("export : ", 2);
+// 		while (str[i] && str[i] != '=')
+// 		{	
+// 			ft_putchar_fd(str[i], 2);
+// 			i++;
+// 		}
+// 		ft_putstr_fd(" : not a valid argument\n", 2);
+// 		return (1);
+// 	}
+// 	return (0);
+// }
 
 int    ft_perror(char *str)
 {
