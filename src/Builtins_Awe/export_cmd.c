@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 10:44:46 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 10:47:19 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	export_errors(t_parsing *parse, t_lexer **env_list, t_shell *shell)
 	return (0);
 }
 
-/* 
+/*
  * Gere les boucles de export pour changer les VE et sinon les creer
 */
 static void	ft_more_export(t_shell *shell, char *v_env, char *value)

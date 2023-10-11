@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 17:28:37 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 11:01:42 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,31 @@ int    start_in_loop(t_main *mini, char *input)
     return (0);
 }
 
+static int	handle_history(t_main *mini, int bool, char *input)
+{
+	if (bool == 1 && !(ft_strcmp(mini->shell.input_bis, input) == 0 \
+	&& ft_strlen(mini->shell.input_bis) == ft_strlen(input)))
+        add_history(input);
+	else if (bool == 0)
+	{
+		add_history(input);
+		bool = 1;
+	}
+	if (mini->shell.input_bis)
+		free(mini->shell.input_bis);
+	mini->shell.input_bis = ft_strdup(input);
+	if (! mini->shell.input_bis)
+		return (2);
+	return (bool);
+}
+
 void    mini_loop(t_main *mini)
 {
     char    *input;
     char    *prompt_char;
+    int		bool;
 
+	bool = 0;
     while (42)
     {
         prompt_char = prompt_cmd(&mini->shell, mini->shell.user);
@@ -77,8 +97,9 @@ void    mini_loop(t_main *mini)
                 resets(mini);
             }
         }
-        if (input[0] != '\0')
-            add_history(input);
+        bool = handle_history(mini, bool, input);
+		if  (bool == 2)
+			return (free(input));
         free(input);
     }
     if (mini->tab_input_blank)
