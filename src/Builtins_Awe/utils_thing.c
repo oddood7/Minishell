@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:49:57 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/10 17:43:55 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:24:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	handle_error_bis(int code_err)
 	int	final_error;
 
 	final_error = 0;
+	printf("\e[32mMON CODE ERREUR \e[m: %d\n", code_err);
 	if (code_err == 13 || code_err == 12)
 		final_error = 126;
 	else if (code_err == 11)

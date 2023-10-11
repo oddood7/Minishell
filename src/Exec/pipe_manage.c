@@ -102,7 +102,7 @@ void	execute_cmd(t_main *mini)
 	{
 		ft_free_tab(mini->cmd_paths);
 		free(mini->here_doc);
-		mini->return_value = 130;
+		mini->shell.error = 130;
 		return ;
 	} */
 	exec(mini, node, cmd);

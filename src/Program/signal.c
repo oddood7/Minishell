@@ -6,26 +6,26 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 19:12:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 19:06:41 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:18:54 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// void	handle_sig(int s)
-// {
-// 	int *rv;
+void	handle_sig(int s)
+{
+	int *rv;
 
-// 	rv = rv_static(NULL);
-// 	if (s == SIGINT)
-// 	{
-// 		*rv = 130;
-// 		ft_putchar_fd('\n', 1);
-// 		rl_on_new_line();
-// 		//rl_replace_line("", 0);
-// 		rl_redisplay();
-// 	}
-// }
+	rv = rv_static(NULL);
+	if (s == SIGINT)
+	{
+		*rv = 130;
+		ft_putchar_fd('\n', 1);
+		rl_on_new_line();
+		//rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
 
 int	g_error;
 

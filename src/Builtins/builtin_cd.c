@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:26:51 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:30:50 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	change_path2(t_main *mini)
 	i = 0;
 	if (getcwd(pwd, sizeof(pwd)) == NULL)
 	{
-		handle_error(mini, "cwd failed", 1);
+		change_error(&mini->env_list, &mini->shell, handle_error_bis(1));
 		return ;
 	}
 	while (mini->env[i])

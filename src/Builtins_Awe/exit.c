@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:09:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 11:36:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:48:52 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	free_everything(t_shell *shell, t_lexer *list, t_lexer *env_list)
 */
 int	ft_exit(t_main *mini, t_parsing *parse)
 {
-	int	code_err;
+	long long int	code_err;
 
 	code_err = 0;
 	printf("exit\n");

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:21:39 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int    arg_check(t_main *mini, char **tab)
     if (i > 2)
     {
         ft_putendl_fd("bash: cd: too many arguments", 2);
-        mini->return_value = 1;
+        mini->shell.error = 1;
         return (1);
     }
     return (0);

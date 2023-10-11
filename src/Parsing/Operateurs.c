@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:28:55 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ int	operateur_handle(t_main *mini)
 int weird_check(t_main *mini, char *str)
 {
 	if (!ft_strncmp(str, "!", 1))
-		mini->return_value = 1;
+		mini->shell.error = 1;
 	else if (!ft_strncmp(str, ":", 1))
-		mini->return_value = 0;
+		mini->shell.error = 0;
 	return (1);
 }
 
@@ -107,9 +107,9 @@ int check_all(t_main *mini)
 			if ((!ft_strncmp(tmp->str, "!", 1) || !ft_strncmp(tmp->str, ":", 1)) && ft_strlen(tmp->str) == 1)
 				return (weird_check(mini, tmp->str));
 			else if (!ft_strncmp(tmp->str, ".", 1) && ft_strlen(tmp->str) == 1)
-				return (handle_error(mini, ".: use . filename [args]", 2));
+				return (change_error(&mini->env_list, &mini->shell, handle_error_bis(2)));
 			else if (!ft_strncmp(tmp->str, "..", 2) && ft_strlen(tmp->str) == 2)
-				return (handle_error(mini, "..: command not found", 127));
+				return (change_error(&mini->env_list, &mini->shell, handle_error_bis(127)));
 		}
 		tmp = tmp->next;
 	}

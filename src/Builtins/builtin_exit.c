@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:49:41 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:21:39 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,20 @@ int	built_exit(t_main *mini, t_parsing *parse)
 	if (j == 1)
 	{
 		ft_putendl_fd("exit", 1);
-		mini->return_value = 0;
+		mini->shell.error = 0;
 	}
 	else
 	{
 		j = stop_arguments(parse->cmd_tab, 0);
 		if (j == 0)
 		{
-			mini->return_value = 127;
+			mini->shell.error = 127;
 			return (1);
 		}
 		else
-			mini->return_value = j;
+			mini->shell.error = j;
 	}
 	resets(mini);
 	free_kill(mini);
-	exit (mini->return_value);
+	exit (mini->shell.error);
 }

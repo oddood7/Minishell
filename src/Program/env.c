@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:37:01 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 15:35:28 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:21:39 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ int	print_env_exp(t_main *mini)
 		ft_putendl_fd(mini->env_exp[i], 1);
 		i++;
 	}
-	mini->return_value = 0;
+	mini->shell.error = 0;
 	return (1);
 }

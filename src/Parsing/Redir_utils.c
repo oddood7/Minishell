@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:34:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:28:30 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ int    dir_file_check(t_main *mini, char *str)
     {
         if (opendir(str + 2))
         {
-            mini->return_value = 126;
+            mini->shell.error = 126;
             return (ft_perror(str));
         }
         else if (access(str + 2, F_OK))
         {
-            mini->return_value = 127;
+            mini->shell.error = 127;
             perror(str);
             return (1);
         }
-        mini->return_value = 0;
+        mini->shell.error = 0;
     }
     return (0);
 }
@@ -62,7 +62,7 @@ int    var_check(t_main *mini, t_lexer *list)
             if (list->str[0] == '$')
             {
                 if (len == 1)
-                    return (handle_error(mini, "$: command not found", 127));
+                    return (change_error(&mini->env_list, &mini->shell, handle_error_bis(127)));
                 if (!ft_strncmp(list->str + 1, "?", 1) && len == 2)
                     return (0);
                 if (!ft_strncmp(list->str + 1, "PWD", 3) && len == 4)

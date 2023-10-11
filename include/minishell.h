@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 11:34:23 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:27:27 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void    free_cmd_tab(t_main *mini);
 void    free_cmd_lst(t_parsing *lst);
 void	err_mall(t_main *mini);
 int		directory_err(t_main *mini, char *str, int ok);
-int		handle_error(t_main *mini, char *str, int rv);
+// int		handle_error(t_main *mini, char *str, int rv);
 int    	ft_perror(char *str);
 int		is_rchar(char c, char v);
 int 	ft_size_list(t_lexer *list);

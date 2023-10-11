@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:18:53 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:21:39 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ int    built_export(t_main *mini, t_parsing *cmd)
     {
         if (export_error_check(cmd->cmd_tab[i]))
         {
-            mini->return_value = 1;
+            mini->shell.error = 1;
             return (1);
         }
         else
             export_support(mini, cmd->cmd_tab[i]);
         i++;
     }
-    mini->return_value = 0;
+    mini->shell.error = 0;
     return (1);
 }

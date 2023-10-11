@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:34:21 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 11:34:51 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:29:14 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int    error_quote2(t_main *mini, char *str, int sep)
         return (0);
     else
     {
-        mini->return_value = 2;
-        return (handle_error(mini, "should close quote.", 2));
+        mini->shell.error = 2;
+        return (change_error(&mini->env_list, &mini->shell, handle_error_bis(2)));
     }
 }
 
@@ -67,11 +67,11 @@ void	init_main(t_main *mini)
 	mini->lexer_list = NULL;
     mini->env_list = NULL;
 	mini->cmd_parse = NULL;
-	mini->return_value = 0;
+	mini->shell.error = 0;
 	mini->syntaxe_check = 0;
     ft_bzero(&mini->shell, sizeof(t_shell));
     mini->shell.input_bis = NULL;
-	rv_static(&(mini->return_value));
+	rv_static(&(mini->shell.error));
 	sig_init();
 }
 

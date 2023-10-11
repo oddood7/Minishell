@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:03:10 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:21:39 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int get_rv(t_main *mini, t_parsing *node, int i, int j)
 
 	(void)j;
 	if (ft_strlen(node->cmd_tab[i]) == 2)
-		str_new = ft_itoa(mini->return_value);
+		str_new = ft_itoa(mini->shell.error);
 	else
 		str_new = go_itoa_replace(mini, node->cmd_tab[i]);
 	free(node->cmd_tab[i]);

@@ -34,7 +34,7 @@ void	wait_exec(t_main *mini)
 	}
 	signal(SIGINT, signal_handler);
 	if (WIFEXITED(status))
-		mini->return_value = WEXITSTATUS(status);
+		mini->shell.error = WEXITSTATUS(status);
 }
 
 void	exit_error_redir(t_main *mini, int fd[2])

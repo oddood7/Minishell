@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:59:01 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 11:36:29 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:10:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,7 +294,6 @@ int	change_error(t_lexer **env_list, t_shell *shell, int value)
 	while (current)
 	{
 		current_name = ft_strdupto_n(current->str, '=');
-		printf("++%s\n", current_name);
 		if (!current_name)
 		{
 			free(nb_char);

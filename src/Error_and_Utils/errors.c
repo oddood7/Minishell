@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 11:08:10 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:27:23 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,28 @@ int	directory_err(t_main *mini, char *str, int ok)
 	ft_putstr_fd(str, 2);
 	if (ok)
 	{
-		mini->return_value = 127;
+		mini->shell.error = 127;
 		ft_putstr_fd(" : No such file or directory\n", 2);
 	}
 	else
 	{
-		mini->return_value = 126;
+		mini->shell.error = 126;
 		ft_putstr_fd(" : Is directory\n", 2);
 	}
 	return (1);
 }
 
-int	handle_error(t_main *mini, char *str, int rv)
-{
-	ft_putendl_fd(str, 2);
-	if (rv == 2)
-		mini->return_value = 2;
-	else if (rv == 127)
-		mini->return_value = 127;
-	else
-		mini->return_value = rv;
-	return (1);
-}
+// int	handle_error(t_main *mini, char *str, int rv)
+// {
+// 	ft_putendl_fd(str, 2);
+// 	if (rv == 2)
+// 		mini->shell.error = 2;
+// 	else if (rv == 127)
+// 		mini->shell.error = 127;
+// 	else
+// 		mini->shell.error = rv;
+// 	return (1);
+// }
 
 // int	err_export(char *str, int ok)
 // {

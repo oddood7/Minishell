@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:34:51 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 11:36:35 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:30:34 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,5 @@ int	ft_cd(t_main *mini, t_parsing *parse)
 	err = cd_real_version(buf, &mini->shell, mini->env_list, parse);
 	free(buf);
 	parse->incr = 0;
-	return (err || change_error(&mini->env_list, &mini->shell, 0) == 1);
+	return (change_error(&mini->env_list, &mini->shell, err) == 1);
 }

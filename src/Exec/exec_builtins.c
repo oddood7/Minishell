@@ -41,7 +41,7 @@ int	first_builtins(t_main *mini, t_parsing *node)
 	{
 		if (mini->pipe_count)
 			return (0);
-		// mini->return_value = built_exit(mini, node);
+		// mini->shell.error = built_exit(mini, node);
 		ft_exit(mini, node);
 		return (1);
 	}

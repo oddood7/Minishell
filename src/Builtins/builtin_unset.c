@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:39:31 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:21:39 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int for_unset(t_main *mini, char *str, int len)
 
 	tab = new_tab_env(mini, mini->env, str, len);
 	dup_classic_env(mini, tab);
-	mini->return_value = 0;
+	mini->shell.error = 0;
 	return (1);
 }
 
@@ -66,6 +66,6 @@ int	built_unset(t_main *mini, t_parsing *cmd)
 		}
 		do_for_exp(mini, cmd->cmd_tab[i], len);
 	}
-	mini->return_value = 0;
+	mini->shell.error = 0;
 	return (1);
 }

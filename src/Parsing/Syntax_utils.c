@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 00:20:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 13:21:39 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	err_syn(t_main *mini, char *str)
 {
 	ft_putstr_fd("shell : syntax error ", 1);
 	ft_putendl_fd(str, 1);
-	mini->return_value = 2;
+	mini->shell.error = 2;
 	return (1);
 }
 
