@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/10 17:38:25 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/11 10:44:46 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	export_errors(t_parsing *parse, t_lexer **env_list, t_shell *shell)
 		export_out_main(env_list, shell);
 		return (1);
 	}
+	else if (ft_strlen(parse->cmd_tab[parse->incr]) == 6 && ft_strcmp(parse->cmd_tab[parse->incr], "export") == 0)
+		parse->incr ++;
 	if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr][0] == '\0')
 	{
 		printf("export : \"\": invalid identifier\n");
@@ -78,15 +80,13 @@ int	ft_export(t_main *mini, t_parsing *parse)
 
 	if (export_errors(parse, &mini->env_list, &mini->shell) == 1)
 	{
-		if (parse->cmd_tab[parse->incr +1])
+		if (parse->cmd_tab[parse->incr +1] != NULL)
 		{
 			parse->incr ++;
 			ft_export(mini, parse);
 		}
 		return (1);
 	}
-	if (ft_strlen(parse->cmd_tab[parse->incr]) == 6 && ft_strcmp(parse->cmd_tab[parse->incr], "export") == 0)
-		parse->incr ++;
 	if (ft_strchr(parse->cmd_tab[parse->incr], '='))
 	{
 		v_env = ft_strdupto_n(parse->cmd_tab[parse->incr], '=');
@@ -181,9 +181,7 @@ int	parse_export(char *str)
 		if (!(str[i] >= '0' && str[i] <= '9') && !(str[i] \
 			>= 'A' && str[i] <= 'Z') && !(str[i] >= 'a' \
 			&& str[i] <= 'z') && str[i] != '_')
-		{
 			return (1);
-		}
 		i ++;
 	}
 	if (str[i] == '=')

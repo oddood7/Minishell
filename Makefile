@@ -6,13 +6,13 @@
 #    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/10 17:27:21 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/11 10:30:59 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc 
+CFLAGS = -Wall -Wextra -Werror -g3
 LIBFT_PATH = include/libft/
 LIBFT = $(LIBFT_PATH)libft.a
 
