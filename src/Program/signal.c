@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 19:12:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 15:39:12 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 14:56:50 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	signal_handler(int sig)
 		rl_redisplay();
 		code_error(130);
 	}
-	else if (sig == 3)
+	if (sig == 3)
 	{
 		printf("Quit (core dumped)\n");
 		code_error(131);

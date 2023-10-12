@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
+#    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/11 10:30:59 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/12 14:32:00 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,11 @@ SRC = ./src/Program/main.c \
 	./src/Exec/fd_utils.c \
 	./src/Exec/file_redirect.c \
 	./src/Exec/pipe_manage.c \
-	./src/Exec/process.c 
+	./src/Exec/process.c \
+	./src/Here_Doc/here_doc.c \
+	./src/Here_Doc/here_doc_utils.c \
+	./src/Here_Doc/here_doc_utils2.c \
+	./src/Here_Doc/here_doc_expand.c 
 
 OBJ = $(SRC:.c=.o)
 

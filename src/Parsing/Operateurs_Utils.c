@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Operateurs_Utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:32 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 14:30:00 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	left_check(t_main *mini, t_lexer *ope)
 {
 	if (ope->next->operateur == RIGHT)
-		return (err_syn(mini, "near unexpected token '\n'"));
+		return (err_syn(mini, "near unexpected token 'newline'"));
 	if (ope->next->operateur == LEFT && (!ope->next->next || ope->next->next->operateur != LEFT))
 		return (err_syn(mini, "near unexpected token '<'"));
 	if (ope->next->operateur == LEFT_LEFT)
@@ -58,7 +58,7 @@ int	pipe_check(t_main *mini, t_lexer *ope)
 	if (ope->next->operateur == PIPE)
 	{
 		if (!ope->next->next)
-			return (err_syn(mini, "near unexpected token '\n"));
+			return (err_syn(mini, "near unexpected token 'newline"));
 		if (ope->next->next->operateur == PIPE)
 		{
 			if (ope->next->next->next && ope->next->next->next->operateur == PIPE)

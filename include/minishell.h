@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 16:17:25 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 14:29:38 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -413,6 +413,29 @@ void	execute_cmd(t_main *mini);
 void	init_ex(t_main *mini, int fd[2], int old_fd[2], int *i);
 int		last_redir(t_main *mini, t_parsing *node, int *in, int *out);
 void	last_process(t_main *mini, t_parsing *node, char *cmd, int fd[2]);
+
+/*****HEREDOC*****/
+
+int	has_variable(char *input);
+int	ft_varname_len(char *str);
+char	*var_hd_name(t_main *mini, char *input);
+char	*get_var_content(t_main *mini, char *var_name);
+int	here_doc_var(t_main *mini, char *input, int i, int fd[2]);
+t_here_doc	*return_hd(t_here_doc *here_doc);
+int	return_hd_count(int hd_count);
+t_main	*return_free_mini(t_main *mini);
+void	sig_hd(int signal);
+int	wait_hds(t_main *mini, int i);
+void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check);
+void	write_hd(t_main *mini, char *input, int fd[2]);
+char	*skip_tmpr(t_lexer *tmpr);
+int	hdc_process(t_main *mini, t_parsing *node, int i);
+int	here_doc_init(t_main *mini, t_parsing *node, int i);
+int	init_loop(t_parsing *node, char *input, int fd[2]);
+void	here_doc_manage(t_main *mini, t_parsing *node, int fd[2]);
+void	first_hd_manage(t_main *mini, t_parsing *node, char *str);
+int	first_hds(t_main *mini, t_parsing *node, t_parsing *nodeorg);
+void	hdinit(t_main *mini);
 
 /*****TESTS*****/
 
