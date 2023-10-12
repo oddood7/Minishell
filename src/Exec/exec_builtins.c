@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 18:54:28 by asalic            #+#    #+#             */
+/*   Updated: 2023/10/12 18:54:28 by asalic           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
@@ -111,5 +122,6 @@ int	first_builtins(t_main *mini, t_parsing *node)
 		ft_exit(mini, node);
 		return (1);
 	}
+	// update_last_ve(mini->cmd_parse, &mini->env_list);
 	return (0);
 }
