@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 18:44:29 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 19:13:40 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,8 @@ char			*prompt_cmd(t_shell *shell, char *user);
 void			clear_args_list(t_lexer **list);
 char			*ft_long_itoa(long long int n);
 long long int	ft_long_atoi(const char *nptr);
+void		    bf_prd(char *str, int d, char *color);
+char			*build_color(char *c1, char *str, int dup_str);
 
 ////////////////////////////////////////////////////////
 
