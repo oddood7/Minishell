@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 16:17:25 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 15:08:52 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define MINIshell_H
 
 # include "libft/libft.h"
+# include "libft/libftprintf/libftprintf.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-#include <errno.h>
+# include <errno.h>
 # include <signal.h>
 # include <stdlib.h>
 # include <stddef.h>

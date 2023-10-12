@@ -20,10 +20,7 @@ void	find_3(t_main *mini, char *cmd, int len)
 void	find_2(t_main *mini, char *cmd, int len)
 {
 	if (!ft_strncmp(cmd, "exit", len) && len == 4)
-	{
 		ft_exit(mini, mini->cmd_parse);
-		// exit (mini->shell.error);
-	}
 	else if (!ft_strncmp(cmd, "export", len) && len == 6)
 	{
 		ft_export(mini, mini->cmd_parse);

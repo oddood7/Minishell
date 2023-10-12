@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:42:12 by lde-mais          #+#    #+#             */
-/*   Updated: 2022/11/15 17:02:40 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char	*ft_strrchr(const char *s, int c)
 	char str[100] = "bonjour";
 	int	c = 'j';
 
-	printf("%s\n", strrchr(str, c));
-	printf("%s\n", ft_strrchr(str, c));
+	ft_printf("%s\n", strrchr(str, c));
+	ft_printf("%s\n", ft_strrchr(str, c));
 }*/

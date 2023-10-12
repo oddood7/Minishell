@@ -1,3 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/12 14:37:10 by asalic            #+#    #+#              #
+#    Updated: 2023/10/12 17:02:20 by asalic           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME		= libft.a
+CC	    	= gcc
+CFLAGS		= -Wall -Wextra -Werror
+PATHPRINTF	= libftprintf/libftprintf.a
+INCLUDE		= libftprintf/libftprintf.h libft.h
+
 SRCS    =     ft_isalpha.c \
             ft_isdigit.c \
             ft_isalnum.c \
@@ -47,32 +65,32 @@ BONUS_SRCS    =    ft_lstnew.c \
 
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 
-NAME	= libft.a
+.c.o :
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -Llibftprintf -lftprintf -Llibft -lft
 
-CC	= gcc
-CFLAGS	= -Wall -Wextra -Werror
+all : ${PATHPRINTF} ${NAME} ${INCLUDE}
 
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+$(NAME): ${PATHPRINTF} ${OBJS}
+	@ar rc ${NAME} ${OBJS}
+	@ranlib ${NAME}
 
-all:        ${NAME}
+${PATHPRINTF} :
+	@make -s -C libftprintf
 
-$(NAME):    ${OBJS}
-	ar rc ${NAME} ${OBJS}
-	ranlib ${NAME}
+clean :
+	@rm -rf ${OBJS} ${BONUS_OBJS}
+	@make -s clean -C libftprintf
 
-clean:
-	rm -f ${OBJS} ${BONUS_OBJS}
+fclean : clean
+	@rm -f ${NAME}
+	@make -s fclean -C libftprintf
 
-fclean:	clean
-	rm -f ${NAME}
+re : fclean all
 
-re:	fclean all
+rebonus : fclean bonus
 
-rebonus:	fclean bonus
-
-bonus:	${OBJS} ${BONUS_OBJS}
-	ar rc ${NAME} ${OBJS} ${BONUS_OBJS}
-	ranlib ${NAME}
+bonus : ${OBJS} ${BONUS_OBJS}
+	@ar rc ${NAME} ${OBJS} ${BONUS_OBJS}
+	@ranlib ${NAME}
 
 .PHONY:	all clean fclean re bonus rebonus

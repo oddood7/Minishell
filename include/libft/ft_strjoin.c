@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:44:16 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/08 20:05:24 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char s1[] = "1111";
 	char s2[] = "";
-	printf("%s", ft_strjoin(s1, s2));
+	ft_printf("%s", ft_strjoin(s1, s2));
 }*/

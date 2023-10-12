@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:34:51 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 16:09:51 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
 {
 	if (chdir(buf) == -1)
 	{
-		printf("%s: %s: %s\n", parse->cmd_tab[parse->incr], buf, strerror(errno));
-		mini->shell.error = handle_error_bis(errno -1);
-		return (1);
+		ft_printf("%s: %s: %s\n", parse->cmd_tab[parse->incr], buf, strerror(errno));
+		// mini->shell.error = handle_error_bis(errno -1);
+		return (errno);
 	}
 	else
 	{
@@ -38,7 +38,7 @@ int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
 static char *help_itp1(t_main *mini, DIR **dir,
 		char **temp)
 {
-	printf("cd : No such file of directory\n");
+	ft_printf("cd : No such file of directory\n");
 	mini->shell.error = handle_error_bis(0);
 	closedir(*dir);
 	free(*temp);
@@ -73,7 +73,7 @@ static char	*is_two_points(t_main *mini, t_parsing *parse)
 	if (!temp)
 		return (NULL);
 	dir = opendir(temp);
-	printf("temp = %s\n", temp);
+	ft_printf("temp = %s\n", temp);
 	if (dir == NULL)
 		return (help_itp1(mini, &dir, &temp));
 	buf = ft_strdup(parse->cmd_tab[parse->incr +1]);
@@ -101,7 +101,7 @@ static int	check_cd(t_parsing *parse, t_main *mini)
 	{
 		if (mini->shell.home == NULL)
 		{
-			printf("%s: 'HOME' not set\n", parse->cmd_tab[parse->incr]);
+			ft_printf("%s: 'HOME' not set\n", parse->cmd_tab[parse->incr]);
 			mini->shell.error = handle_error_bis(1);
 			return (1);
 		}

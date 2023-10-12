@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 16:03:59 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
+/*   Created: 2022/11/30 11:54:54 by asalic            #+#    #+#             */
+/*   Updated: 2022/12/07 14:44:58 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	ft_putstr(char *str)
 {
-	size_t			i;
-	unsigned char	*str;
+	int	i;
 
 	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
+	if (str == NULL)
 	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
-		i++;
+		write (1, "(null)", 6);
+		return (6);
 	}
-	return (0);
+	while (str[i])
+	{
+		write (1, &str[i], 1);
+		i ++;
+	}
+	return (i);
 }
-
-/* int main()
-{
-	char str[10] = "bonjour";
-	int c = 't';
-	int size = 7;
-	ft_printf("%p\n", memchr(str, c, size));
-	ft_printf("%p", ft_memchr(str, c, size));
-}*/

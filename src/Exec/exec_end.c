@@ -25,7 +25,7 @@ void	wait_exec(t_main *mini)
 	int	status;
 
 	i = 0;
-	printf("->%s.\n", mini->cmd_parse->cmd_tab[0]);
+	ft_printf("->%s.\n", mini->cmd_parse->cmd_tab[0]);
 	if (ft_strcmp("./minishell", mini->cmd_parse->cmd_tab[0]) != 0)
 	{
 		signal(SIGQUIT, signal_handler);
@@ -38,8 +38,22 @@ void	wait_exec(t_main *mini)
 		i++;
 	}
 	signal(SIGQUIT, SIG_IGN);
-	if (WIFEXITED(status))
-		mini->shell.error = WEXITSTATUS(status);
+	if (g_error == 2)
+		g_error = 0;
+	if (g_error != 0)
+		mini->shell.error = g_error;
+	else if (WIFEXITED(status))
+	{
+		if (WEXITSTATUS(status) != 0)
+			mini->shell.error = handle_error_bis(WEXITSTATUS(status));
+		else if (WTERMSIG(status) == SIGSEGV)
+		{
+			ft_printf("Segmentation Fault (core dumped)\n");
+			mini->shell.error = handle_error_bis(139);
+		}
+		else
+			mini->shell.error = handle_error_bis(0);		
+	}
 }
 
 void	exit_error_redir(t_main *mini, int fd[2])

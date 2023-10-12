@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 16:30:11 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ int    main(int ac, char **av, char **env)
     get_env(&mini, env);
     // get_env_export(&mini);
     // do_shlvl(&mini, mini.env);
-    // printf("shl home = %s\nshl pwd = %s\nshl path = %s\n", mini.shell.home, mini.shell.pwd, mini.shell.path);
+    // ft_printf("shl home = %s\nshl pwd = %s\nshl path = %s\n", mini.shell.home, mini.shell.pwd, mini.shell.path);
     mini_loop(&mini);
-    printf("out !\n");
+    ft_printf("out !\n");
     return (0);
 }

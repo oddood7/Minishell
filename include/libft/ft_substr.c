@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:32:39 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/08 17:09:22 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char    *ft_substr(const char *s, unsigned int start, size_t len)
     char str[] = "tripouille";
     //int    start = 7;
     //int    len = 3;
-    printf(" %s", ft_substr(str, 100, 1));
+    ft_printf(" %s", ft_substr(str, 100, 1));
 	free(str);
 	return (0);
 } */

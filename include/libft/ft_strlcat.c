@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:26:14 by lde-mais          #+#    #+#             */
-/*   Updated: 2022/11/17 16:56:59 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	char *dst = "";
 	char *src = "";
 	int	size = 0;
-	printf("%zu\n", strlcat(dst, src, size));
-	printf("%zu", ft_strlcat(dst, src, size));
+	ft_printf("%zu\n", strlcat(dst, src, size));
+	ft_printf("%zu", ft_strlcat(dst, src, size));
 } */
