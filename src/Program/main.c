@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 17:23:46 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:37:48 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void    mini_loop(t_main *mini)
 int    main(int ac, char **av, char **env)
 {
     t_main		mini;
-    // int         i;
 
     (void)av;
     if (ac != 1)
@@ -125,7 +124,6 @@ int    main(int ac, char **av, char **env)
     if (!env[0])
         return (main_space("env is missing"));
     init_main(&mini);
-    
     get_env(&mini, env);
     // get_env_export(&mini);
     // do_shlvl(&mini, mini.env);
