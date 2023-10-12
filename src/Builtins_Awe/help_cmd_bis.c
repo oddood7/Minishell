@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 08:42:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/10 15:25:35 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:51:51 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,12 @@ int	update_last_ve(t_parsing *parse, t_lexer **env_list)
 	if (ft_strcmp("env", parse->cmd_tab[parse->incr]) == 0 && ft_strlen(parse->cmd_tab[parse->incr]) == 3)
 	{
 		if (change_env_exp(env_list, "_", "/usr/bin/env") == 2)
+			return (1);
+		return (0);
+	}
+	if (ft_strcmp("./minishell", parse->cmd_tab[parse->incr]) == 0 && ft_strlen(parse->cmd_tab[parse->incr]) == 11)
+	{
+		if (change_env_exp(env_list, "_", "./minishell") == 2)
 			return (1);
 		return (0);
 	}

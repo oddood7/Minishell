@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 12:37:52 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:52:52 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ int	ft_echo(t_main *mini, t_parsing *parse)
 	if (bools == 0)
 		write (1, "\n", 1);
 	mini->shell.error = handle_error_bis(0);
+	update_last_ve(parse, &mini->env_list);
 	return (0);
 }

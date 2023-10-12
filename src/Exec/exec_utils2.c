@@ -82,16 +82,10 @@ void	ft_execve(t_main *mini, t_parsing *node, char *cmd)
 {
 	if (cmd == NULL)
 		no_command(mini, node);
-	// if (ft_strcmp("./minishell", mini->cmd_parse->cmd_tab[0]) != 0)
-	// {
-	// 	signal(SIGQUIT, signal_handler);
-	// 	g_error = 2;
-	// }
 	execve(cmd, node->cmd_tab, mini->env);
 	ft_free_tab(mini->cmd_paths);
 	ft_free_tab(mini->env);
 	ft_free_tab(mini->env_exp);
-	// signal(SIGQUIT, SIG_IGN);
 	resets(mini);
 	exit(1);
 }

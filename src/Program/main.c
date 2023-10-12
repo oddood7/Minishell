@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 17:37:48 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:46:19 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void    mini_loop(t_main *mini)
                 resets(mini);
             }
         }
-       
         bool = handle_history(mini, bool, input);
 		if  (bool == 2)
 			return (free(input));

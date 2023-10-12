@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:53:18 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ int	export_out_main(t_main *mini)
 		free(env_sort[i++]);
 	free(env_sort);
 	mini->shell.error = handle_error_bis(0);
+	update_last_ve(mini->cmd_parse, &mini->env_list);
 	return (0);
 }
 

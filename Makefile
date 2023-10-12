@@ -6,7 +6,7 @@
 #    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/12 17:12:14 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/12 17:43:36 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,17 +53,6 @@ SRC = ./src/Program/main.c \
 	./src/Parsing/Syntax.c \
 	./src/Parsing/Quote.c \
 	./src/Parsing/Utils_quote.c \
-	./src/Builtins/builtin_env.c \
-	./src/Builtins/builtin_echo.c \
-	./src/Builtins/builtin_exit.c \
-	./src/Builtins/builtin_export.c \
-	./src/Builtins/builtin_unset.c \
-	./src/Builtins/builtin_utils_unset.c \
-	./src/Builtins/builtin_cd.c \
-	./src/Builtins/builtin_utils.c \
-	./src/Builtins/builtin_utils_export.c \
-	./src/Builtins/builtin_export_addremove.c \
-	./src/Builtins/cd_export.c \
 	./src/Builtins_Awe/cd_comand.c \
 	./src/Builtins_Awe/echo.c \
 	./src/Builtins_Awe/env_concerns.c \
