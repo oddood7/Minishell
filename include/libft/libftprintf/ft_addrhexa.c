@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_addrhexa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 16:03:59 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
+/*   Created: 2022/11/29 13:46:24 by asalic            #+#    #+#             */
+/*   Updated: 2022/12/05 15:55:29 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	ft_addrhexa(void *str, int len)
 {
-	size_t			i;
-	unsigned char	*str;
+	long unsigned int	p;
 
-	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
+	if (!str)
 	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
-		i++;
+		write (1, "(nil)", 5);
+		return (5);
 	}
-	return (0);
+	p = (long unsigned int) str;
+	len += ft_putstr("0x");
+	len += ft_printhexa(p, "0123456789abcdef");
+	return (len);
 }
-
-/* int main()
-{
-	char str[10] = "bonjour";
-	int c = 't';
-	int size = 7;
-	ft_printf("%p\n", memchr(str, c, size));
-	ft_printf("%p", ft_memchr(str, c, size));
-}*/

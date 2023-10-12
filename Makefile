@@ -3,18 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
+#    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/12 14:32:00 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/12 17:12:14 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
-CC = gcc 
-CFLAGS = -Wall -Wextra -Werror -g3
-LIBFT_PATH = include/libft/
-LIBFT = $(LIBFT_PATH)libft.a
+NAME		= minishell
+CC			= gcc 
+CFLAGS 		= -Wall -Wextra -Werror -g3
+INCLUDE 	= include/libft/libft.h include/libft/libftprintf/libftprintf.h \
+				include/minishell.h
+LIBFT_PATH 	= include/libft/libft.a
+LIBFT 		= include/libft
+LIBS 		= -lreadline -Linclude/libft -lft \
+				-Linclude/libft/libftprintf -lftprintf
 
 SRC = ./src/Program/main.c \
 	./src/Program/env.c \
@@ -72,7 +76,6 @@ SRC = ./src/Program/main.c \
 	./src/Builtins_Awe/utils_thing.c \
 	./src/Builtins_Awe/utils_built2.c \
 	./src/Builtins_Awe/utils_built.c \
-	./src/Exec/builtin_finder.c \
 	./src/Exec/exec_builtins.c \
 	./src/Exec/exec_end.c \
 	./src/Exec/exec_utils.c \
@@ -84,25 +87,47 @@ SRC = ./src/Program/main.c \
 	./src/Here_Doc/here_doc.c \
 	./src/Here_Doc/here_doc_utils.c \
 	./src/Here_Doc/here_doc_utils2.c \
-	./src/Here_Doc/here_doc_expand.c 
+	./src/Here_Doc/here_doc_expand.c
 
-OBJ = $(SRC:.c=.o)
+RED		= \033[1;31m
+GREEN	= \033[1;32m
+NO_CLRS	= \033[0m
+
+OBJ_DIR = obj
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
+
+all : $(LIBFT_PATH) $(NAME) $(INCLUDE)
+
+$(OBJ_DIR)/%.o : %.c
+	@mkdir -p $(OBJ_DIR)/src/Builtins
+	@mkdir -p $(OBJ_DIR)/src/Builtins_Awe
+	@mkdir -p $(OBJ_DIR)/src/Error_and_Utils
+	@mkdir -p $(OBJ_DIR)/src/Exec
+	@mkdir -p $(OBJ_DIR)/src/Expander
+	@mkdir -p $(OBJ_DIR)/src/Here_Doc
+	@mkdir -p $(OBJ_DIR)/src/Lexer
+	@mkdir -p $(OBJ_DIR)/src/Parsing
+	@mkdir -p $(OBJ_DIR)/src/Program
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJ)
-	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -lreadline -o $(NAME)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBS)
+	@echo "\n$(GREEN)>----Compilation Minishell Done----<$(NO_CLRS)\n"
 
-
-all : $(NAME)
+$(LIBFT_PATH) :
+	@make -s -C $(LIBFT)
 
 clean :
-	rm -rf $(OBJ)
-	make clean -C $(LIBFT_PATH)
+	@rm -rf $(OBJ_DIR) $(OBJ)
+	@make -s clean -C $(LIBFT)
+	@echo "\n$(RED)>> Clean Done <<$(NO_CLRS)"
 
 fclean : clean
-	rm -f $(NAME)
-	make fclean -C $(LIBFT_PATH)
+	@rm -f $(NAME)
+	@make -s fclean -C $(LIBFT)
+	@echo "$(RED)>> Fclean Done <<$(NO_CLRS)\n"
 
 re : fclean all
+	@make -s all
 
 .PHONY	:		all clean fclean re

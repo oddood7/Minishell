@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 16:16:20 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	export_errors(t_parsing *parse, t_main *mini)
 		parse->incr ++;
 	if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr][0] == '\0')
 	{
-		printf("export : \"\": invalid identifier\n");
+		ft_printf("export : \"\": invalid identifier\n");
 		mini->shell.error = handle_error_bis(1);
 		return (1);
 	}
@@ -37,7 +37,7 @@ static int	export_errors(t_parsing *parse, t_main *mini)
 		return (0);
 	else if (parse->cmd_tab[parse->incr] && parse_export(parse->cmd_tab[parse->incr]) == 1)
 	{
-		printf("export : \"%s\" : invalid identifier\n", parse->cmd_tab[parse->incr]);
+		ft_printf("export : \"%s\" : invalid identifier\n", parse->cmd_tab[parse->incr]);
 		mini->shell.error = handle_error_bis(1);
 		return (1);
 	}
@@ -146,7 +146,7 @@ int	export_out_main(t_main *mini)
 		if (ft_strncmp(bfore, "?=", 2) == 0)
 			i ++;
 		else
-			printf("declare -x %s=\"%s\"\n", bfore, after);
+			ft_printf("declare -x %s=\"%s\"\n", bfore, after);
 		i ++;
 		free(bfore);
 		free(after);

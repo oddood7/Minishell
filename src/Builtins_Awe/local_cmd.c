@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:22 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 16:18:01 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_pwd(t_main *mini)
 		return (1);
 	}
 	else
-		printf("%s\n", mini->shell.is_pwd);
+		ft_printf("%s\n", mini->shell.is_pwd);
 	mini->shell.error = handle_error_bis(0);
 	return (0);
 }

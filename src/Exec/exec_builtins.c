@@ -44,7 +44,7 @@ void	find(t_main *mini, t_parsing *node)
 {
 	char	*cmd;
 	int		len;
-	char	*cleaned_cmd;
+	// char	*cleaned_cmd;
 
 	if (node->cmd_tab[0] == NULL)
 		return ;

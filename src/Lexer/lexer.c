@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 20:14:28 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	ft_listadd(t_main *mini, char *str, t_operateurs operateur, t_lexer **lst)
 		*lst = node;
 	else
 		ft_lstaddback(lst, node);
-	// printf("Extracted word: %s\n", ->str);
-	// printf("test next : %s\n", node->next->str);
+	// ft_printf("Extracted word: %s\n", ->str);
+	// ft_printf("test next : %s\n", node->next->str);
 	return (1);
 }
 

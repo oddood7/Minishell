@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_putunb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 16:03:59 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
+/*   Created: 2022/11/30 11:58:06 by asalic            #+#    #+#             */
+/*   Updated: 2022/12/05 15:06:42 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	ft_lennb2(unsigned int nb, int len)
 {
-	size_t			i;
-	unsigned char	*str;
-
-	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
+	if (nb == 0)
+		return (1);
+	while (nb)
 	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
-		i++;
+		nb = nb / 10;
+		len ++;
 	}
-	return (0);
+	return (len);
 }
 
-/* int main()
+int	ft_putunb(unsigned int nb, int len)
 {
-	char str[10] = "bonjour";
-	int c = 't';
-	int size = 7;
-	ft_printf("%p\n", memchr(str, c, size));
-	ft_printf("%p", ft_memchr(str, c, size));
-}*/
+	len = ft_lennb2(nb, len);
+	if (nb <= 9)
+	{
+		nb = nb +48;
+		write (1, &nb, 1);
+	}
+	else if (nb > 9)
+	{
+		ft_putunb(nb / 10, len);
+		ft_putunb(nb % 10, len);
+	}
+	return (len);
+}

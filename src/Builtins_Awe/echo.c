@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 12:37:52 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/11 16:10:19 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ static int	iter_echo(char	*str)
 
 static void	echo_loop(char **cmd_tab, int i, t_shell *shell)
 {
+	ft_printf("shell->error : %d\n", shell->error);
 	if (ft_strcmp("$?", cmd_tab[i]) == 0 && ft_strlen(cmd_tab[i]) == 2)
-		printf("%d", shell->error);
+		ft_printf("%d", shell->error);
 	else
 	{
 		while (cmd_tab[i])

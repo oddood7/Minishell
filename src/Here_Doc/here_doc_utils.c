@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 21:14:13 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 01:15:06 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:13:42 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	wait_hds(t_main *mini, int i)
 			close(mini->here_doc[i].fd[1]);
 			i--;
 		}
-		signal(SIGINT, handle_sig);
+		signal(SIGINT, signal_handler);
 		return (42);
 	}
 	return (0);
