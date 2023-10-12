@@ -25,7 +25,6 @@ void	wait_exec(t_main *mini)
 	int	status;
 
 	i = 0;
-	ft_printf("->%s.\n", mini->cmd_parse->cmd_tab[0]);
 	if (ft_strcmp("./minishell", mini->cmd_parse->cmd_tab[0]) != 0)
 	{
 		signal(SIGQUIT, signal_handler);

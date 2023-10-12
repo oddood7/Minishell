@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:59:01 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 17:50:39 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 18:27:57 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int	ft_env(t_main *mini, t_parsing *parse, t_lexer **env_list)
 	t_lexer	*current;
 
 	parse->incr = 0;
-	update_last_ve(parse, env_list);
+	// update_last_ve(parse, env_list);
 	current = *env_list;
 	if (parse->cmd_tab[parse->incr] == NULL)
 		return (1);

@@ -6,12 +6,12 @@
 #    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/12 17:43:36 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/12 18:27:13 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
-CC			= gcc 
+CC			= clang
 CFLAGS 		= -Wall -Wextra -Werror -g3
 INCLUDE 	= include/libft/libft.h include/libft/libftprintf/libftprintf.h \
 				include/minishell.h

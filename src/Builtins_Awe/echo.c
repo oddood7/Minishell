@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 12:37:52 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 17:52:52 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 18:49:32 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static int	iter_echo(char	*str)
 
 static void	echo_loop(char **cmd_tab, int i, t_shell *shell)
 {
-	ft_printf("shell->error : %d\n", shell->error);
 	if (ft_strcmp("$?", cmd_tab[i]) == 0 && ft_strlen(cmd_tab[i]) == 2)
 		ft_printf("%d", shell->error);
 	else
@@ -95,6 +94,5 @@ int	ft_echo(t_main *mini, t_parsing *parse)
 	if (bools == 0)
 		write (1, "\n", 1);
 	mini->shell.error = handle_error_bis(0);
-	update_last_ve(parse, &mini->env_list);
 	return (0);
 }

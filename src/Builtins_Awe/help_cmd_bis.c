@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 08:42:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 17:51:51 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 18:43:43 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,44 +73,74 @@ int	cd_move_and_change(t_lexer *env_list, t_shell *shell)
 	return (0);
 }
 
-/* 
- * Update la VE $_
- * Cette VE prends comme valeur le dernier argument passe en input
- * Mis a jour a chaque tour de boucle prompt
- * Exception pour env
-*/
-int	update_last_ve(t_parsing *parse, t_lexer **env_list)
+static int	nbcount(long long int n)
 {
-	char	*last_arg;
+	long long int	nbr;
+	long int		nb;
 
-	if (ft_strcmp("env", parse->cmd_tab[parse->incr]) == 0 && ft_strlen(parse->cmd_tab[parse->incr]) == 3)
+	nbr = n;
+	nb = 1;
+	if (n < 0)
 	{
-		if (change_env_exp(env_list, "_", "/usr/bin/env") == 2)
-			return (1);
-		return (0);
+		nb++;
+		nbr = nbr * -1;
 	}
-	if (ft_strcmp("./minishell", parse->cmd_tab[parse->incr]) == 0 && ft_strlen(parse->cmd_tab[parse->incr]) == 11)
+	while (nbr >= 10)
 	{
-		if (change_env_exp(env_list, "_", "./minishell") == 2)
-			return (1);
-		return (0);
+		nbr = nbr / 10;
+		nb++;
 	}
-	while (parse->cmd_tab[parse->incr])
+	return (nb);
+}
+
+char	*ft_long_itoa(long long int n)
+{
+	long long int		nbr;
+	char				*str;
+	long long int		i;
+
+	str = malloc(sizeof(char) * (nbcount(n) + 1));
+	if (!str)
+		return (NULL);
+	str[nbcount(n)] = '\0';
+	i = nbcount(n) - 1;
+	nbr = n;
+	if (n < 0)
 	{
-		if (parse->cmd_tab[parse->incr + 1] == NULL)
-		{
-			last_arg = ft_strdup(parse->cmd_tab[parse->incr]);
-			if (!last_arg)
-				return (1);
-			break ;
-		}
-		parse->incr ++;
+		str[0] = '-';
+		nbr = nbr * -1;
 	}
-	if (change_env_exp(env_list, "_", last_arg) == 2)
+	while (nbr >= 10)
 	{
-		free(last_arg);
-		return (1);
+		str[i] = (nbr % 10) + '0';
+		nbr /= 10;
+		i--;
 	}
-	free(last_arg);
-	return (0);
+	str[i] = nbr + '0';
+	return (str);
+}
+
+long long int	ft_long_atoi(const char *nptr)
+{
+	long long int	i;
+	long long int	res;
+	long long int	c;
+
+	i = 0;
+	c = 1;
+	res = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			c = c * -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res = res * 10 + (nptr[i] - 48);
+		i++;
+	}
+	return (res * c);
 }

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 17:07:59 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 18:44:29 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,56 +130,59 @@ typedef struct s_parsermain
 //////////////////// TEST AWENA ///////////////////
 
 //Bultins
-int			ft_echo(t_main *mini, t_parsing *parse);
-int			ft_cd(t_main *mini, t_parsing *parse);
-int			ft_pwd(t_main *mini);
-int			ft_env(t_main *mini, t_parsing *parse, t_lexer **env_list);
-int			ft_unset(t_main *mini, t_parsing *parse, t_lexer **env_list);
-int			ft_export(t_main *mini, t_parsing *parse);
-int			ft_exit(t_main *mini, t_parsing *parse);
+int				ft_echo(t_main *mini, t_parsing *parse);
+int				ft_cd(t_main *mini, t_parsing *parse);
+int				ft_pwd(t_main *mini);
+int				ft_env(t_main *mini, t_parsing *parse, t_lexer **env_list);
+int				ft_unset(t_main *mini, t_parsing *parse, t_lexer **env_list);
+int				ft_export(t_main *mini, t_parsing *parse);
+int				ft_exit(t_main *mini, t_parsing *parse);
 
 //Other commands
-int			all_cmd(t_lexer *arg, t_shell *shell, t_main **list, \
-	t_lexer **env_list);
-void		change_env_cd(t_lexer **env_list, char *new_str, \
-	char *change_value);
-int			cd_move_and_change(t_lexer *env_list, t_shell *shell);
-int			change_env_exp(t_lexer **env_list, char *name_env, char *value);
-int			update_last_ve(t_parsing *parse, t_lexer **env_list);
-int			parse_export(char *str);
-int			searchin_env(t_lexer **env_list, char *str);
-char		*is_path_or_cmd(char **paths, char *cmd, t_shell *shell, \
-	t_lexer **env_list);
-void		shell_change(t_shell *shell, char *str, char *value);
-int			set_env(t_main *mini, char **env);
-void		add_env(t_lexer **env_list, char *str);
-int			ft_plus_shell(t_shell *shell, t_lexer **env_list);
-void		signal_handler(int sig);
-int			export_out_main(t_main *mini);
-int			change_error(t_lexer **env_list, t_shell *shell, int value);
-int			handle_error_bis(int code_err);
-int			handle_env(t_main *mini);
-char 		*get_env_var(const char *name);
-void		code_error(int code);
+int				all_cmd(t_lexer *arg, t_shell *shell, t_main **list, \
+				t_lexer **env_list);
+void			change_env_cd(t_lexer **env_list, char *new_str, \
+				char *change_value);
+int				cd_move_and_change(t_lexer *env_list, t_shell *shell);
+int				change_env_exp(t_lexer **env_list, char *name_env, char *value);
+int				update_last_ve(t_parsing *parse, t_lexer **env_list);
+int				parse_export(char *str);
+int				searchin_env(t_lexer **env_list, char *str);
+char			*is_path_or_cmd(char **paths, char *cmd, t_shell *shell, \
+				t_lexer **env_list);
+void			shell_change(t_shell *shell, char *str, char *value);
+int				set_env(t_main *mini, char **env);
+void			add_env(t_lexer **env_list, char *str);
+int				ft_plus_shell(t_shell *shell, t_lexer **env_list);
+void			signal_handler(int sig);
+int				export_out_main(t_main *mini);
+int				change_error(t_lexer **env_list, t_shell *shell, int value);
+int				handle_error_bis(int code_err);
+int				handle_env(t_main *mini);
+char 			*get_env_var(const char *name);
+void			code_error(int code);
 //Helpful function
-char		*ft_strdupto_n(char *str, char c);
-char		*ft_strdup_from(char *str, char c);
-char		*ft_strjoin_free(char *s1, char *s2);
-char		*from_end_to_char(char *str, char c);
-int			is_only_equal(char *str, char c);
-int			len_targs(t_lexer *list);
-void		free_everything(t_shell *shell, t_lexer *list, t_lexer *env_list);
+char			*ft_strdupto_n(char *str, char c);
+char			*ft_strdup_from(char *str, char c);
+char			*ft_strjoin_free(char *s1, char *s2);
+char			*from_end_to_char(char *str, char c);
+int				is_only_equal(char *str, char c);
+int				len_targs(t_lexer *list);
+void			free_everything(t_shell *shell, t_lexer *list, t_lexer *env_list);
 
-int			ft_strlen_double(char **str);
-int			count_back(char	*str);
-int			count_dir(t_shell *shell);
-char		**dup_double_string(t_lexer **e_list);
-int			is_numeric(char *str);
-t_lexer		*copy_list(t_lexer* source);
-char		**ft_sort(t_lexer **env_list);
-int			ft_strcmp(const char *s1, const char *s2);
-char		*prompt_cmd(t_shell *shell, char *user);
-void		clear_args_list(t_lexer **list);
+int				ft_strlen_double(char **str);
+int				count_back(char	*str);
+int				count_dir(t_shell *shell);
+char			**dup_double_string(t_lexer **e_list);
+int				is_numeric(char *str);
+t_lexer			*copy_list(t_lexer* source);
+char			**ft_sort(t_lexer **env_list);
+int				ft_strcmp(const char *s1, const char *s2);
+char			*prompt_cmd(t_shell *shell, char *user);
+void			clear_args_list(t_lexer **list);
+char			*ft_long_itoa(long long int n);
+long long int	ft_long_atoi(const char *nptr);
+
 ////////////////////////////////////////////////////////
 
 /*****MAIN*****/

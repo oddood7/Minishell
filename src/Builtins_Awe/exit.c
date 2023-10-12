@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:09:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 18:45:51 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,17 @@ int	ft_exit(t_main *mini, t_parsing *parse)
 		return (1);
 	}
 	else if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1])
-		code_err = ft_atoi(parse->cmd_tab[parse->incr +1]) % 256;
+	{
+		code_err = ft_long_atoi(parse->cmd_tab[parse->incr +1]);
+		if (ft_strcmp(parse->cmd_tab[parse->incr +1], ft_long_itoa(code_err)) != 0)
+		{
+			ft_printf("%s: %s: numeric argument required\n", parse->cmd_tab[parse->incr],
+				parse->cmd_tab[parse->incr +1]);
+			code_err = 2;
+		}
+		else
+			code_err %= 256;
+	}
 	else if (mini->shell.error == 0 && g_error != 0)
 		code_err = g_error;
 	else

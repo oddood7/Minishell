@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:31:12 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 19:27:42 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/12 18:38:13 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,6 @@ char    **ft_sort(t_lexer **env_list)
             i++;
         }
     }
-	env_char[i] = '\0';
+	env_char[i] = NULL;
 	return (env_char);
 }
