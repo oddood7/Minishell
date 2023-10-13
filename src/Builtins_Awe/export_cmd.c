@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 18:27:59 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 16:31:42 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ int	ft_export(t_main *mini, t_parsing *parse)
 	char	*v_env;
 	int		result_change_env;
 
+	ft_printf("arg 1 : %s\n", parse->cmd_tab[0]);
+	ft_printf("arg 2 : %s\n", parse->cmd_tab[1]);
+	ft_printf("arg 3 : %s\n", parse->cmd_tab[2]);
 	if (export_errors(parse, mini) == 1)
 	{
 		if (parse->cmd_tab[parse->incr +1] != NULL)
@@ -120,6 +123,7 @@ int	ft_export(t_main *mini, t_parsing *parse)
 		parse->incr ++;
 		ft_export(mini, parse);
 	}
+	mini->env = env_to_char(&mini->env_list);
 	mini->shell.error = handle_error_bis(0);
 	return (0);
 }

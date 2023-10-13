@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:34:51 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 18:27:52 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 16:30:26 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
 	}
 	else
 	{
-		if (!cd_move_and_change(mini->env_list, &mini->shell))
+		if (!cd_move_and_change(mini))
 			return (1);
 	}
 	return (0);
@@ -81,8 +81,9 @@ static char	*is_two_points(t_main *mini, t_parsing *parse)
 		help_itp2(&dir, &temp);
 	if (mini->shell.pwd == NULL)
 	{
-		if (!cd_move_and_change(mini->env_list, &mini->shell))
+		if (!cd_move_and_change(mini))
 			return(help_itp2(&dir, &temp));
+		mini->env = env_to_char(&mini->env_list);
 	}
 	help_itp2(&dir, &temp);
 	return (buf);

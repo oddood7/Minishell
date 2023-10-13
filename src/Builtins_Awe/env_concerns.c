@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:59:01 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 18:27:57 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 16:33:37 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int	set_env(t_main *mini, char **env)
 		if (ft_strcmp(identifier, "SHLVL") == 0 && \
 		ft_strlen(identifier) == 5)
 		{
-			if (ft_plus_shell(&mini->shell, &mini->env_list) == 1)
+			if (ft_plus_shell(mini) == 1)
 				return (-1);
 		}
 		i ++;

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 18:53:23 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 19:27:13 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 16:04:29 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*prompt_cmd(t_shell *shell, char *user)
 	if (user != NULL)
 		username = build_color("\033[1;34m", ft_strjoin(user, ":"), 0);
 	if (shell->is_pwd != NULL)
-		pwd = build_color("\033[1;32m", shell->is_pwd, 0);
+		pwd = build_color("\033[1;33m", shell->is_pwd, 0);
 	// pwd = ft_strjoin(username, shell->is_pwd);
 	common = ft_strjoin(username, pwd);
 	prompt = ft_strjoin(common, ">");

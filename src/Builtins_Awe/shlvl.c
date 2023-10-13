@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:03:17 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/10 17:12:03 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 16:36:17 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,29 @@ static unsigned int	ft_atoi_evolve(char	*str)
  Incremente la VE SHLVL
  Lorsque un ./minishell est lance dans un ./minishell -> SHLVL +1
 */
-int	ft_plus_shell(t_shell *shell, t_lexer **env_list)
+int	ft_plus_shell(t_main *mini)
 {
 	unsigned int	nb_shell;
 	char			*len_shell;
 
-	nb_shell = ft_atoi_evolve(shell->shlvl) + 1;
+	nb_shell = ft_atoi_evolve(mini->shell.shlvl) + 1;
 	len_shell = ft_itoa(nb_shell);
 	if (!len_shell)
 		return (1);
-	if (shell->shlvl)
-		free(shell->shlvl);
-	shell->shlvl = ft_strdup(len_shell);
-	if (!shell->shlvl)
+	if (&mini->shell.shlvl)
+		free(mini->shell.shlvl);
+	mini->shell.shlvl = ft_strdup(len_shell);
+	if (!mini->shell.shlvl)
 	{
 		free(len_shell);
 		return (1);
 	}
-	if (change_env_exp(env_list, "SHLVL", len_shell) == 2)
+	if (change_env_exp(&mini->env_list, "SHLVL", len_shell) == 2)
 	{
 		free(len_shell);
 		return (1);
 	}
+	mini->env = env_to_char(&mini->env_list);
 	free(len_shell);
 	return (0);
 }
