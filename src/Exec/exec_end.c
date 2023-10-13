@@ -78,7 +78,7 @@ void	exit_error_redir(t_main *mini, int fd[2])
 }
 
 /* Free tous les char * et char ** de la struct shell */
-static void	free_shell_var(t_shell *shell)
+void	free_shell_var(t_shell *shell)
 {
 	int	i;
 

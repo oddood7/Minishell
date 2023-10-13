@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:34:21 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 16:22:34 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:21:31 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	init_main(t_main *mini)
 	mini->syntaxe_check = 0;
     ft_bzero(&mini->shell, sizeof(t_shell));
     mini->shell.input_bis = NULL;
-	rv_static(&(mini->shell.error));
 	sig_init();
 }
 

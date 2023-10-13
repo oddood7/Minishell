@@ -6,53 +6,129 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:03:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:25:47 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int    err_exp(char *s, int j)
+/*
+ * Recupere str jusqu'a c.
+ * Creation d'un tableau a partir de str jusqu'a atteindre le caractere c.
+ * Compter d'abord le nombre de caractere a ajouter a tab.
+ * Puis, ajout a tab.
+*/
+char	*ft_strdupto_n(char *str, char c)
 {
-    int    i;
+	char	*tab;
+	int		i;
+	int		len;
 
-    i = 0;
-    if (j)
-    {
-        ft_putstr_fd("export: `", 2);
-        while (s[i] && s[i] != '=')
-            ft_putchar_fd(s[i++], 2);
-        ft_putstr_fd("': not a valid identifier\n", 2);
-        return (1);
-    }
-    return (0);
+	i = 0;
+	len = 0;
+	if (!str[i])
+		return (NULL);
+	while (str[i] && str[i] != c)
+	{
+		len ++;
+		i ++;
+	}
+	tab = ft_calloc((len +1), sizeof(char));
+	if (!tab)
+		return (NULL);
+	i = 0;
+	while (str[i] && str[i] != c)
+	{
+		tab[i] = str[i];
+		i ++;
+	}
+	tab[i] = '\0';
+	return (tab);
 }
 
-int    is_equals(char *s)
+/* 
+ * Recupere str a partir de c.
+*/
+char	*ft_strdup_from(char *str, char c)
 {
-    int        i;
+	char	*tab;
+	int		i;
+	int		start;
+	int		len;
 
-    i = 0;
-    while (s[i])
-    {
-        if (s[i] == '=')
-            return (i);
-        i++;
-    }
-    return (0);
+	i = 0;
+	len = 0;
+	while (str[i] && str[i] != c)
+		i ++;
+	if (str[i] == c)
+		i ++;
+	start = i;
+	while (str[i++])
+		len ++;
+	tab = ft_calloc((len +1), sizeof(char));
+	if (!tab)
+		return (NULL);
+	i = start;
+	len = 0;
+	while (str[i])
+		tab[len++] = str[i++];
+	tab[len] = '\0';
+	return (tab);
 }
 
-int    check_identifier(char c)
+/* 
+ * Part de la fin de str et recule jusqu'a c.
+ * Puis copie du debut de la chaine jusqu'a ce c marque
+*/
+char	*from_end_to_char(char *str, char c)
 {
-    if (c == '|' || c == '<' || c == '>' || c == '[' || c == ']'
-        || c == '\'' || c == '\"' || c == ' ' || c == ',' || c == '.'
-        || c == ':' || c == '/' || c == '{' || c == '}' || c == '+'
-        || c == '^' || c == '%' || c == '#' || c == '@' || c == '!'
-        || c == '~'
-        || c == '=' || c == '-' || c == '?' || c == '&' || c == '*')
+	int		i;
+	int		max;
+	char	*tab;
+
+	i = ft_strlen(str) -1;
+	while (i >= 0 && str[i] != c)
+		i --;
+	max = i;
+	tab = ft_calloc((max +1), sizeof(char));
+	if (!tab)
+		return (NULL);
+	i = 0;
+	while (i < max)
+	{
+		tab[i] = str[i];
+		i ++;
+	}
+	tab[i] = '\0';
+	return (tab);
+}
+
+char    **ft_sort(t_lexer **env_list)
+{
+    int			i;
+    char		*temp;
+	char		**env_char;
+    int			must_continue;
+
+	env_char = env_to_char(env_list);
+    must_continue = 1;
+    while (must_continue)
     {
-        return (1);
+        must_continue = 0;
+        i = 1;
+        while (env_char[i + 1])
+        {
+            if (ft_strncmp(env_char[i], env_char[i + 1],
+                    ft_strlen(env_char[i]) + ft_strlen(env_char[i + 1])) > 0)
+            {
+                temp = env_char[i];
+                env_char[i] = env_char[i + 1];
+                env_char[i + 1] = temp;
+                must_continue = 1;
+            }
+            i++;
+        }
     }
-    else
-        return (0);
+	env_char[i] = NULL;
+	return (env_char);
 }

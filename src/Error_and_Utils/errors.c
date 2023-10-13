@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 13:27:23 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:02:29 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,26 @@ int	directory_err(t_main *mini, char *str, int ok)
 	return (1);
 }
 
-// int	handle_error(t_main *mini, char *str, int rv)
-// {
-// 	ft_putendl_fd(str, 2);
-// 	if (rv == 2)
-// 		mini->shell.error = 2;
-// 	else if (rv == 127)
-// 		mini->shell.error = 127;
-// 	else
-// 		mini->shell.error = rv;
-// 	return (1);
-// }
+void	code_error(int code)
+{
+	g_error = code;
+}
 
-// int	err_export(char *str, int ok)
-// {
-// 	int i;
+int	handle_error_bis(int code_err)
+{
+	int	final_error;
 
-// 	i = 0;
-// 	if (ok)
-// 	{
-// 		ft_putstr_fd("export : ", 2);
-// 		while (str[i] && str[i] != '=')
-// 		{	
-// 			ft_putchar_fd(str[i], 2);
-// 			i++;
-// 		}
-// 		ft_putstr_fd(" : not a valid argument\n", 2);
-// 		return (1);
-// 	}
-// 	return (0);
-// }
+	final_error = 0;
+	if (code_err == 13 || code_err == 12)
+		final_error = 126;
+	else if (code_err == 11)
+		final_error = 127;
+	else if (code_err == 0 && g_error != 0)
+		final_error = g_error;
+	else
+		final_error = code_err;
+	return (final_error);
+}
 
 int    ft_perror(char *str)
 {

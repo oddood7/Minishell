@@ -6,142 +6,75 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:31:12 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/13 16:25:39 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:12:41 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/* 
- * Compte le nombre de directory qui n'existe plus depuis rm -rf.
- * Ignore les /..
-*/
-int	count_dir(t_shell *shell)
-{
-	int		len;
-	char	*temp;
-	DIR		*dir;
-
-	len = 0;
-	temp = shell->is_pwd;
-	dir = opendir(temp);
-	while (!dir)
-	{
-		if (temp[ft_strlen(temp) - 1] != '.' && temp[ft_strlen(temp) - 2] \
-			!= '.' && temp[ft_strlen(temp) - 3] != '/')
-			len ++;
-		temp = from_end_to_char(temp, '/');
-		closedir(dir);
-		dir = opendir(temp);
-	}
-	closedir(dir);
-	return (len -1);
-}
-
 /*
- * Compte le nombre de /.. apres les directory.
+ * Ajout nouveau maillon dans env.
+ * Boucle jusqu'a la fin de la liste.
+ * Puis ajoute la string.
+ * (BUG: sauf qu'il l'ajoute de maniere random ou il veut dans l'env ;-;)
 */
-int	count_back(char	*str)
+void	add_env(t_lexer **env_list, char *str)
 {
-	int		len;
-	int		i;
-	char	**tab;
-
-	tab = ft_split(str, '/');
-	i = ft_strlen_double(tab) - 1;
-	len = 0;
-	while (i >= 0)
-	{
-		if (ft_strncmp(tab[i], "..", ft_strlen(tab[i])) == 0)
-			len ++;
-		else
-			return (len);
-		i --;
-	}
-	return (len);
-}
-
-char	*ft_strjoin_free(char *s1, char *s2)
-{
-	size_t	i;
-	size_t	j;
-	size_t	l;
-	char	*new;
-
-	i = 0;
-	j = 0;
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return ((char *)s2);
-	if (!s2)
-		return ((char *)s1);
-	l = ft_strlen(s1) + ft_strlen(s2);
-	new = ft_calloc(l + 1, sizeof(char));
-	if (!new)
-		return (NULL);
-	while (s1[i])
-		new[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		new[j++] = s2[i++];
-	new[j] = '\0';
-	return (free(s1), free(s2), new);
-}
-
-char	**env_to_char(t_lexer **env_list)
-{
+	t_lexer	*new_var;
 	t_lexer	*current;
-	char	**env_char;
-	int		i;
 
-	current = *env_list;
-	env_char = ft_calloc(len_targs(current), sizeof *current);
-	if (!env_char)
-		return (NULL);
-	i = 0;
-	while (current)
+	new_var = ft_calloc(1, sizeof *new_var);
+	if (! new_var)	
+		return ;
+	new_var->str = ft_strdup(str);
+	if (! new_var->str)
 	{
-		env_char[i] = ft_strdup(current->str);
-		if (!env_char[i])
-		{
-			while (i >= 0)
-				free(env_char[i--]);
-			free(env_char);
-		}			
-		current = current->next;
-		i ++;
+		free(new_var);
+		return ;
 	}
-	env_char[i] = NULL;
-	return (env_char);
+	// new_var->token = 0;
+	new_var->next = NULL;
+	if (*env_list)
+	{
+		current = *env_list;
+		while (current->next != NULL)
+			current = current->next;
+		current->next = copy_list(new_var);
+	}
+	else
+		*env_list = copy_list(new_var);
+	free(new_var);
 }
 
-char    **ft_sort(t_lexer **env_list)
+/* 
+ * Permets de copier un liste d'args
+*/
+t_lexer *copy_list(t_lexer *source)
 {
-    int			i;
-    char		*temp;
-	char		**env_char;
-    int			must_continue;
+    t_lexer* new_head;
+    t_lexer* current;
+    t_lexer* tail;
 
-	env_char = env_to_char(env_list);
-    must_continue = 1;
-    while (must_continue)
-    {
-        must_continue = 0;
-        i = 1;
-        while (env_char[i + 1])
-        {
-            if (ft_strncmp(env_char[i], env_char[i + 1],
-                    ft_strlen(env_char[i]) + ft_strlen(env_char[i + 1])) > 0)
-            {
-                temp = env_char[i];
-                env_char[i] = env_char[i + 1];
-                env_char[i + 1] = temp;
-                must_continue = 1;
-            }
-            i++;
+	new_head = NULL;
+	tail = NULL;
+	current = source;
+    while (current != NULL)
+	{
+        if (new_head == NULL)
+		{
+            new_head = ft_calloc(1, sizeof(t_lexer));
+            new_head->str = current->str;
+            new_head->next = NULL;
+            tail = new_head;
         }
+		else
+		{
+            tail->next = ft_calloc(1, sizeof(t_lexer));
+            tail = tail->next;
+            tail->str = current->str;
+        }
+        current = current->next;
     }
-	env_char[i] = NULL;
-	return (env_char);
+	free(tail->next);
+    return (new_head);
 }
