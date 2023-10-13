@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:21 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:15:34 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 	{
 		if (ongoing->str)
 		{
-			tab[i] = ft_strdup(trim_whitespace(ongoing->str));
+			tab[i] = ft_strdup(ongoing->str);
 			ft_delid(&data->lexer_list, ongoing->i);
 			ongoing = data->lexer_list;
 			i++;

@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 17:13:32 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:15:21 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int    start_in_loop(t_main *mini, char *input)
     ft_strlcpy(mini->input_line, input, ft_strlen(input));
     if (!do_lexer(mini))
 		main_space("lexer failed.");
-	clean_lexed_list(&mini->lexer_list);
 	pr(mini->lexer_list);
     if (!parsing(mini))
     {
