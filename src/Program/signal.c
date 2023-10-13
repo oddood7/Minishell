@@ -6,18 +6,13 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 19:12:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 18:53:38 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:02:24 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 int	g_error;
-
-void	code_error(int code)
-{
-	g_error = code;
-}
 
 void	signal_handler(int sig)
 {

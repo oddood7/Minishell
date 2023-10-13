@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 13:21:39 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:25:10 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,6 @@ char	*get_var_name(char *str, t_main *mini)
 	}
 	tmp[i] = '\0';
 	return (tmp);
-}
-
-int    arg_check(t_main *mini, char **tab)
-{
-    int    i;
-
-    i = 0;
-    while (tab[i])
-        i++;
-    if (i > 2)
-    {
-        ft_putendl_fd("bash: cd: too many arguments", 2);
-        mini->shell.error = 1;
-        return (1);
-    }
-    return (0);
 }
 
 char    *just_alloc(int len, int j_dol, char *s_af)
@@ -98,4 +82,81 @@ void    print_no_command(t_main *mini, char *s, int i)
     write(2, tmp, ft_strlen(tmp));
     free(tmp);
     return ;
+}
+
+/* Compte nombre de maillon dans une liste */
+int	len_targs(t_lexer *list)
+{
+	int	len;
+
+	len = 0;
+	while (list)
+	{
+		len ++;
+		list = list->next;
+	}
+	return (len);
+}
+
+/* 
+ * Strlen pour un char **.
+*/
+int	ft_strlen_double(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (*str)
+	{
+		str ++;
+		i ++;
+	}
+	return (i);
+}
+
+/*
+ * Check si la chaine de caractere est bien remplie de nombre
+ * Que des caracteres numeriques
+*/
+int	is_numeric(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[0] == '-')
+		i ++;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	**env_to_char(t_lexer **env_list)
+{
+	t_lexer	*current;
+	char	**env_char;
+	int		i;
+
+	current = *env_list;
+	env_char = ft_calloc(len_targs(current), sizeof *current);
+	if (!env_char)
+		return (NULL);
+	i = 0;
+	while (current)
+	{
+		env_char[i] = ft_strdup(current->str);
+		if (!env_char[i])
+		{
+			while (i >= 0)
+				free(env_char[i--]);
+			free(env_char);
+		}			
+		current = current->next;
+		i ++;
+	}
+	env_char[i] = NULL;
+	return (env_char);
 }

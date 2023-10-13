@@ -118,10 +118,8 @@ int	first_builtins(t_main *mini, t_parsing *node)
 	{
 		if (mini->pipe_count)
 			return (0);
-		// mini->shell.error = built_exit(mini, node);
 		ft_exit(mini, node);
 		return (1);
 	}
-	// update_last_ve(mini->cmd_parse, &mini->env_list);
 	return (0);
 }

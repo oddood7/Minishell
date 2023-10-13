@@ -6,130 +6,109 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/09 19:26:43 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:12:09 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/*
- * Recupere str jusqu'a c.
- * Creation d'un tableau a partir de str jusqu'a atteindre le caractere c.
- * Compter d'abord le nombre de caractere a ajouter a tab.
- * Puis, ajout a tab.
+/* 
+ * Check si getenv est NULL
+ * Si oui, renvoit une chaine vide
+ * Renvoit un char * de la valeur de la ve enregistree
 */
-char	*ft_strdupto_n(char *str, char c)
+char *get_env_var(const char *name)
 {
-	char	*tab;
-	int		i;
-	int		len;
+	char	*env_var;
 
-	i = 0;
-	len = 0;
-	if (!str[i])
-		return (NULL);
-	while (str[i] && str[i] != c)
-	{
-		len ++;
-		i ++;
-	}
-	tab = ft_calloc((len +1), sizeof(char));
-	if (!tab)
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != c)
-	{
-		tab[i] = str[i];
-		i ++;
-	}
-	tab[i] = '\0';
-	return (tab);
+	env_var = getenv(name);
+	if (! env_var)
+		env_var = "";
+	return (ft_strdup(env_var));
 }
 
 /* 
- * Recupere str a partir de c.
+ * Creer les maillons shell->str en fonction de getenv
+ * Check cas d'erreurs
 */
-char	*ft_strdup_from(char *str, char c)
+int	handle_env(t_main *mini)
 {
-	char	*tab;
-	int		i;
-	int		start;
-	int		len;
-
-	i = 0;
-	len = 0;
-	while (str[i] && str[i] != c)
-		i ++;
-	if (str[i] == c)
-		i ++;
-	start = i;
-	while (str[i++])
-		len ++;
-	tab = ft_calloc((len +1), sizeof(char));
-	if (!tab)
-		return (NULL);
-	i = start;
-	len = 0;
-	while (str[i])
-		tab[len++] = str[i++];
-	tab[len] = '\0';
-	return (tab);
+	mini->shell.home = get_env_var("HOME");
+	mini->shell.user = get_env_var("USER");
+	mini->shell.pwd = get_env_var("PWD");
+	mini->shell.is_pwd = get_env_var("PWD");
+	mini->shell.is_oldpwd = get_env_var("OLDPWD");
+	mini->shell.oldpwd = get_env_var("OLDPWD");
+	mini->shell.path = get_env_var("PATH");
+	mini->shell.shlvl = get_env_var("SHLVL");
+	mini->shell.error = 0;
+	if (mini->shell.path != NULL && mini->shell.path[0] != '\0')
+	{
+		mini->shell.cmd_paths = ft_split(mini->shell.path + 5, ':');
+		if (! mini->shell.cmd_paths)
+			return (-1);
+	}
+	return (0);
 }
 
 /* 
- * Part de la fin de str et recule jusqu'a c.
- * Puis copie du debut de la chaine jusqu'a ce c marque
+ * Fonction d'extension de cd.
+ * Permets de mettre a jour ou d'export pwd et oldpwd lorsque cd change
+ * de repertoire.
 */
-char	*from_end_to_char(char *str, char c)
+int	cd_move_and_change(t_main *mini)
 {
-	int		i;
-	int		max;
-	char	*tab;
+	char	*old_pwd_change;
+	char	*old_cmd;
+	char	*current_cmd;
+	char	*new_pwd;
+	char	*tmp;
 
-	i = ft_strlen(str) -1;
-	while (i >= 0 && str[i] != c)
-		i --;
-	max = i;
-	tab = ft_calloc((max +1), sizeof(char));
-	if (!tab)
-		return (NULL);
-	i = 0;
-	while (i < max)
+	old_pwd_change = ft_strjoin("OLDPWD=", mini->shell.is_pwd);
+	if (!old_pwd_change)
+		return (1);
+	old_cmd = ft_strjoin("OLDPWD=", mini->shell.is_oldpwd);
+	if (!old_cmd)
 	{
-		tab[i] = str[i];
-		i ++;
+		free(old_pwd_change);
+		return (1);
 	}
-	tab[i] = '\0';
-	return (tab);
-}
-
-/* 
- * Strlen pour un char **.
-*/
-int	ft_strlen_double(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (*str)
+	change_env_cd(&mini->env_list, old_pwd_change, old_cmd);
+	free(old_cmd);
+	free(old_pwd_change);
+	free(mini->shell.is_oldpwd);
+	free(mini->shell.oldpwd);
+	mini->shell.is_oldpwd = ft_strdup(mini->shell.is_pwd);
+	mini->shell.oldpwd = ft_strdup(mini->shell.is_pwd);
+	tmp = getcwd(NULL, 0);
+	current_cmd = ft_strdup(tmp);
+	free(tmp);
+	if (current_cmd != NULL)
 	{
-		str ++;
-		i ++;
+		new_pwd = ft_strjoin("PWD=", current_cmd);
+		if (!new_pwd)
+		{
+			free(current_cmd);
+			return (1);
+		}
+		old_cmd = ft_strjoin("PWD=", mini->shell.is_pwd);
+		if (!old_cmd)
+		{
+			free(current_cmd);
+			free(new_pwd);
+			return (1);
+		}
+		change_env_cd(&mini->env_list, new_pwd, old_cmd);
+		free(mini->shell.pwd);
+		free(mini->shell.is_pwd);
+		mini->shell.is_pwd = ft_strdup(current_cmd);
+		mini->shell.pwd = ft_strdup(current_cmd);
+		free(current_cmd);
+		free(new_pwd);
+		free(old_cmd);
 	}
-	return (i);
-}
-
-/*
- * Check si une chaine de caractere contient d'autres caracteres que char c.
-*/
-int	is_only_equal(char *str, char c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] == c)
-		i ++;
-	if (str[i] != c && str[i] != '\0')
-		return (0);
-	return (1);
+	else
+		return (1);
+	mini->env = env_to_char(&mini->env_list);
+	return (0);
 }

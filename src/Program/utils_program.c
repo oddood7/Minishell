@@ -6,20 +6,11 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:03:33 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:21:36 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-int	*rv_static(int *rv)
-{
-	static int *rv_ptr;
-
-	if (rv)
-		rv_ptr = rv;
-	return (rv_ptr);
-}
 
 void    built_move(t_parsing *node, size_t j)
 {

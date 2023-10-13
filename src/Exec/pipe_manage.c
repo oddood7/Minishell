@@ -107,7 +107,6 @@ void	execute_cmd(t_main *mini)
 	cmd = NULL;
 	node = mini->cmd_parse;
 	mini->pipe_count = lstsize(node) - 1;
-	// update_last_ve(mini->cmd_parse, &mini->env_list);
 	if (first_builtins(mini, node))
 		return;
 	pipe_init(mini, node);

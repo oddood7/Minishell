@@ -6,7 +6,7 @@
 #    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/13 15:50:57 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/13 17:17:10 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,12 +57,9 @@ SRC = ./src/Program/main.c \
 	./src/Builtins_Awe/echo.c \
 	./src/Builtins_Awe/env_concerns.c \
 	./src/Builtins_Awe/exit.c \
-	./src/Builtins_Awe/help_cmd_bis.c \
 	./src/Builtins_Awe/export_cmd.c \
-	./src/Builtins_Awe/help_cmd.c \
 	./src/Builtins_Awe/local_cmd.c \
 	./src/Builtins_Awe/shlvl.c \
-	./src/Builtins_Awe/utils_thing.c \
 	./src/Builtins_Awe/utils_built2.c \
 	./src/Builtins_Awe/utils_built.c \
 	./src/Exec/exec_builtins.c \
