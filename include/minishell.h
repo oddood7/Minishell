@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 19:13:40 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 16:33:23 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int				all_cmd(t_lexer *arg, t_shell *shell, t_main **list, \
 				t_lexer **env_list);
 void			change_env_cd(t_lexer **env_list, char *new_str, \
 				char *change_value);
-int				cd_move_and_change(t_lexer *env_list, t_shell *shell);
+int				cd_move_and_change(t_main *mini);
 int				change_env_exp(t_lexer **env_list, char *name_env, char *value);
 int				update_last_ve(t_parsing *parse, t_lexer **env_list);
 int				parse_export(char *str);
@@ -153,7 +153,7 @@ char			*is_path_or_cmd(char **paths, char *cmd, t_shell *shell, \
 void			shell_change(t_shell *shell, char *str, char *value);
 int				set_env(t_main *mini, char **env);
 void			add_env(t_lexer **env_list, char *str);
-int				ft_plus_shell(t_shell *shell, t_lexer **env_list);
+int				ft_plus_shell(t_main *mini);
 void			signal_handler(int sig);
 int				export_out_main(t_main *mini);
 int				change_error(t_lexer **env_list, t_shell *shell, int value);
@@ -184,6 +184,7 @@ char			*ft_long_itoa(long long int n);
 long long int	ft_long_atoi(const char *nptr);
 void		    bf_prd(char *str, int d, char *color);
 char			*build_color(char *c1, char *str, int dup_str);
+char			**env_to_char(t_lexer **env_list);
 
 ////////////////////////////////////////////////////////
 

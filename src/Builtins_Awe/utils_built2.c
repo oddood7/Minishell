@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:31:12 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/12 18:38:13 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 16:25:39 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (free(s1), free(s2), new);
 }
 
-static char	**env_to_char(t_lexer **env_list)
+char	**env_to_char(t_lexer **env_list)
 {
 	t_lexer	*current;
 	char	**env_char;

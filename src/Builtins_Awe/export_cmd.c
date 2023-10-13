@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/13 16:03:00 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 16:31:42 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int	ft_export(t_main *mini, t_parsing *parse)
 		parse->incr ++;
 		ft_export(mini, parse);
 	}
+	mini->env = env_to_char(&mini->env_list);
 	mini->shell.error = handle_error_bis(0);
 	return (0);
 }
