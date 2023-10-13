@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 18:05:26 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 18:06:36 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ extern int	g_error;
 //////////GARBAGE//////////
 
 typedef struct s_garbage_lst
-{    
-    void					*pointer;
-    struct s_garbage_lst	*next;    
+{
+	void					*pointer;
+	struct s_garbage_lst	*next;
 }					t_garbage_lst;
 
 typedef struct s_garbage
 {
-    int				len_of_lst;
-    t_garbage_lst	*head;
-    t_garbage_lst	*tail;
+	int				len_of_lst;
+	t_garbage_lst	*head;
+	t_garbage_lst	*tail;
 }					t_garbage;
 
 ///////////////////////////
