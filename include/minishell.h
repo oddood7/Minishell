@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 19:13:40 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 12:40:25 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,23 @@
 ///////////AWENA///////////
 
 extern int	g_error;
+
+//////////GARBAGE//////////
+
+typedef struct s_garbage_lst
+{    
+    void                    *pointer;
+    struct s_garbage_lst    *next;    
+}		t_garbage_lst;
+
+typedef struct s_garbage
+{
+    int                        len_of_lst;
+    t_garbage_lst            *head;
+    t_garbage_lst            *tail;
+}		t_garbage;
+
+///////////////////////////
 
 typedef struct s_shell
 {
@@ -253,7 +270,16 @@ int    	err_exp(char *s, int j);
 int    	is_equals(char *s);
 int    	check_identifier(char c);
 
+/*****GARBAGE*****/
 
+/* void    *ft_malloc(size_t size);
+t_garbage	*start_garbage(void);
+t_garbage_lst	*new_element(void *pointer_to);
+void	garbage_add(void *pointer);
+void	free_garbage(void);
+void	add_d_t_garbage(void **double_array, int len);
+void	malloc_failure(void);
+ */
 /*****ENV*****/
 
 int    	var_copy(t_main *mini, char *tmp, int i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 19:07:48 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/13 12:39:28 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int    main(int ac, char **av, char **env)
     t_main		mini;
 
     (void)av;
+	//start_garbage()
     if (ac != 1)
         return (main_space("run ./minishell without arg"));
     if (!env[0])
