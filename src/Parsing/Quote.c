@@ -3,105 +3,106 @@
 /*                                                        :::      ::::::::   */
 /*   Quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:42:07 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 23:12:24 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char    *malloc_space(t_main *mini, t_parsing *node, int i)
+char	*malloc_space(t_main *mini, t_parsing *node, int i)
 {
-    int        size;
-    char    *str;
+	int		size;
+	char	*str;
 
-    size = ft_strlen(node->cmd_tab[i]);
-    str = ft_malloc(sizeof(char) * size + 1);
-    if (!str)
-        err_mall(mini);
-    return (str);
+	size = ft_strlen(node->cmd_tab[i]);
+	str = ft_malloc(sizeof(char) * size + 1);
+	if (!str)
+		err_mall(mini);
+	return (str);
 }
 
-int    count_quotes(char *str, int quote)
+int	count_quotes(char *str, int quote)
 {
-    int        i;
-    int        j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while (str[i])
-    {
-        if (str[i] == quote)
-            j++;
-        i++;
-    }
-    return (j);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == quote)
+			j++;
+		i++;
+	}
+	return (j);
 }
 
-char    *check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
+char	*check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
 {
-    char    *new;
-    int        len;
+	char	*new;
+	int		len;
 
-    len = ft_strlen(node->cmd_tab[i]);
-    if (node->cmd_tab[i][0] == quote && count_quotes(node->cmd_tab[i], quote) == 2
-        && node->cmd_tab[i][len - 1] == quote)
-    {
-        new = ft_trim(mini, node->cmd_tab[i], quote);
-        //free(node->cmd_tab[i]);
-        node->cmd_tab[i] = ft_strdup(new);
-        return (new);
-    }
-    else
-        return (NULL);
+	len = ft_strlen(node->cmd_tab[i]);
+	if (node->cmd_tab[i][0] == quote && \
+	count_quotes(node->cmd_tab[i], quote) == 2 \
+	&& node->cmd_tab[i][len - 1] == quote)
+	{
+		new = ft_trim(mini, node->cmd_tab[i], quote);
+		//free(node->cmd_tab[i]);
+		node->cmd_tab[i] = ft_strdup(new);
+		return (new);
+	}
+	else
+		return (NULL);
 }
 
-int    rm_quote(t_main *mini, t_parsing *node, int index, int quote)
+int	rm_quote(t_main *mini, t_parsing *node, int index, int quote)
 {
-    char    *new;
-    int        j;
-    int        i;
+	char		*new;
+	int			j;
+	int			i;
 
-    j = 0;
-    i = 0;
-    new = check_4_strim(mini, node, i, quote);
-    if (!new)
-    {
-        new = malloc_space(mini, node, index);
-        while (node->cmd_tab[index][j])
-        {
-            if (node->cmd_tab[index][j] == quote)
-                j++;
-            else
-                new[i++] = node->cmd_tab[index][j++];
-        }
-        new[i] = '\0';
-        //free(node->cmd_tab[index]);
-        node->cmd_tab[index] = ft_strdup(new);
-    }
-    //free(new);
-    if (quote == 39)
-        return (1);
-    return (0);
+	j = 0;
+	i = 0;
+	new = check_4_strim(mini, node, i, quote);
+	if (!new)
+	{
+		new = malloc_space(mini, node, index);
+		while (node->cmd_tab[index][j])
+		{
+			if (node->cmd_tab[index][j] == quote)
+				j++;
+			else
+				new[i++] = node->cmd_tab[index][j++];
+		}
+		new[i] = '\0';
+		//free(node->cmd_tab[index]);
+		node->cmd_tab[index] = ft_strdup(new);
+	}
+	//free(new);
+	if (quote == 39)
+		return (1);
+	return (0);
 }
 
-int    quotes(t_main *mini, t_parsing *node, int i)
+int	quotes(t_main *mini, t_parsing *node, int i)
 {
-    int            j;
+	int	j;
 
-    j = 0;
-    (void)mini;
-    while (node->cmd_tab[i][j])
-    {
-        if (node->redirection)
-            check_quote_redir(mini, node->redirection);
-        if (node->cmd_tab[i][j] == 39)
-            return (rm_quote(mini, node, i, 39));
-        else if (node->cmd_tab[i][j] == 34)
-            return (rm_quote(mini, node, i, 34));
-        j++;
-    }
-    return (0);
+	j = 0;
+	(void)mini;
+	while (node->cmd_tab[i][j])
+	{
+		if (node->redirection)
+			check_quote_redir(mini, node->redirection);
+		if (node->cmd_tab[i][j] == 39)
+			return (rm_quote(mini, node, i, 39));
+		else if (node->cmd_tab[i][j] == 34)
+			return (rm_quote(mini, node, i, 34));
+		j++;
+	}
+	return (0);
 }

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:30:47 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 23:03:59 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_parsing *parse_new(t_main *mini, char **tab, int redir, t_lexer *red)
+t_parsing	*parse_new(t_main *mini, char **tab, int redir, t_lexer *red)
 {
-	t_parsing *new;
+	t_parsing	*new;
+
 	new = (t_parsing *)ft_malloc(sizeof(t_parsing));
 	if (!new)
 		err_mall(mini);
@@ -30,19 +31,19 @@ t_parsing *parse_new(t_main *mini, char **tab, int redir, t_lexer *red)
 
 t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 {
-	char **tab;
-	t_lexer *ongoing;
-	t_parsing *node;
-	int i;
+	char		**tab;
+	t_lexer		*ongoing;
+	t_parsing	*node;
+	int			i;
 
 	i = 0;
 	redirections(mini, data);
 	n_word = count_lex(data->lexer_list);
 	tab = (char **)ft_malloc(sizeof(char *) * (n_word + 1));
-	if (!tab)
-		err_mall(mini);
+	// if (!tab) : plus besoin non ? Fonction > 25 lignes.
+	// 	err_mall(mini);
 	ongoing = data->lexer_list;
-	while (n_word > 0)
+	while (n_word-- > 0)
 	{
 		if (ongoing->str)
 		{
@@ -51,17 +52,17 @@ t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 			ongoing = data->lexer_list;
 			i++;
 		}
-		n_word--;
+//		n_word--; pour l'instant
 	}
 	tab[i] = 0;
 	node = parse_new(mini, tab, data->num_redir, data->redirection);
 	return (node);
 }
 
-int parsing(t_main *mini)
+int	parsing(t_main *mini)
 {
-	t_parsing *node;
-	t_parsermain data;
+	t_parsing		*node;
+	t_parsermain	data;
 
 	if (operateur_handle(mini) || check_all(mini))
 		return (0);

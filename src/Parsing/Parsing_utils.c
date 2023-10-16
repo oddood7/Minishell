@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:26:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/10 11:44:08 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 22:44:53 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	count_lex(t_lexer *list)
 {
-	t_lexer *tmp;
-	int i;
+	t_lexer		*tmp;
+	int			i;
 
 	i = 0;
 	tmp = list;
@@ -39,7 +39,7 @@ t_lexer *list, t_main *mini)
 
 void	parse_addback(t_parsing **lst, t_parsing *new)
 {
-	t_parsing *tmp;
+	t_parsing	*tmp;
 
 	tmp = *lst;
 	if (!(*lst))
@@ -52,4 +52,3 @@ void	parse_addback(t_parsing **lst, t_parsing *new)
 	tmp->next = new;
 	new->prev = tmp;
 }
-
