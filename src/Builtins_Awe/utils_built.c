@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/13 17:12:09 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:57:04 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ int	cd_move_and_change(t_main *mini)
 	old_cmd = ft_strjoin("OLDPWD=", mini->shell.is_oldpwd);
 	if (!old_cmd)
 	{
-		free(old_pwd_change);
+		//free(old_pwd_change);
 		return (1);
 	}
 	change_env_cd(&mini->env_list, old_pwd_change, old_cmd);
-	free(old_cmd);
-	free(old_pwd_change);
-	free(mini->shell.is_oldpwd);
-	free(mini->shell.oldpwd);
+	//free(old_cmd);
+	//free(old_pwd_change);
+	//free(mini->shell.is_oldpwd);
+	//free(mini->shell.oldpwd);
 	mini->shell.is_oldpwd = ft_strdup(mini->shell.is_pwd);
 	mini->shell.oldpwd = ft_strdup(mini->shell.is_pwd);
 	tmp = getcwd(NULL, 0);
@@ -88,27 +88,29 @@ int	cd_move_and_change(t_main *mini)
 		new_pwd = ft_strjoin("PWD=", current_cmd);
 		if (!new_pwd)
 		{
-			free(current_cmd);
+			//free(current_cmd);
 			return (1);
 		}
 		old_cmd = ft_strjoin("PWD=", mini->shell.is_pwd);
 		if (!old_cmd)
 		{
-			free(current_cmd);
-			free(new_pwd);
+			//free(current_cmd);
+			//free(new_pwd);
 			return (1);
 		}
 		change_env_cd(&mini->env_list, new_pwd, old_cmd);
-		free(mini->shell.pwd);
-		free(mini->shell.is_pwd);
+		//free(mini->shell.pwd);
+		//free(mini->shell.is_pwd);
 		mini->shell.is_pwd = ft_strdup(current_cmd);
 		mini->shell.pwd = ft_strdup(current_cmd);
-		free(current_cmd);
-		free(new_pwd);
-		free(old_cmd);
+		//free(current_cmd);
+		//free(new_pwd);
+		//free(old_cmd);
 	}
 	else
 		return (1);
+	// if (mini->env)
+		//ft_free_tab(mini->env);
 	mini->env = env_to_char(&mini->env_list);
 	return (0);
 }

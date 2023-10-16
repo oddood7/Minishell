@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:08:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 17:13:49 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:51:24 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check)
 {
 	int	i;
 
+	(void)(input);
 	i = 0;
 	if (check != -42)
 	{
@@ -23,7 +24,7 @@ void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check)
 		printf("deliminited by end-of-file");
 		printf("(wanted `%s')\n", node->redirection->str);
 	}
-	free(input);
+	//free(input);
 	while (i < mini->hd_count)
 	{
 		if (mini->here_doc[i].pos == 0)
@@ -32,11 +33,11 @@ void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check)
 		close(mini->here_doc[i].fd[1]);
 		i++;
 	}
-	free(mini->here_doc);
-	ft_free_tab(mini->cmd_paths);
-	ft_free_tab(mini->env);
-	ft_free_tab(mini->env_exp);
-	resets(mini);
+	//free(mini->here_doc);
+	//ft_free_tab(mini->cmd_paths);
+	//ft_free_tab(mini->env);
+	////ft_free_tab(mini->env_exp);
+	//resets(mini);
 	exit (1);
 }
 
@@ -56,7 +57,7 @@ void	write_hd(t_main *mini, char *input, int fd[2])
 		}
 	}
 	write(fd[1], "\n", 1);
-	free(input);
+	//free(input);
 }
 
 char	*skip_tmpr(t_lexer *tmpr)

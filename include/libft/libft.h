@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 18:19:09 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 18:42:42 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:28:34 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include "libftprintf/libftprintf.h"
+# include "../minishell.h"
 # include <unistd.h>
 # include <stdlib.h>
 

@@ -19,10 +19,10 @@ void	no_command(t_main *mini, t_parsing *node)
 	i = 0;
 	if (!node->redirection)
 		print_no_command(mini, node->cmd_tab[0], 0);
-	ft_free_tab(mini->cmd_paths);
-	ft_free_tab(mini->env);
-	ft_free_tab(mini->env_exp);
-	resets(mini);
+	////ft_free_tab(mini->cmd_paths);
+	////ft_free_tab(mini->env);
+	////ft_free_tab(mini->env_exp);
+	//resets(mini);
 	while (i < mini->hd_count)
 	{
 		if (mini->here_doc[i].fd[0] > -1)
@@ -31,8 +31,9 @@ void	no_command(t_main *mini, t_parsing *node)
 			close(mini->here_doc[i].fd[1]);
 		i++;
 	}
-	if (mini->here_doc)
-		free(mini->here_doc);
+//	if (mini->here_doc)
+		//free(mini->here_doc);
+	free_garbage();
 	exit(127);
 }
 
@@ -43,7 +44,7 @@ void	hdc_init(t_main *mini)
 	i = 0;
 	if (mini->hd_count)
 	{
-		mini->here_doc = malloc(sizeof(t_here_doc) * mini->hd_count);
+		mini->here_doc = ft_malloc(sizeof(t_here_doc) * mini->hd_count);
 		if (!mini->here_doc)
 			err_mall(mini);
 		while (i < mini->hd_count)
@@ -95,9 +96,10 @@ void	ft_execve(t_main *mini, t_parsing *node, char *cmd)
 	if (cmd == NULL)
 		no_command(mini, node);
 	execve(cmd, node->cmd_tab, mini->env);
-	ft_free_tab(mini->cmd_paths);
-	ft_free_tab(mini->env);
-	ft_free_tab(mini->env_exp);
-	resets(mini);
+	free_garbage();
+	////ft_free_tab(mini->cmd_paths);
+	////ft_free_tab(mini->env);
+	////ft_free_tab(mini->env_exp);
+	//resets(mini);
 	exit(1);
 }

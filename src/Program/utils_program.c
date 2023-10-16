@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:03:33 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 17:21:36 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:50:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    built_move(t_parsing *node, size_t j)
             return ;
     }
     tab = ft_split(node->cmd_tab[0], ' ');
-    ft_free_tab(node->cmd_tab);
+    //ft_free_tab(node->cmd_tab);
     node->cmd_tab = tab;
     return ;
 }
@@ -66,13 +66,13 @@ void    parsing_tab_help(t_main *mini, t_parsing *node, int i, int len)
             break ;
         }
     }
-    s = malloc(sizeof(char) * len + 1);
+    s = ft_malloc(sizeof(char) * len + 1);
     if (!s)
         err_mall(mini);
     parse_dup(node, sizetab, ok, s);
     tab = ft_split(s, ' ');
-    free(s);
-    ft_free_tab(node->cmd_tab);
+    //free(s);
+    //ft_free_tab(node->cmd_tab);
     node->cmd_tab = tab;
 }
 

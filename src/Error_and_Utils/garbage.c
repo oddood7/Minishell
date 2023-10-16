@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   garbage.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:34:56 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 12:37:34 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:36:21 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/* void    *ft_malloc(size_t size)
+void    *ft_malloc(size_t size)
 {
     void    *ptr;
 
@@ -105,8 +105,15 @@ void	add_d_t_garbage(void **double_array, int len)
 	garbage_add((void *)double_array);
 }
 
+t_garbage    *get_garbage(void)
+{
+    static t_garbage    instance;
+
+    return (&instance);
+}
+
 void	malloc_failure(void)
 {
 	perror("MALLOC FAILURE\n");
-	ft_exit(mini, node);
-} */
+	ft_exit(NULL, NULL);
+}

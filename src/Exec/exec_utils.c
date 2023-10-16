@@ -60,10 +60,10 @@ char	*get_command(t_main *mini, char **paths, char *cmd)
 	{
 		tmp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(tmp, cmd);
-		free(tmp);
+		//free(tmp);
 		if (access(command, X_OK) == 0)
 			return (command);
-		free(command);
+		//free(command);
 		paths++;
 	}
 	return (NULL);

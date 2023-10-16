@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 18:06:36 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:26:28 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -416,14 +416,15 @@ t_here_doc		*return_hd(t_here_doc *here_doc);
 
 /***** GARBAGE *****/
 
-/* void    *ft_malloc(size_t size);
+void    *ft_malloc(size_t size);
 t_garbage	*start_garbage(void);
 t_garbage_lst	*new_element(void *pointer_to);
 void	garbage_add(void *pointer);
 void	free_garbage(void);
 void	add_d_t_garbage(void **double_array, int len);
 void	malloc_failure(void);
-*/
+t_garbage    *get_garbage(void);
+
 
 /***** TESTS *****/
 

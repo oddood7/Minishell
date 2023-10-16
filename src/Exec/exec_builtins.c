@@ -17,14 +17,12 @@ void	find_3(t_main *mini, char *cmd, int len)
 	if (!ft_strncmp(cmd, "unset", len) && len == 5)
 	{
 		ft_unset(mini, mini->cmd_parse, &mini->env_list);
-		built_in_free(mini);
-		exit(mini->shell.error);
+		ft_exit(mini, mini->cmd_parse); //changer tous en exit(mini->shell->error);
 	}
 	if (!ft_strncmp(cmd, "echo", len) && len == 4)
 	{
 		ft_echo(mini, mini->cmd_parse);
-		built_in_free(mini);
-		exit (mini->shell.error);
+		ft_exit(mini, mini->cmd_parse);
 	}
 }
 
@@ -33,19 +31,16 @@ void	find_2(t_main *mini, char *cmd, int len)
 	if (!ft_strncmp(cmd, "exit", len) && len == 4)
 	{
 		ft_exit(mini, mini->cmd_parse);
-		// exit (mini->shell.error);
 	}
 	else if (!ft_strncmp(cmd, "export", len) && len == 6)
 	{
 		ft_export(mini, mini->cmd_parse);
-		built_in_free(mini);
-		exit (mini->shell.error);
+		ft_exit(mini, mini->cmd_parse);
 	}
 	else if (!ft_strncmp(cmd, "pwd", len) && len == 3)
 	{
 		ft_pwd(mini);
-		built_in_free(mini);
-		exit (mini->shell.error);
+		ft_exit(mini, mini->cmd_parse);
 	}
 	else
 		find_3(mini, cmd, len);
@@ -65,14 +60,12 @@ void	find(t_main *mini, t_parsing *node)
 	if (!ft_strncmp(cmd, "cd", len) && len == 2)
 	{
 		ft_cd(mini, mini->cmd_parse);
-		built_in_free(mini);
-		exit (mini->shell.error);
+		ft_exit(mini, mini->cmd_parse);
 	}
 	else if (!ft_strncmp(cmd, "env", len) && len == 3)
 	{
 		ft_env(mini, mini->cmd_parse, &mini->env_list);
-		built_in_free(mini);
-		exit (mini->shell.error);
+		ft_exit(mini, mini->cmd_parse);
 	}
 	else
 		find_2(mini, cmd, len);
@@ -92,6 +85,18 @@ int	first_builtins2(t_main *mini, t_parsing *node, int len)
 		ft_export(mini, node);
 		return (1);
 	}
+	// if (!ft_strncmp(node->cmd_tab[0], "echo", len) && node->next == NULL
+	// 	&& len == 6)
+	// {
+	// 	ft_echo(mini, node);
+	// 	return (1);
+	// }
+	// if (!ft_strncmp(node->cmd_tab[0], "pwd", len) && node->next == NULL
+	// 	&& len == 6)
+	// {
+	// 	ft_pwd(mini, node);
+	// 	return (1);
+	// }
 	if (!ft_strncmp(node->cmd_tab[0], "cd", len) && node->next == NULL
 		&& len == 2)
 	{

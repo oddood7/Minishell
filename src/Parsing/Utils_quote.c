@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:49:41 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char    *ft_trim(t_main *mini, char const *s1, int quote)
     end = ft_strlen(s1);
     while (end > start && check_set(s1[end - 1], quote))
         end--;
-    str = malloc(sizeof(char) * (end - start + 1));
+    str = ft_malloc(sizeof(char) * (end - start + 1));
     if (!str)
         err_mall(mini);
     i = 0;
@@ -52,7 +52,7 @@ char    *cpquote(t_main *mini, char *s, int j, int quote)
     char    *ok;
 
     i = 0;
-    ok = malloc(sizeof(char) * ft_strlen(s) - count_quotes(s, quote) + 1);
+    ok = ft_malloc(sizeof(char) * ft_strlen(s) - count_quotes(s, quote) + 1);
     if (!ok)
         err_mall(mini);
     while (s[i])
@@ -99,13 +99,13 @@ void    check_quote_redir(t_main *mini, t_lexer *node)
             if (count_quotes(tmp->str, 39))
             {
                 s_trim = rm_quote_redir(mini, tmp->str, 39, 0);
-                free(tmp->str);
+                //free(tmp->str);
                 tmp->str = s_trim;
             }
             else if (count_quotes(tmp->str, 34))
             {
                 s_trim = rm_quote_redir(mini, tmp->str, 34, 0);
-                free(tmp->str);
+                //free(tmp->str);
                 tmp->str = s_trim;
             }
         }

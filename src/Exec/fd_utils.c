@@ -42,15 +42,16 @@ int	open_outfile(t_main *mini, t_parsing *node, int old_fd)
 {
 	int	out;
 
+	(void)(mini);
 	if (old_fd > 1)
 		close(old_fd);
 	out = open(node->redirection->str, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (out == -1)
 	{
 		perror(node->redirection->str);
-		ft_free_tab(mini->cmd_paths);
-		ft_free_tab(mini->env);
-		ft_free_tab(mini->env_exp);
+		//ft_free_tab(mini->cmd_paths);
+		//ft_free_tab(mini->env);
+		////ft_free_tab(mini->env_exp);
 		return (-2);
 	}
 	return (out);
@@ -60,6 +61,7 @@ int	open_infile(t_main *mini, t_parsing *node, int old_fd)
 {
 	int	in;
 
+	(void)(mini);
 	node->hd_check = 0;
 	in = open(node->redirection->str, O_RDWR);
 	if (in == -1)
@@ -67,9 +69,9 @@ int	open_infile(t_main *mini, t_parsing *node, int old_fd)
 		if (old_fd > -1)
 			close(old_fd);
 		perror(node->redirection->str);
-		ft_free_tab(mini->cmd_paths);
-		ft_free_tab(mini->env);
-		ft_free_tab(mini->env_exp);
+		//ft_free_tab(mini->cmd_paths);
+		//ft_free_tab(mini->env);
+		////ft_free_tab(mini->env_exp);
 		return (-2);
 	}
 	return (in);
@@ -79,15 +81,16 @@ int	open_append(t_main *mini, t_parsing *node, int old_fd)
 {
 	int	out;
 
+	(void)(mini);
 	if (old_fd > 1)
 		close(old_fd);
 	out = open(node->redirection->str, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (out == -1)
 	{
 		perror(node->redirection->str);
-		ft_free_tab(mini->cmd_paths);
-		ft_free_tab(mini->env);
-		ft_free_tab(mini->env_exp);
+		//ft_free_tab(mini->cmd_paths);
+		//ft_free_tab(mini->env);
+		////ft_free_tab(mini->env_exp);
 		return (-2);
 	}
 	return (out);
@@ -95,9 +98,11 @@ int	open_append(t_main *mini, t_parsing *node, int old_fd)
 
 void	exit_access(t_main *mini, char *cmd)
 {
+	(void)mini;
 	perror(cmd);
-	free_process(mini);
-	resets(mini);
-	free_kill(mini);
+	// free_process(mini);
+	//resets(mini);
+	free_garbage();
+	// free_kill(mini);
 	exit (126);
 }

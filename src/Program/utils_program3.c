@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:34:21 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 17:21:31 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 15:45:21 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int    error_quote(t_main *mini, char *str, int sep1, int sep2)
 
 void	init_main(t_main *mini)
 {
+    mini->env = NULL;
 	mini->lexer_list = NULL;
     mini->env_list = NULL;
 	mini->cmd_parse = NULL;

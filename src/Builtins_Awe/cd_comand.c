@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:34:51 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/13 16:53:11 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:50:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
 static char *help_itp1(t_main *mini, DIR **dir,
 		char **temp)
 {
+	(void)(temp);
 	ft_printf("cd : No such file of directory\n");
 	mini->shell.error = handle_error_bis(0);
 	closedir(*dir);
-	free(*temp);
+	//free(*temp);
 	return (NULL);
 }
 
@@ -50,7 +51,8 @@ static char *help_itp1(t_main *mini, DIR **dir,
 */
 static char	*help_itp2(DIR **dir, char **temp)
 {
-	free(*temp);
+	(void)(temp);
+	//free(*temp);
 	closedir(*dir);
 	return (NULL);
 }
@@ -66,14 +68,13 @@ static char	*is_two_points(t_main *mini, t_parsing *parse)
 
 	if (ft_strcmp(mini->shell.is_pwd, getenv("PWD")))
 	{
-		free(mini->shell.is_pwd);
+		//free(mini->shell.is_pwd);
 		mini->shell.is_pwd = get_env_var("PWD");
 	}
 	temp = from_end_to_char(mini->shell.is_pwd, '/');
 	if (!temp)
 		return (NULL);
 	dir = opendir(temp);
-	ft_printf("temp = %s\n", temp);
 	if (dir == NULL)
 		return (help_itp1(mini, &dir, &temp));
 	buf = ft_strdup(parse->cmd_tab[parse->incr +1]);
@@ -83,6 +84,8 @@ static char	*is_two_points(t_main *mini, t_parsing *parse)
 	{
 		if (!cd_move_and_change(mini))
 			return(help_itp2(&dir, &temp));
+		if (mini->env)
+			//ft_free_tab(mini->env);
 		mini->env = env_to_char(&mini->env_list);
 	}
 	help_itp2(&dir, &temp);
@@ -135,7 +138,7 @@ int	ft_cd(t_main *mini, t_parsing *parse)
 	if (!buf)
 		return (1);
 	err = cd_real_version(buf, mini, parse);
-	free(buf);
+	//free(buf);
 	parse->incr = 0;
 	mini->shell.error = handle_error_bis(err);
 	return (0);

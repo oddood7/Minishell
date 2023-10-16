@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 17:04:01 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:32:25 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_lexer	*new_lexer(t_main *mini, char *str, int operateur)
 	t_lexer *new;
 	static int i;
 
-	new = (t_lexer *)malloc(sizeof(t_lexer));
+	new = (t_lexer *)ft_malloc(sizeof(t_lexer));
 	if (!new)
 		err_mall(mini);
 	new->str = str;
@@ -57,14 +57,14 @@ int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 	{
 		tmp = ft_substr(str, i, j);
 		if (!ft_listadd(mini, tmp, 0, list))
-			return (free(tmp), -1);
+			return (-1);
 		return (j);
 	}
 	if (str[i + j - 1] == ' ')
     j--;
 	tmp = ft_substr(str, i, j);
 	if (!ft_listadd(mini, tmp, 0, list))
-		return (free(tmp), -1);
+		return (-1);
 	return (j);
 }
 
@@ -119,6 +119,7 @@ int	do_lexer(t_main *mini)
 	int					j;
 
 	i = 0;
+	// ft_printf("test : %s \n", mini->input_line);
 	while (mini->input_line[i])
 	{
 		j = 0;

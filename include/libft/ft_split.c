@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:02:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2022/11/22 13:52:32 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:30:01 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*ft_dup(char const *str, char c)
 		i++;
 		size++;
 	}
-	dest = malloc(sizeof(char) * (size + 1));
+	dest = ft_malloc(sizeof(char) * (size + 1));
 	if (!dest)
 		return (NULL);
 	i = 0;
@@ -79,7 +79,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	ret = malloc(sizeof(char *) * (ft_nbstr(s, c) + 1));
+	ret = ft_malloc(sizeof(char *) * (ft_nbstr(s, c) + 1));
 	if (!ret)
 		return (NULL);
 	i = 0;

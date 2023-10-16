@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:18:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 18:03:10 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int    copy_past(t_parsing *cmd_node, int i, int j_dol, char *str_replace)
         k = copy_bis(tmp_str, str_replace, k, 1);
     if (s_after)
         copy_bis(tmp_str, s_after, k, 1);
-    free(cmd_node->cmd_tab[i]);
+    //free(cmd_node->cmd_tab[i]);
     cmd_node->cmd_tab[i] = ft_strdup(tmp_str);
     return (util_free_expand(s_after, tmp_str));
 }
@@ -100,7 +100,10 @@ char    *keep_good_str(char **env, int nb_env)
     }
     str_dol = ft_substr(env[nb_env], start, size);
     if (!str_dol)
+    {
+        free_garbage();
         exit(1);
+    }
     return (str_dol);
 }
 
@@ -115,7 +118,7 @@ char    *go_itoa_replace(t_main *data, char *s)
     i = 0;
     j = 0;
     tmp_rv = ft_itoa(data->return_value);
-    ok = malloc(sizeof(char) * ft_strlen(s) + 2);
+    ok = ft_malloc(sizeof(char) * ft_strlen(s) + 2);
     if (!ok)
         err_mall(data);
     while (s[i] != '$')
@@ -129,6 +132,6 @@ char    *go_itoa_replace(t_main *data, char *s)
     while (s[k])
         ok[i++] = s[k++];
     ok[i] = '\0';
-    free(tmp_rv);
+    //free(tmp_rv);
     return (ok);
 }

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 17:25:10 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:32:43 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_var_name(char *str, t_main *mini)
 		return (NULL);
 	while (str[i] != '=')
 		i++;
-	tmp = malloc(sizeof(char) * i + 1);
+	tmp = ft_malloc(sizeof(char) * i + 1);
 	if (!tmp)
 		err_mall(mini);
 	i = 0;
@@ -41,9 +41,9 @@ char    *just_alloc(int len, int j_dol, char *s_af)
     char    *ok;
 
     if (s_af)
-        ok = malloc(sizeof(char) * (j_dol + len + ft_strlen(s_af)) + 1);
+        ok = ft_malloc(sizeof(char) * (j_dol + len + ft_strlen(s_af)) + 1);
     else
-        ok = malloc(sizeof(char) * (j_dol + len) + 1);
+        ok = ft_malloc(sizeof(char) * (j_dol + len) + 1);
     if (!ok)
         return (NULL);
     return (ok);
@@ -51,8 +51,10 @@ char    *just_alloc(int len, int j_dol, char *s_af)
 
 int	util_free_expand(char *str, char *tmp)
 {
-	free(str);
-	free(tmp);
+	(void)(str);
+	(void)(tmp);
+	//free(str);
+	//free(tmp);
 	return (0);
 }
 
@@ -80,7 +82,7 @@ void    print_no_command(t_main *mini, char *s, int i)
     }
     tmp = ft_strjoin(s, ": No such file or directory\n");
     write(2, tmp, ft_strlen(tmp));
-    free(tmp);
+    //free(tmp);
     return ;
 }
 
@@ -141,7 +143,7 @@ char	**env_to_char(t_lexer **env_list)
 	int		i;
 
 	current = *env_list;
-	env_char = ft_calloc(len_targs(current), sizeof *current);
+	env_char = ft_malloc(len_targs(current) * (sizeof * current));
 	if (!env_char)
 		return (NULL);
 	i = 0;
@@ -151,8 +153,9 @@ char	**env_to_char(t_lexer **env_list)
 		if (!env_char[i])
 		{
 			while (i >= 0)
-				free(env_char[i--]);
-			free(env_char);
+				//free(env_char[i--]);
+			//free(env_char);
+			return (NULL);
 		}			
 		current = current->next;
 		i ++;

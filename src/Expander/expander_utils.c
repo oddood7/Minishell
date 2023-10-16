@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:02:19 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int    rm_dollard(t_main *mini, t_parsing *node, int i, int j)
     diff = ft_strlen(node->cmd_tab[i]) - len_dol;
     if (!diff)
     {
-        free(node->cmd_tab[i]);
+        //free(node->cmd_tab[i]);
         node->cmd_tab[i] = ft_strdup("");
         return (0);
     }
-    str_new = malloc(sizeof(char) * diff + 1);
+    str_new = ft_malloc(sizeof(char) * diff + 1);
     if (!str_new)
         err_mall(mini);
     str_new = copy_without_dol(node, i, tmp_j, str_new);
-    free(node->cmd_tab[i]);
+    //free(node->cmd_tab[i]);
     node->cmd_tab[i] = ft_substr(str_new, 0, diff);
-    free(str_new);
+    //free(str_new);
     return (-1);
 }
 
@@ -143,6 +143,6 @@ int    check_env_var(t_main *mini, char *s, int j)
     else
         dollar = ft_substr(s, j + 1, len);
     result = check_env_bis(mini->env, dollar);
-    free(dollar);
+    //free(dollar);
     return (result);
 }

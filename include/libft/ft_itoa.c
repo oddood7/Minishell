@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:17:41 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/12 18:39:49 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:29:49 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_itoa(int n)
 	char			*str;
 	int				i;
 
-	str = malloc(sizeof(char) * (nbcount(n) + 1));
+	str = ft_malloc(sizeof(char) * (nbcount(n) + 1));
 	if (!str)
 		return (NULL);
 	str[nbcount(n)] = '\0';

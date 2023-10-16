@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:31:12 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/13 17:12:41 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	add_env(t_lexer **env_list, char *str)
 	new_var->str = ft_strdup(str);
 	if (! new_var->str)
 	{
-		free(new_var);
+		//free(new_var);
 		return ;
 	}
 	// new_var->token = 0;
@@ -43,7 +43,7 @@ void	add_env(t_lexer **env_list, char *str)
 	}
 	else
 		*env_list = copy_list(new_var);
-	free(new_var);
+	//free(new_var);
 }
 
 /* 
@@ -75,6 +75,6 @@ t_lexer *copy_list(t_lexer *source)
         }
         current = current->next;
     }
-	free(tail->next);
+	//free(tail->next);
     return (new_head);
 }

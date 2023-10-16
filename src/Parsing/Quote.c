@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:42:07 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char    *malloc_space(t_main *mini, t_parsing *node, int i)
     char    *str;
 
     size = ft_strlen(node->cmd_tab[i]);
-    str = malloc(sizeof(char) * size + 1);
+    str = ft_malloc(sizeof(char) * size + 1);
     if (!str)
         err_mall(mini);
     return (str);
@@ -50,7 +50,7 @@ char    *check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
         && node->cmd_tab[i][len - 1] == quote)
     {
         new = ft_trim(mini, node->cmd_tab[i], quote);
-        free(node->cmd_tab[i]);
+        //free(node->cmd_tab[i]);
         node->cmd_tab[i] = ft_strdup(new);
         return (new);
     }
@@ -78,10 +78,10 @@ int    rm_quote(t_main *mini, t_parsing *node, int index, int quote)
                 new[i++] = node->cmd_tab[index][j++];
         }
         new[i] = '\0';
-        free(node->cmd_tab[index]);
+        //free(node->cmd_tab[index]);
         node->cmd_tab[index] = ft_strdup(new);
     }
-    free(new);
+    //free(new);
     if (quote == 39)
         return (1);
     return (0);

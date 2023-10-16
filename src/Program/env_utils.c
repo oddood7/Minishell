@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 21:36:22 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char *value_env_var(t_main *mini, char *str)
 	while (str[i] != '=')
 		i++;
 	i++;
-	tmp = malloc(sizeof(ft_strlen(str) - i + 1));
+	tmp = ft_malloc(sizeof(ft_strlen(str) - i + 1));
 	if (!tmp)
 		err_mall(mini);
 	while (str[i + j])
@@ -48,7 +48,7 @@ void	change_var_value(t_main *mini, char *new, char *old)
 			break ;
 		i++;
 	}
-	free(mini->env[i]);
+	//free(mini->env[i]);
 	mini->env[i] = ft_strdup(new);
 }
 

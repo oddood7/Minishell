@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:21:14 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 18:01:54 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char    *add_qt(t_main *mini, char *s)
     j = 0;
     while (s[i])
         i++;
-    new = malloc(sizeof(char) * i + 2);
+    new = ft_malloc(sizeof(char) * i + 2);
     if (!new)
         err_mall(mini);
     i = 0;
@@ -53,7 +53,10 @@ char    *keep_good_str_qt(char **env, int nb_env)
     }
     str_dol = ft_substr(env[nb_env], start, size);
     if (!str_dol)
+    {
+        free_garbage();
         exit(1);
+    }
     return (str_dol);
 }
 
@@ -89,7 +92,7 @@ int    check_env_variable_qt(t_main *mini, char *s, int j)
     }
     str_dol = ft_substr(s, j + 1, size);
     result = check_env_bis_qt(mini->env, str_dol);
-    free(str_dol);
+    //free(str_dol);
     return (result);
 }
 
@@ -108,8 +111,8 @@ int    expand_dol_qt(t_main *mini, t_parsing *node, int i, int j)
         if (copy_past(node, i, j, final) == -123)
             err_mall(mini);
         ok = ft_strlen(str_replace);
-        free(str_replace);
-        free(final);
+        //free(str_replace);
+        //free(final);
         return (ok);
     }
     return (1);

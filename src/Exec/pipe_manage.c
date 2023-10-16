@@ -65,6 +65,7 @@ void	pipe_work(t_main *mini, int fd[2], t_parsing *node, int old_fd[2])
 void	exec2(t_main *mini, t_parsing *node, char *cmd, int fd[2])
 {
 	mini->pid_last = fork();
+	// ft_printf("ls : %d\n", mini->pid_last);
 	if (mini->pid_last == 0)
 		last_process(mini, node, cmd, fd);
 	if (mini->pipe_count)
@@ -112,12 +113,12 @@ void	execute_cmd(t_main *mini)
 	pipe_init(mini, node);
 	if (here_doc_init(mini, node, 0) == 42)
 	{
-		ft_free_tab(mini->cmd_paths);
-		free(mini->here_doc);
+		//ft_free_tab(mini->cmd_paths);
+		//free(mini->here_doc);
 		mini->shell.error = 130;
 		return ;
 	} 
 	exec(mini, node, cmd);
 	wait_exec(mini);
-	free_process(mini);
+	// free_process(mini);
 }

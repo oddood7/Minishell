@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 14:37:14 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 17:10:51 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:50:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int ft_size_list(t_lexer *list)
 void    resets(t_main *mini)
 {
     if (mini->input_line)
-        free(mini->input_line);
+        //free(mini->input_line);
     if (mini->lexer_list)
         ft_free_lexer(mini->lexer_list);
     mini->lexer_list = NULL;
@@ -60,9 +60,9 @@ void    resets(t_main *mini)
 
 void    free_kill(t_main *mini)
 {
-    ft_free_tab(mini->env);
+    //ft_free_tab(mini->env);
     mini->env = NULL;
- 	ft_free_tab(mini->env_exp);
+ 	////ft_free_tab(mini->env_exp);
     mini->env_exp = NULL;
 }
 
@@ -107,7 +107,7 @@ char	*ft_long_itoa(long long int n)
 	char				*str;
 	long long int		i;
 
-	str = malloc(sizeof(char) * (nbcount(n) + 1));
+	str = ft_malloc(sizeof(char) * (nbcount(n) + 1));
 	if (!str)
 		return (NULL);
 	str[nbcount(n)] = '\0';

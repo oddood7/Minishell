@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:51:19 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:17 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 18:03:27 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data)
 	id2 = tmp->next->i;
 	new = new_lexer(mini, file, tmp->operateur);
 	if (!new)
+	{
+		free_garbage();
 		exit(1);
+	}
 	if (!data->redirection)
 		data->redirection = new;
 	else

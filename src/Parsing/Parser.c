@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/13 17:15:34 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:30:47 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_parsing *parse_new(t_main *mini, char **tab, int redir, t_lexer *red)
 {
 	t_parsing *new;
-	new = (t_parsing *)malloc(sizeof(t_parsing));
+	new = (t_parsing *)ft_malloc(sizeof(t_parsing));
 	if (!new)
 		err_mall(mini);
 	new->cmd_tab = tab;
@@ -38,7 +38,7 @@ t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 	i = 0;
 	redirections(mini, data);
 	n_word = count_lex(data->lexer_list);
-	tab = (char **)malloc(sizeof(char *) * (n_word + 1));
+	tab = (char **)ft_malloc(sizeof(char *) * (n_word + 1));
 	if (!tab)
 		err_mall(mini);
 	ongoing = data->lexer_list;

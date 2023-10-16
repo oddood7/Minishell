@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 21:06:56 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 01:14:46 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:03:19 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,16 @@ void	first_hd_manage(t_main *mini, t_parsing *node, char *str)
 			printf("deliminited by end-of-file");
 			printf("(wanted `%s')\n", str);
 			close_free_hd(mini, node, input, -42);
+			free_garbage();
 			exit(1);
 		}
 		if (!ft_strncmp(input, str, len) && len == ft_strlen(input))
 		{
 			close_free_hd(mini, node, input, -42);
+			free_garbage();
 			exit(1);
 		}
-		free(input);
+		//free(input);
 	}
 }
 

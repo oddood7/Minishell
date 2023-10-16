@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 18:53:23 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/13 16:04:29 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ void    bf_prd(char *str, int d, char *color)
     color_strdup = ft_strdup(color);
     idx_str = 0;
     write(1, color_strdup, ft_strlen(color));
-    free(color_strdup);
+    //free(color_strdup);
     while (str[idx_str])
     {
         idx = 0;
         while (idx < d)
             idx++ ;
-        str_cara = (char*)malloc(2 * sizeof(char));
+        str_cara = (char*)ft_malloc(2 * sizeof(char));
         str_cara[0] = str[idx_str];
         str_cara[1] = '\0';
         write(1, str_cara, 1);
-        free(str_cara);
+        //free(str_cara);
         idx_str++ ;
     }
     color_strdup = ft_strdup("\033[0m");
     write(1, color_strdup, ft_strlen(color_strdup));
-    free(color_strdup);
+    //free(color_strdup);
 }
 
 static char	*ft_join_strdup_right(char *s1, char *s2)
@@ -99,22 +99,23 @@ char	*build_color(char *c1, char *str, int dup_str)
 char	*prompt_cmd(t_shell *shell, char *user)
 {
 	char	*prompt;
-	char	*common;
+	// char	*common;
 	char	*username;
 	char	*pwd;
 
 	prompt = NULL;
 	username = NULL;
 	pwd = NULL;
-	common = NULL;
+	// common = NULL;
 	if (user != NULL)
-		username = build_color("\033[1;34m", ft_strjoin(user, ":"), 0);
+		username = ft_strjoin(user, ":");
+	// username = build_color("\033[1;34m", ft_strjoin(user, ":"), 0);
 	if (shell->is_pwd != NULL)
-		pwd = build_color("\033[1;33m", shell->is_pwd, 0);
-	// pwd = ft_strjoin(username, shell->is_pwd);
-	common = ft_strjoin(username, pwd);
-	prompt = ft_strjoin(common, ">");
-	free(username);
-	free(pwd);
+		pwd = ft_strjoin(username, shell->is_pwd);
+	// pwd = build_color("\033[1;33m", shell->is_pwd, 0);
+	// common = ft_strjoin(username, pwd);
+	prompt = ft_strjoin(pwd, ">");
+	//free(username);
+	//free(pwd);
 	return (prompt);
 }
