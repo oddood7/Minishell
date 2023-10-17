@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Operateurs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/11 16:19:51 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 23:54:38 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	single_handle(t_main *mini, t_lexer *ongoing)
 		if (ongoing->next->operateur == PIPE)
 		{
 			if (ongoing->next->next && ongoing->next->next->operateur == PIPE)
-				return(err_syn(mini, "near unexpected token '||'"));
+				return (err_syn(mini, "near unexpected token '||'"));
 			else
-				return(err_syn(mini, "near unexpected token '|'"));
+				return (err_syn(mini, "near unexpected token '|'"));
 		}
 		else if (left_check(mini, ongoing))
 			return (1);
@@ -53,7 +53,7 @@ int	double_handle(t_main *mini, t_lexer *ongoing)
 
 int	operateur_handle(t_main *mini)
 {
-	t_lexer *ongoing;
+	t_lexer	*ongoing;
 
 	ongoing = mini->lexer_list;
 	if (ongoing->operateur == PIPE)
@@ -68,7 +68,7 @@ int	operateur_handle(t_main *mini)
 		if (!(ongoing->next))
 		{
 			if (ongoing->operateur > 1 && ongoing->operateur < 6)
-				return (err_syn(mini, "near unexpected token '\n'"));
+				return (err_syn(mini, "near unexpected token 'newline'"));
 			return (0);
 		}
 		if (single_handle(mini, ongoing))
@@ -80,7 +80,7 @@ int	operateur_handle(t_main *mini)
 	return (0);
 }
 
-int weird_check(t_main *mini, char *str)
+int	weird_check(t_main *mini, char *str)
 {
 	if (!ft_strncmp(str, "!", 1))
 		mini->shell.error = 1;
@@ -89,10 +89,10 @@ int weird_check(t_main *mini, char *str)
 	return (1);
 }
 
-int check_all(t_main *mini)
+int	check_all(t_main *mini)
 {
-	int len;
-	t_lexer *tmp;
+	int		len;
+	t_lexer	*tmp;
 
 	tmp = mini->lexer_list;
 	len = ft_size_list(mini->lexer_list);
@@ -104,15 +104,18 @@ int check_all(t_main *mini)
 	{
 		if (len == 1 && !tmp->operateur)
 		{
-			if ((!ft_strncmp(tmp->str, "!", 1) || !ft_strncmp(tmp->str, ":", 1)) && ft_strlen(tmp->str) == 1)
+			if ((!ft_strncmp(tmp->str, "!", 1) || \
+			!ft_strncmp(tmp->str, ":", 1)) && ft_strlen(tmp->str) == 1)
 				return (weird_check(mini, tmp->str));
 			else if (!ft_strncmp(tmp->str, ".", 1) && ft_strlen(tmp->str) == 1)
 			{
+				//return (mini->shell.error = handle_error_bis(2));
 				mini->shell.error = handle_error_bis(2);
 				return (mini->shell.error);
 			}
 			else if (!ft_strncmp(tmp->str, "..", 2) && ft_strlen(tmp->str) == 2)
 			{
+				//return (mini->shell.error = handle_error_bis(127));
 				mini->shell.error = handle_error_bis(127);
 				return (mini->shell.error);
 			}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parsing_redirections.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:51:19 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 18:03:27 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/16 23:03:08 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data)
 {
 	char	*file;
-	t_lexer *new;
-	int id;
-	int id2;
+	t_lexer	*new;
+	int		id;
+	int		id2;
 
 	file = ft_strdup(tmp->next->str);
 	id = tmp->i;
@@ -39,7 +39,7 @@ void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data)
 
 void	redirections(t_main *mini, t_parsermain *data)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	tmp = data->lexer_list;
 	while (tmp && !tmp->operateur)
