@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:34:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:39:23 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:46:52 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	dir_file_check(t_main *mini, char *str)
 		if (opendir(str + 2))
 		{
 			mini->shell.error = 126;
-			return (ft_perror(str));
+			return (ft_perror());
 		}
 		else if (access(str + 2, F_OK))
 		{

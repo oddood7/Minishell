@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:29:47 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:47:02 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ t_operateurs	is_ope(int c);
 
 int				handle_error_bis(int code_err);
 int				directory_err(t_main *mini, char *str, int ok);
-int				ft_perror(char *str);
+int				ft_perror(void);
 int				error_quote2(t_main *mini, char *str, int sep);
 int				error_quote(t_main *mini, char *str, int sep1, int sep2);
 void			code_error(int code);
