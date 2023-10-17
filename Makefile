@@ -6,7 +6,7 @@
 #    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/17 15:21:29 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/17 15:30:29 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,6 @@ SRC = ./src/Program/main.c \
 	./src/Here_Doc/here_doc.c \
 	./src/Here_Doc/here_doc_utils.c \
 	./src/Here_Doc/here_doc_utils2.c \
-	./src/Here_Doc/here_doc_expand.c
 
 RED		= \033[1;31m
 GREEN	= \033[1;32m
