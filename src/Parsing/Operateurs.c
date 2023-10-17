@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Operateurs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 23:54:38 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:35:46 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,7 @@ int	check_all(t_main *mini)
 
 	tmp = mini->lexer_list;
 	len = ft_size_list(mini->lexer_list);
-	if (syntax_check(mini, len))
-		return (1);
-	if (var_check(mini, mini->lexer_list))
+	if (syntax_check(mini, len) || var_check(mini, mini->lexer_list))
 		return (1);
 	while (tmp)
 	{
@@ -109,13 +107,11 @@ int	check_all(t_main *mini)
 				return (weird_check(mini, tmp->str));
 			else if (!ft_strncmp(tmp->str, ".", 1) && ft_strlen(tmp->str) == 1)
 			{
-				//return (mini->shell.error = handle_error_bis(2));
 				mini->shell.error = handle_error_bis(2);
 				return (mini->shell.error);
 			}
 			else if (!ft_strncmp(tmp->str, "..", 2) && ft_strlen(tmp->str) == 2)
 			{
-				//return (mini->shell.error = handle_error_bis(127));
 				mini->shell.error = handle_error_bis(127);
 				return (mini->shell.error);
 			}

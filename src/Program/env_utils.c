@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 21:36:22 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:08:18 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:39:29 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	change_var_value(t_main *mini, char *new, char *old)
 			break ;
 		i++;
 	}
-	//free(mini->env[i]);
 	mini->env[i] = ft_strdup(new);
 }
 

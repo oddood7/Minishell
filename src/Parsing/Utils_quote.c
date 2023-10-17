@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:49:41 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:21:10 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:39:27 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,11 @@ void	check_quote_redir(t_main *mini, t_lexer *node)
 			if (count_quotes(tmp->str, 39))
 			{
 				s_trim = rm_quote_redir(mini, tmp->str, 39, 0);
-				//free(tmp->str);
 				tmp->str = s_trim;
 			}
 			else if (count_quotes(tmp->str, 34))
 			{
 				s_trim = rm_quote_redir(mini, tmp->str, 34, 0);
-				//free(tmp->str);
 				tmp->str = s_trim;
 			}
 		}

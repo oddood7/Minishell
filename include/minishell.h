@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:05:55 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:46:27 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,8 @@ typedef struct s_parsermain
 int				start_in_loop(t_main *mini, char *input);
 int				main(int ac, char **av, char **env);
 int				handle_env(t_main *mini);
-char			*build_color(char *c1, char *str, int dup_str);
 char			*get_env_var(const char *name);
 char			*prompt_cmd(t_shell *shell, char *user);
-void			bf_prd(char *str, int d, char *color);
 void			init_main(t_main *mini);
 void			mini_loop(t_main *mini);
 void			handle_quote_n_expand(t_main *mini);
@@ -325,6 +323,7 @@ int				ft_exit(t_main *mini, t_parsing *parse);
 int				all_cmd(t_lexer *arg, t_shell *shell, t_main **list, \
 				t_lexer **env_list);
 int				cd_move_and_change(t_main *mini);
+int				cd_real_version(char *buf, t_main *mini, t_parsing *parse);
 int				change_env_exp(t_lexer **env_list, char *name_env, \
 				char *value);
 int				parse_export(char *str);

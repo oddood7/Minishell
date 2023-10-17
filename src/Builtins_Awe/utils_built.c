@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 14:53:42 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:46:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,25 @@ int	cd_move_and_change(t_main *mini)
 	else
 		return (1);
 	mini->env = env_to_char(&mini->env_list);
+	return (0);
+}
+
+/* 
+ * Change de repertoire en fonction du buf envoye.
+ * Agit reellement comme la commande cd.
+*/
+int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
+{
+	if (chdir(buf) == -1)
+	{
+		ft_printf("%s: %s: %s\n", parse->cmd_tab[parse->incr], \
+			buf, strerror(errno));
+		return (errno);
+	}
+	else
+	{
+		if (!cd_move_and_change(mini))
+			return (1);
+	}
 	return (0);
 }

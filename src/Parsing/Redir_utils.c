@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:34:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 23:23:33 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:39:23 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	var_check(t_main *mini, t_lexer *list)
 			{
 				if (len == 1)
 				{
-					//return (mini->shell.error = handle_error_bis(127));
 					mini->shell.error = handle_error_bis(127);
 					return (mini->shell.error);
 				}

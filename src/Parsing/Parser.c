@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:26:50 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:36:28 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 	n_word = count_lex(data->lexer_list);
 	tab = (char **)ft_malloc(sizeof(char *) * (n_word + 1));
 	ongoing = data->lexer_list;
-	while (n_word-- > 0)
+	while (n_word > 0)
 	{
 		if (ongoing->str)
 		{
@@ -49,7 +49,7 @@ t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 			ongoing = data->lexer_list;
 			i++;
 		}
-//		n_word--; pour l'instant
+		n_word--; 
 	}
 	tab[i] = 0;
 	node = parse_new(mini, tab, data->num_redir, data->redirection);
