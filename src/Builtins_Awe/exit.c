@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:09:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/16 18:07:08 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 11:41:30 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	ft_exit(t_main *mini, t_parsing *parse)
 
 	code_err = 0;
 	ft_printf("exit\n");
-	// (void)(mini);
-	// (void)(parse);
 	if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1] \
 		&& is_numeric(parse->cmd_tab[parse->incr +1]) == 1)
 	{
@@ -37,14 +35,12 @@ int	ft_exit(t_main *mini, t_parsing *parse)
 	else if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1] \
 		&& parse->cmd_tab[parse->incr +2])
 	{
-		// ft_printf("je suis la 2\n");
 		ft_printf("%s: too many arguments\n", parse->cmd_tab[parse->incr]);
 		mini->shell.error = handle_error_bis(1);
 		return (1);
 	}
 	else if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1])
 	{
-		// ft_printf("je suis la 3\n");
 		code_err = ft_long_atoi(parse->cmd_tab[parse->incr +1]);
 		if (ft_strcmp(parse->cmd_tab[parse->incr +1], ft_long_itoa(code_err)) != 0)
 		{
@@ -59,8 +55,6 @@ int	ft_exit(t_main *mini, t_parsing *parse)
 		code_err = g_error;
 	else
 		code_err = mini->shell.error;
-	// ft_printf("je suis la 4\n");
-	//built_in_free(mini);
 	free_garbage();
 	exit(code_err);
 }

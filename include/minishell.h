@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:26:28 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 11:42:54 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -367,7 +367,6 @@ void			find_3(t_main *mini, char *cmd, int len);
 void			free_process(t_main *mini);
 void			wait_exec(t_main *mini);
 void			exit_error_redir(t_main *mini, int fd[2]);
-void			built_in_free(t_main *mini);
 void			close_pipe(t_main *mini, int count);
 void			no_command(t_main *mini, t_parsing *node);
 void			print_no_command(t_main *mini, char *s, int i);

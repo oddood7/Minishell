@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/16 17:50:11 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 11:41:42 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,7 @@ int	export_out_main(t_main *mini)
 		else
 			ft_printf("declare -x %s=\"%s\"\n", bfore, after);
 		i ++;
-		//free(bfore);
-		//free(after);
 	}
-	//ft_free_tab(env_sort);
 	mini->shell.error = handle_error_bis(0);
 	return (0);
 }

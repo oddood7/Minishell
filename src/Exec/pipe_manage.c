@@ -65,7 +65,6 @@ void	pipe_work(t_main *mini, int fd[2], t_parsing *node, int old_fd[2])
 void	exec2(t_main *mini, t_parsing *node, char *cmd, int fd[2])
 {
 	mini->pid_last = fork();
-	// ft_printf("ls : %d\n", mini->pid_last);
 	if (mini->pid_last == 0)
 		last_process(mini, node, cmd, fd);
 	if (mini->pipe_count)

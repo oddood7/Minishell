@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:31:12 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 10:56:19 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 11:52:07 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,57 +24,47 @@ void	add_env(t_lexer **env_list, char *str)
 	t_lexer	*current;
 
 	new_var = ft_malloc(sizeof *new_var);
-	if (! new_var)	
-		return ;
-	new_var->str = ft_strdup(str);
-	if (! new_var->str)
-	{
-		//free(new_var);
-		return ;
-	}
-	// new_var->token = 0;
+	new_var->str = str;
 	new_var->next = NULL;
 	if (*env_list)
 	{
 		current = *env_list;
 		while (current->next != NULL)
 			current = current->next;
-		current->next = copy_list(new_var);
+		current->next = new_var;
 	}
 	else
-		*env_list = copy_list(new_var);
-	//free(new_var);
+		*env_list = new_var;
 }
 
-/* 
- * Permets de copier un liste d'args
-*/
-t_lexer *copy_list(t_lexer *source)
-{
-    t_lexer* new_head;
-    t_lexer* current;
-    t_lexer* tail;
+// /* 
+//  * Permets de copier un liste d'args
+// */
+// t_lexer *copy_list(t_lexer *source)
+// {
+//     t_lexer* new_head;
+//     t_lexer* current;
+//     t_lexer* tail;
 
-	new_head = NULL;
-	tail = NULL;
-	current = source;
-    while (current != NULL)
-	{
-        if (new_head == NULL)
-		{
-            new_head = ft_malloc(sizeof(t_lexer));
-            new_head->str = current->str;
-            new_head->next = NULL;
-            tail = new_head;
-        }
-		else
-		{
-            tail->next = ft_malloc(sizeof(t_lexer));
-            tail = tail->next;
-            tail->str = current->str;
-        }
-        current = current->next;
-    }
-	//free(tail->next);
-    return (new_head);
-}
+// 	new_head = NULL;
+// 	tail = NULL;
+// 	current = source;
+//     while (current != NULL)
+// 	{
+//         if (new_head == NULL)
+// 		{
+//             new_head = ft_malloc(sizeof(t_lexer));
+//             new_head->str = current->str;
+//             new_head->next = NULL;
+//             tail = new_head;
+//         }
+// 		else
+// 		{
+//             tail->next = ft_malloc(sizeof(t_lexer));
+//             tail = tail->next;
+//             tail->str = current->str;
+//         }
+//         current = current->next;
+//     }
+//     return (new_head);
+// }

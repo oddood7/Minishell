@@ -54,10 +54,7 @@ void	wait_exec(t_main *mini)
 	if (g_error != 0)
 		mini->shell.error = g_error;
 	else if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
-	{
-		ft_printf("je suis la\n");
 		mini->shell.error = handle_error_bis(WEXITSTATUS(status));
-	}
 	else if (WIFEXITED(status) && WTERMSIG(status) == SIGSEGV)
 	{
 		ft_printf("Segmentation Fault (core dumped)\n");
@@ -74,7 +71,6 @@ void	exit_error_redir(t_main *mini, int fd[2])
 		close (fd[0]);
 	if (fd[1] > 1)
 		close(fd[1]);
-	//resets(mini);
 	exit (1);
 }
 
@@ -118,26 +114,7 @@ void	free_shell_var(t_shell *shell)
 	} */
 }
 
-//a voir: avec les trucs en commentaires ca segfault
-//regarder si c'est bien allouer sur la heap pour pouvoir les free
-void	built_in_free(t_main *mini)
-{
-	(void)(mini);
-	//if (mini->cmd_paths)
-	//	//ft_free_tab(mini->cmd_paths);
-	//if (mini->env)
-	//	//ft_free_tab(mini->env);
-	// if (mini->env_exp)
-	// {
-	// 	////ft_free_tab(mini->env_exp);
-	// }
-	//free_shell_var(&mini->shell);
-	//ft_free_lexer(mini->env_list);
-	//if (mini->here_doc)
-		//free(mini->here_doc);
-	// ft_printf("yolo\n");
-	//resets(mini);
-}
+
 
 int	close_error(int in, int out)
 {
