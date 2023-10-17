@@ -90,18 +90,6 @@ int	first_builtins2(t_main *mini, t_parsing *node, int len)
 		ft_export(mini, node);
 		return (1);
 	}
-	// if (!ft_strncmp(node->cmd_tab[0], "echo", len) && node->next == NULL
-	// 	&& len == 6)
-	// {
-	// 	ft_echo(mini, node);
-	// 	return (1);
-	// }
-	// if (!ft_strncmp(node->cmd_tab[0], "pwd", len) && node->next == NULL
-	// 	&& len == 6)
-	// {
-	// 	ft_pwd(mini, node);
-	// 	return (1);
-	// }
 	if (!ft_strncmp(node->cmd_tab[0], "cd", len) && node->next == NULL
 		&& len == 2)
 	{

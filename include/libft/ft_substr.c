@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:32:39 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:37:18 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:51:15 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,3 @@ char    *ft_substr(const char *s, unsigned int start, size_t len)
         *str = 0;
     return (str);
 }
-
-/* int    main()
-{
-    char str[] = "tripouille";
-    //int    start = 7;
-    //int    len = 3;
-    ft_printf(" %s", ft_substr(str, 100, 1));
-	free(str);
-	return (0);
-} */

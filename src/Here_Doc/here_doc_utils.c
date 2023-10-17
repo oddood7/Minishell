@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 21:14:13 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:51:24 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:04:56 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ void	sig_hd(int signal)
 			close(hd[i].fd[1]);
 			i++;
 		}
-		//free(mini->here_doc);
-		//ft_free_tab(mini->cmd_paths);
-		free_kill(mini);
-		//resets(mini);
+		free_garbage();
 		exit (42);
 	}
 }

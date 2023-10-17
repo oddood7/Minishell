@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:03:10 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 14:29:06 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:21:57 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void    expanding(t_main *mini, t_parsing *node, int i, int j)
 {
     int            dol;
 
+    dol = 0;
     while ((j < (int)ft_strlen(node->cmd_tab[i])) && node->cmd_tab[i][j])
     {
         if (node->cmd_tab[i][j] == '$')

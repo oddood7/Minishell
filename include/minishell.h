@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 11:42:54 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:05:55 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,13 +211,6 @@ char			*ft_long_itoa(long long int n);
 char			**env_to_char(t_lexer **env_list);
 long long int	ft_long_atoi(const char *nptr);
 
-void			ft_free_tab(char **tab);
-void			ft_free_lexer(t_lexer *list);
-void			free_shell_var(t_shell *shell);
-void			free_cmd_tab(t_main *mini);
-void			free_cmd_lst(t_parsing *lst);
-void			free_kill(t_main *mini);
-
 int				is_rchar(char c, char v);
 int				ft_size_list(t_lexer *list);
 int				quote_tab(t_parsing *node, int i, int j);
@@ -298,7 +291,6 @@ int				expander_doll(t_main *mini, t_parsing *node, int i, int j);
 int				get_rv(t_main *mini, t_parsing *node, int i, int j);
 int				expanding_bis(t_main *mini, t_parsing *node, int i, int j);
 int				second_expand(t_main *mini, t_parsing *node, int i, int j);
-int				util_free_expand(char *str, char *tmp);
 int				copy_bis(char *s1, char *s2, int i, int ok);
 int				copy_past(t_parsing *cmd_node, int i, int j_dol, \
 				char *str_replace);

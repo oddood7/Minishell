@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 10:39:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:09:30 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ char	*get_var_name(char *str, t_main *mini)
 	int i;
 
 	i = 0;
+	(void) mini;
 	if (!str || !ft_strchr(str, '='))
 		return (NULL);
 	while (str[i] != '=')
 		i++;
 	tmp = ft_malloc(sizeof(char) * i + 1);
-	if (!tmp)
-		err_mall(mini);
 	i = 0;
 	while (str[i] != '=')
 	{
@@ -47,15 +46,6 @@ char    *just_alloc(int len, int j_dol, char *s_af)
     if (!ok)
         return (NULL);
     return (ok);
-}
-
-int	util_free_expand(char *str, char *tmp)
-{
-	(void)(str);
-	(void)(tmp);
-	//free(str);
-	//free(tmp);
-	return (0);
 }
 
 void    print_no_command(t_main *mini, char *s, int i)
@@ -82,7 +72,6 @@ void    print_no_command(t_main *mini, char *s, int i)
     }
     tmp = ft_strjoin(s, ": No such file or directory\n");
     write(2, tmp, ft_strlen(tmp));
-    //free(tmp);
     return ;
 }
 
@@ -144,19 +133,10 @@ char	**env_to_char(t_lexer **env_list)
 
 	current = *env_list;
 	env_char = ft_malloc(len_targs(current) * (sizeof * current));
-	if (!env_char)
-		return (NULL);
 	i = 0;
 	while (current)
 	{
 		env_char[i] = ft_strdup(current->str);
-		if (!env_char[i])
-		{
-			// while (i >= 0)
-				//free(env_char[i--]);
-			//free(env_char);
-			return (NULL);
-		}			
 		current = current->next;
 		i ++;
 	}

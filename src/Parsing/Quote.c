@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:42:07 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 23:12:24 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:27:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ char	*malloc_space(t_main *mini, t_parsing *node, int i)
 	int		size;
 	char	*str;
 
-	size = ft_strlen(node->cmd_tab[i]);
-	str = ft_malloc(sizeof(char) * size + 1);
-	if (!str)
-		err_mall(mini);
-	return (str);
+    (void)mini;
+    size = ft_strlen(node->cmd_tab[i]);
+    str = ft_malloc(sizeof(char) * size + 1);
+    return (str);
 }
 
 int	count_quotes(char *str, int quote)
@@ -51,7 +50,6 @@ char	*check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
 	&& node->cmd_tab[i][len - 1] == quote)
 	{
 		new = ft_trim(mini, node->cmd_tab[i], quote);
-		//free(node->cmd_tab[i]);
 		node->cmd_tab[i] = ft_strdup(new);
 		return (new);
 	}
@@ -79,10 +77,8 @@ int	rm_quote(t_main *mini, t_parsing *node, int index, int quote)
 				new[i++] = node->cmd_tab[index][j++];
 		}
 		new[i] = '\0';
-		//free(node->cmd_tab[index]);
 		node->cmd_tab[index] = ft_strdup(new);
 	}
-	//free(new);
 	if (quote == 39)
 		return (1);
 	return (0);

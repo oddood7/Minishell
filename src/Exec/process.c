@@ -62,10 +62,5 @@ void	last_process(t_main *mini, t_parsing *node, char *cmd, int fd[2])
 	signal(SIGQUIT, signal_handler);
 	execve(cmd, node->cmd_tab, mini->env);
 	free_garbage();
-	////ft_free_tab(mini->cmd_paths);
-	////ft_free_tab(mini->env);
-	////ft_free_tab(mini->hidetab);
-	////ft_free_tab(mini->env_exp);
-	////resets(mini);
 	exit (1);
 }

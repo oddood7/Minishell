@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:08:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:08:58 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:25:10 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check)
 		printf("deliminited by end-of-file");
 		printf("(wanted `%s')\n", node->redirection->str);
 	}
-	//free(input);
 	while (i < mini->hd_count)
 	{
 		if (mini->here_doc[i].pos == 0)
@@ -34,11 +33,6 @@ void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check)
 		i++;
 	}
 	free_garbage();
-	//free(mini->here_doc);
-	//ft_free_tab(mini->cmd_paths);
-	//ft_free_tab(mini->env);
-	////ft_free_tab(mini->env_exp);
-	//resets(mini);
 	exit (1);
 }
 

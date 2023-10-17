@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:21:14 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 18:01:54 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:10:11 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ char    *add_qt(t_main *mini, char *s)
 
     i = 0;
     j = 0;
+    (void)mini;
     while (s[i])
         i++;
     new = ft_malloc(sizeof(char) * i + 2);
-    if (!new)
-        err_mall(mini);
     i = 0;
     while (s[i])
         new[j++] = s[i++];
@@ -92,7 +91,6 @@ int    check_env_variable_qt(t_main *mini, char *s, int j)
     }
     str_dol = ft_substr(s, j + 1, size);
     result = check_env_bis_qt(mini->env, str_dol);
-    //free(str_dol);
     return (result);
 }
 
@@ -108,11 +106,8 @@ int    expand_dol_qt(t_main *mini, t_parsing *node, int i, int j)
     {
         str_replace = keep_good_str_qt(mini->env, nb_env);
         final = add_qt(mini, str_replace);
-        if (copy_past(node, i, j, final) == -123)
-            err_mall(mini);
+        copy_past(node, i, j, final);
         ok = ft_strlen(str_replace);
-        //free(str_replace);
-        //free(final);
         return (ok);
     }
     return (1);

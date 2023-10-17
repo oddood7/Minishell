@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
+#    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/17 13:55:18 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/17 15:21:29 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ SRC = ./src/Program/main.c \
 	./src/Error_and_Utils/utils.c \
 	./src/Error_and_Utils/garbage.c \
 	./src/Error_and_Utils/errors.c \
-	./src/Error_and_Utils/frees.c \
 	./src/Error_and_Utils/utils2.c \
 	./src/Error_and_Utils/utils3.c \
 	./src/Expander/expander_dollar.c \

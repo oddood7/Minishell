@@ -112,12 +112,9 @@ void	execute_cmd(t_main *mini)
 	pipe_init(mini, node);
 	if (here_doc_init(mini, node, 0) == 42)
 	{
-		//ft_free_tab(mini->cmd_paths);
-		//free(mini->here_doc);
 		mini->shell.error = 130;
 		return ;
 	} 
 	exec(mini, node, cmd);
 	wait_exec(mini);
-	// free_process(mini);
 }
