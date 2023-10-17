@@ -3,30 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_lists_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:04:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 13:54:40 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_lexer *ft_delone(t_lexer **lst)
+t_lexer	*ft_delone(t_lexer **lst)
 {
 	if ((*lst)->str)
-	{
-		//free((*lst)->str);
 		(*lst)->str = NULL;
-	}
-	//free(*lst);
 	*lst = NULL;
 	return (NULL);
 }
 
 void	ft_lstaddback(t_lexer **lst, t_lexer *new)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	tmp = *lst;
 	if (*lst == NULL)
@@ -42,10 +38,9 @@ void	ft_lstaddback(t_lexer **lst, t_lexer *new)
 
 void	ft_delfirst(t_lexer **lst)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	tmp = *lst;
-	
 	*lst = tmp->next;
 	ft_delone(&tmp);
 	if (*lst)
@@ -54,9 +49,9 @@ void	ft_delfirst(t_lexer **lst)
 
 void	ft_delid(t_lexer **list, int id)
 {
-	t_lexer *tmp;
-	t_lexer *prev;
-	t_lexer *start;
+	t_lexer	*tmp;
+	t_lexer	*prev;
+	t_lexer	*start;
 
 	start = *list;
 	tmp = start;

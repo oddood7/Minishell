@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:08:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:51:24 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:08:58 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check)
 		close(mini->here_doc[i].fd[1]);
 		i++;
 	}
+	free_garbage();
 	//free(mini->here_doc);
 	//ft_free_tab(mini->cmd_paths);
 	//ft_free_tab(mini->env);
@@ -46,18 +47,15 @@ void	write_hd(t_main *mini, char *input, int fd[2])
 	int	i;
 
 	i = 0;
+	(void)mini;
 	while (input[i])
 	{
-		if (input[i] == '$' && input[i + 1] != ' ')
-			i += here_doc_var(mini, input, i, fd);
-		else
-		{
-			write(fd[1], &input[i], 1);
-			i++;
-		}
+		
+		write(fd[1], &input[i], 1);
+		i++;
+		
 	}
 	write(fd[1], "\n", 1);
-	//free(input);
 }
 
 char	*skip_tmpr(t_lexer *tmpr)

@@ -3,34 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 11:43:43 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 13:54:58 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_lexer	*new_lexer(t_main *mini, char *str, int operateur)
-{
-	t_lexer *new;
-	static int i;
-
-	new = (t_lexer *)ft_malloc(sizeof(t_lexer));
-	if (!new)
-		err_mall(mini);
-	new->str = str;
-	new->operateur = operateur;
-	new->i = i++;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
-}
-
 int	ft_listadd(t_main *mini, char *str, t_operateurs operateur, t_lexer **lst)
 {
-	t_lexer *node;
+	t_lexer	*node;
 
 	node = new_lexer(mini, str, operateur);
 	if (!node)
@@ -44,8 +28,8 @@ int	ft_listadd(t_main *mini, char *str, t_operateurs operateur, t_lexer **lst)
 
 int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 {
-	int j;
-	char *tmp;
+	int		j;
+	char	*tmp;
 
 	if (count_double_quote(str, i) > 2 || count_single_quote(str, i) > 2)
 		j = get_to_quote(str, i);
@@ -59,7 +43,7 @@ int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 		return (j);
 	}
 	if (str[i + j - 1] == ' ')
-    j--;
+	j--;
 	tmp = ft_substr(str, i, j);
 	if (!ft_listadd(mini, tmp, 0, list))
 		return (-1);
@@ -68,7 +52,7 @@ int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 
 t_operateurs	is_ope(int c)
 {
-	int i;
+	int			i;
 	static int	tab_ope[3][2] = {
 	{'|', PIPE},
 	{'>', RIGHT},
@@ -87,12 +71,12 @@ t_operateurs	is_ope(int c)
 
 int	add_operateur(t_main *mini, char *str, int i, t_lexer **list)
 {
-	t_operateurs ope;
+	t_operateurs	ope;
 
 	ope = is_ope(str[i]);
 	if (ope == RIGHT && is_ope(str[i + 1]) == RIGHT)
 	{
-		if(!ft_listadd(mini, NULL, RIGHT_RIGHT, list))
+		if (!ft_listadd(mini, NULL, RIGHT_RIGHT, list))
 			return (-1);
 		return (2);
 	}
@@ -113,7 +97,7 @@ int	add_operateur(t_main *mini, char *str, int i, t_lexer **list)
 
 int	do_lexer(t_main *mini)
 {
-	long unsigned int 	i;
+	long unsigned int	i;
 	int					j;
 
 	i = 0;
@@ -132,8 +116,7 @@ int	do_lexer(t_main *mini)
 			return (0);
 		i += j;
 		if (i >= ft_strlen(mini->input_line))
-			break ;	
+			break ;
 	}
-	
 	return (1);
 }

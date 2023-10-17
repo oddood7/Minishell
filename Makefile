@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
+#    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/16 17:34:49 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/17 13:55:18 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC = ./src/Program/main.c \
 	./src/Program/prompt.c \
 	./src/Lexer/lexer_lists_utils.c \
 	./src/Lexer/lexer_word.c \
+	./src/Lexer/lexer_utils.c \
 	./src/Lexer/lexer.c \
 	./src/Error_and_Utils/utils.c \
 	./src/Error_and_Utils/garbage.c \

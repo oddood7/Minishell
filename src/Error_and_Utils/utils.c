@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 14:37:14 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 10:38:27 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:11:40 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void    free_kill(t_main *mini)
     mini->env_exp = NULL;
 }
 
-/*
+/*				
  * Compare 2 string
 */
 int	ft_strcmp(const char *s1, const char *s2)

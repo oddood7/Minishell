@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:03:10 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:29:06 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	expander_doll(t_main *mini, t_parsing *node, int i, int j)
 {
-	int env_index;
-	int	ok;
-	char *str_new;
+	int		env_index;
+	int		ok;
+	char	*str_new;
 
 	env_index = check_env_var(mini, node->cmd_tab[i], j);
 	if (node->cmd_tab[i][j] == '$')
@@ -24,7 +24,6 @@ int	expander_doll(t_main *mini, t_parsing *node, int i, int j)
 		str_new = keep_good_str(mini->env, env_index);
 		copy_past(node, i, j, str_new);
 		ok = ft_strlen(str_new);
-		//free(str_new);
 		return (ok);
 	}
 	return (1);
@@ -32,16 +31,14 @@ int	expander_doll(t_main *mini, t_parsing *node, int i, int j)
 
 int get_rv(t_main *mini, t_parsing *node, int i, int j)
 {
-	char *str_new;
+	char	*str_new;
 
 	(void)j;
 	if (ft_strlen(node->cmd_tab[i]) == 2)
 		str_new = ft_itoa(mini->shell.error);
 	else
 		str_new = go_itoa_replace(mini, node->cmd_tab[i]);
-	//free(node->cmd_tab[i]);
 	node->cmd_tab[i] = ft_strdup(str_new);
-	//free(str_new);
 	return (2);
 }
 
