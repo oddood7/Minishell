@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 15:46:11 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:15:54 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,34 @@ int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
 			return (1);
 	}
 	return (0);
+}
+
+/* 
+ * Boucle principale d'unset.
+ * Cherche une VE et la supprime s'il la trouve.
+*/
+int	searchin_env(t_lexer **env_list, char *str)
+{
+	t_lexer	*current;
+	t_lexer	*temp;
+	char	*name_env;
+	size_t	len;
+
+	current = *env_list;
+	len = ft_strlen(str);
+	while (current && current->next)
+	{
+		name_env = ft_strdupto_n(current->next->str, '=');
+		if (!name_env)
+			return (1);
+		if (ft_strncmp(str, name_env, len) == 0 && \
+		len == ft_strlen(name_env))
+		{
+			temp = current->next->next;
+			current->next = temp;
+			return (0);
+		}
+		current = current->next;
+	}
+	return (1);
 }
