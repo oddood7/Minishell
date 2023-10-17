@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:46:27 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:29:47 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,7 +335,6 @@ void			change_env_cd(t_lexer **env_list, char *new_str, \
 				char *change_value);
 void			add_env(t_lexer **env_list, char *str);
 void			shell_change(t_shell *shell, char *str, char *value);
-t_lexer			*copy_list(t_lexer *source);
 
 /***** EXEC *****/
 

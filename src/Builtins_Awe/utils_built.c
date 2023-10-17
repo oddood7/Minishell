@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 16:15:54 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:30:25 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * Si oui, renvoit une chaine vide
  * Renvoit un char * de la valeur de la ve enregistree
 */
-char *get_env_var(const char *name)
+char	*get_env_var(const char *name)
 {
 	char	*env_var;
 
