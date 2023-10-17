@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:08:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:25:10 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:46:20 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ void	write_hd(t_main *mini, char *input, int fd[2])
 	(void)mini;
 	while (input[i])
 	{
-		
 		write(fd[1], &input[i], 1);
 		i++;
-		
 	}
 	write(fd[1], "\n", 1);
 }
