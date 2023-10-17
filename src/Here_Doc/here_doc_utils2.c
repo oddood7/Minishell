@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:08:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:46:20 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:17:51 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	hdc_process(t_main *mini, t_parsing *node, int i)
 		here_doc_manage(mini, node, mini->here_doc[i].fd);
 	if (wait_hds(mini, i) == 42)
 		return (42);
+	// close(mini->here_doc[i].fd[0]);
 	close(mini->here_doc[i].fd[1]);
 	return (0);
 }

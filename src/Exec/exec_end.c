@@ -73,6 +73,7 @@ void	exit_error_redir(t_main *mini, int fd[2])
 		close (fd[0]);
 	if (fd[1] > 1)
 		close(fd[1]);
+	free_garbage();
 	exit (1);
 }
 

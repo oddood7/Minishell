@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:22 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 14:52:45 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 19:03:56 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_unset(t_main *mini, t_parsing *parse, t_lexer **env_list)
 {
 	if (!parse->cmd_tab[parse->incr + 1])
 		return (1);
-	if (searchin_env(env_list, parse->cmd_tab[parse->incr +1]))
+	if (searchin_env(env_list, parse->cmd_tab[parse->incr +1]) == 0)
 		shell_change(&mini->shell, parse->cmd_tab[parse->incr +1], NULL);
 	if (parse->cmd_tab[parse->incr + 2] != NULL)
 	{

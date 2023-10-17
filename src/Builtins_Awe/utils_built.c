@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 16:30:25 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 19:04:06 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	cd_move_and_change(t_main *mini)
 	mini->shell.oldpwd = ft_strdup(mini->shell.is_pwd);
 	tmp = getcwd(NULL, 0);
 	current_cmd = ft_strdup(tmp);
+	free(tmp);
 	if (current_cmd != NULL)
 	{
 		new_pwd = ft_strjoin("PWD=", current_cmd);
@@ -123,6 +124,7 @@ int	searchin_env(t_lexer **env_list, char *str)
 		len == ft_strlen(name_env))
 		{
 			temp = current->next->next;
+			current->next->str = NULL;
 			current->next = temp;
 			return (0);
 		}

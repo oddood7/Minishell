@@ -117,4 +117,5 @@ void	execute_cmd(t_main *mini)
 	}
 	exec(mini, node, cmd);
 	wait_exec(mini);
+	free_process(mini);
 }
