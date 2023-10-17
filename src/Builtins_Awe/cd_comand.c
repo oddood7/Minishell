@@ -6,38 +6,17 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:34:51 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 11:40:56 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:46:43 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/* 
- * Change de repertoire en fonction du buf envoye.
- * Agit reellement comme la commande cd.
-*/
-int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
-{
-	if (chdir(buf) == -1)
-	{
-		ft_printf("%s: %s: %s\n", parse->cmd_tab[parse->incr], buf, strerror(errno));
-		return (errno);
-	}
-	else
-	{
-		if (!cd_move_and_change(mini))
-			return (1);
-	}
-	return (0);
-}
-
 /*
  * Code erreur cd :fichier introuvable et return.
 */
-static char *help_itp1(t_main *mini, DIR **dir,
-		char **temp)
+static char	*help_itp1(t_main *mini, DIR **dir)
 {
-	(void)(temp);
 	ft_printf("cd : No such file of directory\n");
 	mini->shell.error = handle_error_bis(0);
 	closedir(*dir);
@@ -47,9 +26,8 @@ static char *help_itp1(t_main *mini, DIR **dir,
 /*
  * Free and close in cd
 */
-static char	*help_itp2(DIR **dir, char **temp)
+static char	*help_itp2(DIR **dir)
 {
-	(void)(temp);
 	closedir(*dir);
 	return (NULL);
 }
@@ -70,17 +48,17 @@ static char	*is_two_points(t_main *mini, t_parsing *parse)
 		return (NULL);
 	dir = opendir(temp);
 	if (dir == NULL)
-		return (help_itp1(mini, &dir, &temp));
+		return (help_itp1(mini, &dir));
 	buf = ft_strdup(parse->cmd_tab[parse->incr +1]);
 	if (! buf)
-		help_itp2(&dir, &temp);
+		help_itp2(&dir);
 	if (mini->shell.pwd == NULL)
 	{
 		if (!cd_move_and_change(mini))
-			return(help_itp2(&dir, &temp));
+			return (help_itp2(&dir));
 		mini->env = env_to_char(&mini->env_list);
 	}
-	help_itp2(&dir, &temp);
+	help_itp2(&dir);
 	return (buf);
 }
 
@@ -90,10 +68,12 @@ static char	*is_two_points(t_main *mini, t_parsing *parse)
 */
 static int	check_cd(t_parsing *parse, t_main *mini)
 {
-	if (parse->cmd_tab[parse->incr +1] && parse->cmd_tab[parse->incr +1][0] == '\0')
+	if (parse->cmd_tab[parse->incr +1] && parse->cmd_tab[parse->incr +1][0] \
+		== '\0')
 		return (1);
-	if (parse->cmd_tab[parse->incr +1] == NULL || ft_strncmp(parse->cmd_tab[parse->incr +1], "~",
-			ft_strlen(parse->cmd_tab[parse->incr +1])) == 0)
+	if (parse->cmd_tab[parse->incr +1] == NULL || \
+		ft_strncmp(parse->cmd_tab[parse->incr +1], "~", \
+		ft_strlen(parse->cmd_tab[parse->incr +1])) == 0)
 	{
 		if (mini->shell.home == NULL)
 		{
@@ -123,7 +103,8 @@ int	ft_cd(t_main *mini, t_parsing *parse)
 		return (1);
 	if (cod == 2)
 		buf = ft_strdup(mini->shell.home);
-	else if (ft_strncmp(parse->cmd_tab[parse->incr +1], "..", ft_strlen(parse->cmd_tab[parse->incr +1])) == 0)
+	else if (ft_strncmp(parse->cmd_tab[parse->incr +1], "..", \
+		ft_strlen(parse->cmd_tab[parse->incr +1])) == 0)
 		buf = is_two_points(mini, parse);
 	else
 		buf = ft_strdup(parse->cmd_tab[parse->incr +1]);

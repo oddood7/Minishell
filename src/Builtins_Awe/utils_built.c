@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 14:53:42 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:30:25 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * Si oui, renvoit une chaine vide
  * Renvoit un char * de la valeur de la ve enregistree
 */
-char *get_env_var(const char *name)
+char	*get_env_var(const char *name)
 {
 	char	*env_var;
 
@@ -79,4 +79,54 @@ int	cd_move_and_change(t_main *mini)
 		return (1);
 	mini->env = env_to_char(&mini->env_list);
 	return (0);
+}
+
+/* 
+ * Change de repertoire en fonction du buf envoye.
+ * Agit reellement comme la commande cd.
+*/
+int	cd_real_version(char *buf, t_main *mini, t_parsing *parse)
+{
+	if (chdir(buf) == -1)
+	{
+		ft_printf("%s: %s: %s\n", parse->cmd_tab[parse->incr], \
+			buf, strerror(errno));
+		return (errno);
+	}
+	else
+	{
+		if (!cd_move_and_change(mini))
+			return (1);
+	}
+	return (0);
+}
+
+/* 
+ * Boucle principale d'unset.
+ * Cherche une VE et la supprime s'il la trouve.
+*/
+int	searchin_env(t_lexer **env_list, char *str)
+{
+	t_lexer	*current;
+	t_lexer	*temp;
+	char	*name_env;
+	size_t	len;
+
+	current = *env_list;
+	len = ft_strlen(str);
+	while (current && current->next)
+	{
+		name_env = ft_strdupto_n(current->next->str, '=');
+		if (!name_env)
+			return (1);
+		if (ft_strncmp(str, name_env, len) == 0 && \
+		len == ft_strlen(name_env))
+		{
+			temp = current->next->next;
+			current->next = temp;
+			return (0);
+		}
+		current = current->next;
+	}
+	return (1);
 }

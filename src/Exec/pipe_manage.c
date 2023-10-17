@@ -108,13 +108,13 @@ void	execute_cmd(t_main *mini)
 	node = mini->cmd_parse;
 	mini->pipe_count = lstsize(node) - 1;
 	if (first_builtins(mini, node))
-		return;
+		return ;
 	pipe_init(mini, node);
 	if (here_doc_init(mini, node, 0) == 42)
 	{
 		mini->shell.error = 130;
 		return ;
-	} 
+	}
 	exec(mini, node, cmd);
 	wait_exec(mini);
 }

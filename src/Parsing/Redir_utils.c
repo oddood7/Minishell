@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:34:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:40:38 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:29:09 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	dir_file_check(t_main *mini, char *str)
 		if (opendir(str + 2))
 		{
 			mini->shell.error = 126;
-			return (ft_perror(str));
+			return (ft_perror());
 		}
 		else if (access(str + 2, F_OK))
 		{

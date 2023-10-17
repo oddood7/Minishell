@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:03:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 10:56:50 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 17:11:33 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,32 +103,39 @@ char	*from_end_to_char(char *str, char c)
 	return (tab);
 }
 
-char    **ft_sort(t_lexer **env_list)
+static char	**sort_loop(int *must_continue, char **env_char)
 {
-    int			i;
-    char		*temp;
+	char		*temp;
+	int			i;
+
+	i = 0;
+	temp = NULL;
+	while (env_char[i + 1])
+	{
+		if (ft_strncmp(env_char[i], env_char[i + 1], \
+		ft_strlen(env_char[i]) + ft_strlen(env_char[i + 1])) > 0)
+		{
+			temp = env_char[i];
+			env_char[i] = env_char[i + 1];
+			env_char[i + 1] = temp;
+			*must_continue = 1;
+		}
+		i++;
+	}
+	return (env_char);
+}
+
+char	**ft_sort(t_lexer **env_list)
+{
 	char		**env_char;
-    int			must_continue;
+	int			must_continue;
 
 	env_char = env_to_char(env_list);
-    must_continue = 1;
-    while (must_continue)
-    {
-        must_continue = 0;
-        i = 1;
-        while (env_char[i + 1])
-        {
-            if (ft_strncmp(env_char[i], env_char[i + 1],
-                    ft_strlen(env_char[i]) + ft_strlen(env_char[i + 1])) > 0)
-            {
-                temp = env_char[i];
-                env_char[i] = env_char[i + 1];
-                env_char[i + 1] = temp;
-                must_continue = 1;
-            }
-            i++;
-        }
-    }
-	env_char[i] = NULL;
+	must_continue = 1;
+	while (must_continue)
+	{
+		must_continue = 0;
+		env_char = sort_loop(&must_continue, env_char);
+	}
 	return (env_char);
 }

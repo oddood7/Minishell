@@ -6,17 +6,16 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:09:30 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:59:06 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-
 char	*get_var_name(char *str, t_main *mini)
 {
-	char *tmp;
-	int i;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	(void) mini;
@@ -35,58 +34,44 @@ char	*get_var_name(char *str, t_main *mini)
 	return (tmp);
 }
 
-char    *just_alloc(int len, int j_dol, char *s_af)
+char	*just_alloc(int len, int j_dol, char *s_af)
 {
-    char    *ok;
+	char	*ok;
 
-    if (s_af)
-        ok = ft_malloc(sizeof(char) * (j_dol + len + ft_strlen(s_af)) + 1);
-    else
-        ok = ft_malloc(sizeof(char) * (j_dol + len) + 1);
-    if (!ok)
-        return (NULL);
-    return (ok);
+	if (s_af)
+		ok = ft_malloc(sizeof(char) * (j_dol + len + ft_strlen(s_af)) + 1);
+	else
+		ok = ft_malloc(sizeof(char) * (j_dol + len) + 1);
+	if (!ok)
+		return (NULL);
+	return (ok);
 }
 
-void    print_no_command(t_main *mini, char *s, int i)
+void	print_no_command(t_main *mini, char *s, int i)
 {
-    int        ok;
-    char    *tmp;
+	int		ok;
+	char	*tmp;
 
-    ok = 0;
-    if (s == NULL)
-    {
-        ft_putendl_fd(": command not found", 2);
-        return ;
-    }
-    while (mini->env[i])
-    {
-        if (!ft_strncmp(mini->env[i++], "PATH=", 5))
-            ok = 1;
-    }
-    if (ok)
-    {
-        write(2, s, ft_strlen(s));
-        ft_putendl_fd(": command not found", 2);
-        return ;
-    }
-    tmp = ft_strjoin(s, ": No such file or directory\n");
-    write(2, tmp, ft_strlen(tmp));
-    return ;
-}
-
-/* Compte nombre de maillon dans une liste */
-int	len_targs(t_lexer *list)
-{
-	int	len;
-
-	len = 0;
-	while (list)
+	ok = 0;
+	if (s == NULL)
 	{
-		len ++;
-		list = list->next;
+		ft_putendl_fd(": command not found", 2);
+		return ;
 	}
-	return (len);
+	while (mini->env[i])
+	{
+		if (!ft_strncmp(mini->env[i++], "PATH=", 5))
+			ok = 1;
+	}
+	if (ok)
+	{
+		write(2, s, ft_strlen(s));
+		ft_putendl_fd(": command not found", 2);
+		return ;
+	}
+	tmp = ft_strjoin(s, ": No such file or directory\n");
+	write(2, tmp, ft_strlen(tmp));
+	return ;
 }
 
 /* 
@@ -123,23 +108,4 @@ int	is_numeric(char *str)
 		i++;
 	}
 	return (0);
-}
-
-char	**env_to_char(t_lexer **env_list)
-{
-	t_lexer	*current;
-	char	**env_char;
-	int		i;
-
-	current = *env_list;
-	env_char = ft_malloc(len_targs(current) * (sizeof * current));
-	i = 0;
-	while (current)
-	{
-		env_char[i] = ft_strdup(current->str);
-		current = current->next;
-		i ++;
-	}
-	env_char[i] = NULL;
-	return (env_char);
 }

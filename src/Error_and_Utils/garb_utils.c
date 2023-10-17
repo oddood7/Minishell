@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   garb_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 18:53:23 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 17:29:28 by asalic           ###   ########.fr       */
+/*   Created: 2023/10/17 16:51:17 by asalic            #+#    #+#             */
+/*   Updated: 2023/10/17 16:57:00 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// Prompt: $USER:$PWD>
-char	*prompt_cmd(t_shell *shell, char *user)
+void	*ft_malloc(size_t size)
 {
-	char	*prompt;
-	char	*username;
-	char	*pwd;
+	void	*ptr;
 
-	prompt = NULL;
-	username = NULL;
-	pwd = NULL;
-	if (user != NULL)
-		username = ft_strjoin(user, ":");
-	if (shell->is_pwd != NULL)
-		pwd = ft_strjoin(username, shell->is_pwd);
-	prompt = ft_strjoin(pwd, ">");
-	return (prompt);
+	ptr = malloc(size);
+	if (!ptr)
+		malloc_failure();
+	garbage_add(ptr);
+	return (ptr);
+}
+
+// Doit etre call en debut de programme
+t_garbage	*start_garbage(void)
+{
+	t_garbage	*garbage;
+
+	garbage = get_garbage();
+	garbage->head = NULL;
+	garbage->tail = NULL;
+	garbage->len_of_lst = 0;
+	return (garbage);
+}
+
+void	malloc_failure(void)
+{
+	perror("MALLOC FAILURE\n");
+	ft_exit(NULL, NULL);
 }

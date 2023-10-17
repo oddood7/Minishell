@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:03:50 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:47:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ int	handle_error_bis(int code_err)
 	return (final_error);
 }
 
-int    ft_perror(char *str)
+int	ft_perror(void)
 {
-    (void)str;
-    ft_putendl_fd(" Is a directory", 2);
-    return (1);
+	ft_putendl_fd(" Is a directory", 2);
+	return (1);
 }

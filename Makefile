@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
+#    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/17 17:21:34 by lde-mais         ###   ########.fr        #
+#    Updated: 2023/10/17 17:28:26 by asalic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,11 @@ SRC = ./src/Program/main.c \
 	./src/Lexer/lexer.c \
 	./src/Error_and_Utils/utils.c \
 	./src/Error_and_Utils/garbage.c \
+	./src/Error_and_Utils/garb_utils.c \
 	./src/Error_and_Utils/errors.c \
 	./src/Error_and_Utils/utils2.c \
 	./src/Error_and_Utils/utils3.c \
+	./src/Error_and_Utils/utils4.c \
 	./src/Expander/expander_dollar.c \
 	./src/Expander/expander_quote.c \
 	./src/Expander/expander_utils.c\
