@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 11:24:46 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:10:29 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_parsing *parse_new(t_main *mini, char **tab, int redir, t_lexer *red)
 {
 	t_parsing *new;
+
+	(void)mini;
 	new = (t_parsing *)ft_malloc(sizeof(t_parsing));
-	if (!new)
-		err_mall(mini);
 	new->cmd_tab = tab;
 	new->next = NULL;
 	new->prev = NULL;
@@ -39,8 +39,6 @@ t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 	redirections(mini, data);
 	n_word = count_lex(data->lexer_list);
 	tab = (char **)ft_malloc(sizeof(char *) * (n_word + 1));
-	if (!tab)
-		err_mall(mini);
 	ongoing = data->lexer_list;
 	while (n_word > 0)
 	{

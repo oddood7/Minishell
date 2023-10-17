@@ -6,18 +6,11 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:59:00 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:51:24 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:03:50 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-void	err_mall(t_main *mini)
-{
-	//resets(mini);
-	free_kill(mini);
-	exit (1);
-}
 
 int	directory_err(t_main *mini, char *str, int ok)
 {

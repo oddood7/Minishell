@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/16 17:57:04 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:53:42 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ int	handle_env(t_main *mini)
 	mini->shell.shlvl = get_env_var("SHLVL");
 	mini->shell.error = 0;
 	if (mini->shell.path != NULL && mini->shell.path[0] != '\0')
-	{
 		mini->shell.cmd_paths = ft_split(mini->shell.path + 5, ':');
-		if (! mini->shell.cmd_paths)
-			return (-1);
-	}
 	return (0);
 }
 
@@ -65,52 +61,22 @@ int	cd_move_and_change(t_main *mini)
 	char	*tmp;
 
 	old_pwd_change = ft_strjoin("OLDPWD=", mini->shell.is_pwd);
-	if (!old_pwd_change)
-		return (1);
 	old_cmd = ft_strjoin("OLDPWD=", mini->shell.is_oldpwd);
-	if (!old_cmd)
-	{
-		//free(old_pwd_change);
-		return (1);
-	}
 	change_env_cd(&mini->env_list, old_pwd_change, old_cmd);
-	//free(old_cmd);
-	//free(old_pwd_change);
-	//free(mini->shell.is_oldpwd);
-	//free(mini->shell.oldpwd);
 	mini->shell.is_oldpwd = ft_strdup(mini->shell.is_pwd);
 	mini->shell.oldpwd = ft_strdup(mini->shell.is_pwd);
 	tmp = getcwd(NULL, 0);
 	current_cmd = ft_strdup(tmp);
-	free(tmp);
 	if (current_cmd != NULL)
 	{
 		new_pwd = ft_strjoin("PWD=", current_cmd);
-		if (!new_pwd)
-		{
-			//free(current_cmd);
-			return (1);
-		}
 		old_cmd = ft_strjoin("PWD=", mini->shell.is_pwd);
-		if (!old_cmd)
-		{
-			//free(current_cmd);
-			//free(new_pwd);
-			return (1);
-		}
 		change_env_cd(&mini->env_list, new_pwd, old_cmd);
-		//free(mini->shell.pwd);
-		//free(mini->shell.is_pwd);
 		mini->shell.is_pwd = ft_strdup(current_cmd);
 		mini->shell.pwd = ft_strdup(current_cmd);
-		//free(current_cmd);
-		//free(new_pwd);
-		//free(old_cmd);
 	}
 	else
 		return (1);
-	// if (mini->env)
-		//ft_free_tab(mini->env);
 	mini->env = env_to_char(&mini->env_list);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 11:43:43 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:09:06 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ t_lexer	*new_lexer(t_main *mini, char *str, int operateur)
 	t_lexer *new;
 	static int i;
 
+	(void)mini;
 	new = (t_lexer *)ft_malloc(sizeof(t_lexer));
-	if (!new)
-		err_mall(mini);
 	new->str = str;
 	new->operateur = operateur;
 	new->i = i++;

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:03:10 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:06:44 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	expander_doll(t_main *mini, t_parsing *node, int i, int j)
 		str_new = keep_good_str(mini->env, env_index);
 		copy_past(node, i, j, str_new);
 		ok = ft_strlen(str_new);
-		//free(str_new);
 		return (ok);
 	}
 	return (1);
@@ -39,9 +38,7 @@ int get_rv(t_main *mini, t_parsing *node, int i, int j)
 		str_new = ft_itoa(mini->shell.error);
 	else
 		str_new = go_itoa_replace(mini, node->cmd_tab[i]);
-	//free(node->cmd_tab[i]);
 	node->cmd_tab[i] = ft_strdup(str_new);
-	//free(str_new);
 	return (2);
 }
 
@@ -96,6 +93,7 @@ void    expanding(t_main *mini, t_parsing *node, int i, int j)
 {
     int            dol;
 
+    dol = 0;
     while ((j < (int)ft_strlen(node->cmd_tab[i])) && node->cmd_tab[i][j])
     {
         if (node->cmd_tab[i][j] == '$')

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:09:25 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 11:41:30 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:43:33 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	ft_exit(t_main *mini, t_parsing *parse)
 
 	code_err = 0;
 	ft_printf("exit\n");
-	if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1] \
+	if (mini == NULL || parse == NULL)
+		code_err = EXIT_FAILURE;
+	else if (parse->cmd_tab[parse->incr] && parse->cmd_tab[parse->incr +1] \
 		&& is_numeric(parse->cmd_tab[parse->incr +1]) == 1)
 	{
 		ft_printf("%s: %s: numeric argument required\n", parse->cmd_tab[parse->incr],

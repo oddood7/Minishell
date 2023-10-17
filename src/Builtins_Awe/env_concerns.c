@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:59:01 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/16 17:59:00 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:52:03 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	change_env_cd(t_lexer **env_list, char *new_str, char *change_value)
 		if (ft_strcmp(current->str, change_value) == 0 && \
 			ft_strlen(current->str) == ft_strlen(change_value))
 		{
-			// if (current->str)
-				//free(current->str);
 			current->str = ft_strdup(new_str);
 			return ;
 		}
@@ -59,7 +57,6 @@ int	change_env_exp(t_lexer **env_list, char *name_env, char *value)
 		result = ft_strjoin(tmp, "0");
 	else
 		result = ft_strjoin(tmp, value);
-	//free(tmp);
 	if (!result)
 		return (2);
 	current = *env_list;
@@ -67,24 +64,15 @@ int	change_env_exp(t_lexer **env_list, char *name_env, char *value)
 	{
 		current_name = ft_strdupto_n(current->str, '=');
 		if (!current_name)
-		{
-			//free(result);
 			return (2);
-		}
 		if (ft_strncmp(current_name, name_env, ft_strlen(current_name)) == 0
 			&& ft_strlen(current_name) == ft_strlen(name_env))
 		{
-			//if (current->str)
-				//free(current->str);
 			current->str = ft_strdup(result);
-			//free(current_name);
-			//free(result);
 			return (0);
 		}
 		current = current->next;
-		//free(current_name);
 	}
-	//free(result);
 	return (1);
 }
 
@@ -123,12 +111,9 @@ int	searchin_env(t_lexer **env_list, char *str)
 		len == ft_strlen(name_env))
 		{
 			temp = current->next->next;
-			//free(current->next);
 			current->next = temp;
-			//free(name_env);
 			return (0);
 		}
-		//free(name_env);
 		current = current->next;
 	}
 	return (1);
@@ -173,13 +158,6 @@ int	set_env(t_main *mini, char **env)
 		identifier = ft_strdupto_n(env[i], '=');
 		if (! identifier)
 			return (-1);
-		// if (ft_strcmp(identifier, "SHLVL") == 0 && \
-		// ft_strlen(identifier) == 5)
-		// {
-		// 	if (ft_plus_shell(mini) == 1)
-		// 		return (-1);
-		// }
-		//free(identifier);
 		i ++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:49:41 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:11:18 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char    *ft_trim(t_main *mini, char const *s1, int quote)
     size_t            end;
     size_t            i;
 
+    (void)mini;
     start = 0;
     while (s1[start] && check_set(s1[start], quote))
         start++;
@@ -33,8 +34,6 @@ char    *ft_trim(t_main *mini, char const *s1, int quote)
     while (end > start && check_set(s1[end - 1], quote))
         end--;
     str = ft_malloc(sizeof(char) * (end - start + 1));
-    if (!str)
-        err_mall(mini);
     i = 0;
     while (start < end)
     {
@@ -52,9 +51,8 @@ char    *cpquote(t_main *mini, char *s, int j, int quote)
     char    *ok;
 
     i = 0;
+    (void)mini;
     ok = ft_malloc(sizeof(char) * ft_strlen(s) - count_quotes(s, quote) + 1);
-    if (!ok)
-        err_mall(mini);
     while (s[i])
     {
         if (s[i] == quote)

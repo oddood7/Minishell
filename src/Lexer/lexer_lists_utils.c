@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:04:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:07:05 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 t_lexer *ft_delone(t_lexer **lst)
 {
 	if ((*lst)->str)
-	{
-		//free((*lst)->str);
 		(*lst)->str = NULL;
-	}
-	//free(*lst);
 	*lst = NULL;
 	return (NULL);
 }

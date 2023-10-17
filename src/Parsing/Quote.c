@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:42:07 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:10:51 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ char    *malloc_space(t_main *mini, t_parsing *node, int i)
     int        size;
     char    *str;
 
+    (void)mini;
     size = ft_strlen(node->cmd_tab[i]);
     str = ft_malloc(sizeof(char) * size + 1);
-    if (!str)
-        err_mall(mini);
     return (str);
 }
 

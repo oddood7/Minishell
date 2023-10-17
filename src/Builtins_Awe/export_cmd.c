@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:54:56 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 11:41:42 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:52:37 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,9 @@ static void	ft_more_export(t_shell *shell, char *v_env, char *value)
 		value = "0";
 	shell_change(shell, v_env, value);
 	if (ft_strncmp(v_env, "PWD", ft_strlen(v_env)) == 0)
-	{
-		//free(shell->is_pwd);
 		shell->is_pwd = ft_strdup(value);
-	}
 	else if (ft_strncmp(v_env, "OLDPWD", ft_strlen(v_env)) == 0)
-	{
-		//free(shell->is_oldpwd);
 		shell->is_oldpwd = ft_strdup(value);
-	}
 }
 
 /* Fonction export.
@@ -94,10 +88,7 @@ int	ft_export(t_main *mini, t_parsing *parse)
 			return (1);
 		value = ft_strdup_from(parse->cmd_tab[parse->incr], '=');
 		if (! value)
-		{
-			//free(v_env);
 			return (1);
-		}
 		result_change_env = change_env_exp(&mini->env_list, v_env, value);
 		if (result_change_env == 0)
 			ft_more_export(&mini->shell, v_env, value);
@@ -107,21 +98,13 @@ int	ft_export(t_main *mini, t_parsing *parse)
 			ft_more_export(&mini->shell, v_env, value);
 		}
 		else
-		{
-			//free(v_env);
-			//free(value);
 			return (1);
-		}
-		//free(v_env);
-		//free(value);
 	}
 	if (parse->cmd_tab[parse->incr +1] != NULL)
 	{
 		parse->incr ++;
 		ft_export(mini, parse);
 	}
-	if (mini->env)
-		//ft_free_tab(mini->env);
 	mini->env = env_to_char(&mini->env_list);
 	mini->shell.error = handle_error_bis(0);
 	return (0);

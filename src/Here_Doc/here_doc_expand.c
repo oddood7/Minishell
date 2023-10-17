@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:10:53 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:52:06 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:06:57 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ char	*var_hd_name(t_main *mini, char *input)
 	if (!name)
 	{
 		printf("ERROR MALLOC : GET VAR NAME (here_doc manage)");
-		//ft_free_tab(mini->cmd_paths);
-		//ft_free_tab(mini->env);
-		////ft_free_tab(mini->env_exp);
-		//resets(mini);
+		free_garbage();
 		exit (1);
 	}
 	len = 0;
@@ -104,6 +101,5 @@ int	here_doc_var(t_main *mini, char *input, int i, int fd[2])
 	if (var_content != NULL)
 		write(fd[1], var_content, ft_strlen(var_content));
 	len = ft_strlen(var_name) + 1;
-	//free(var_name);
 	return (len);
 }

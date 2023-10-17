@@ -84,30 +84,25 @@ int    different_get_to_quote(char *str, int i, int j)
         return (0);
     while ((i + j) < (int)ft_strlen(str))
     {
-        // Check for space and operator outside of quotes
         if (str[i + j] == ' ' || is_ope(str[i + j]))
             break;
 
-        // Check for double quotes
         if (str[i + j] == 34)
         {
             j++;
             while (str[i + j] && str[i + j] != 34)
                 j++;
-            j++;  // to include the quote itself
+            j++;
         }
-        // Check for single quotes
         else if (str[i + j] == 39)
         {
             j++;
             while (str[i + j] && str[i + j] != 39)
                 j++;
-            j++;  // to include the quote itself
-        }
-        else
-        {
             j++;
         }
+        else
+            j++;
     }
     while (j > 0 && str[i + j - 1] == ' ')
         j--;

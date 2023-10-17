@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:03:17 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 11:42:08 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:53:09 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,13 @@ void	shell_change(t_shell *shell, char *str, char *value)
 
 	len = ft_strlen(str);
 	if (ft_strncmp(str, "HOME", len) == 0)
-	{
-		//free(shell->home);
 		shell->home = ft_strdup(value);
-	}
 	else if (ft_strncmp(str, "OLDPWD", len) == 0)
-	{
-		//free(shell->oldpwd);
 		shell->oldpwd = ft_strdup(value);
-	}
 	else if (ft_strncmp(str, "PWD", len) == 0)
-	{
-		//free(shell->pwd);
 		shell->pwd = ft_strdup(value);
-	}
 	else if (ft_strncmp(str, "PATH", len) == 0)
 		shell_change_path(shell, value);
 	else if (ft_strncmp(str, "SHLVL", len) == 0)
-	{
-		//free(shell->shlvl);
 		shell->shlvl = ft_strdup(value);
-	}
 }

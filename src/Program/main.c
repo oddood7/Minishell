@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 11:45:13 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:59:04 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,16 @@ void    handle_quote_n_expand(t_main *mini)
 int    start_in_loop(t_main *mini, char *input)
 {
     mini->input_line = ft_malloc(sizeof(char) * (ft_strlen(input) + 1));
-    if (!mini->input_line)
-        err_mall(mini);
     ft_strlcpy(mini->input_line, input, ft_strlen(input));
     if (!do_lexer(mini))
 		main_space("lexer failed.");
-    mini->cmd_parse = NULL;
+    pr(mini->lexer_list);
     if (!parsing(mini))
     {
         mini->syntaxe_check = 1;
         return (1);
     }
+    prrr(mini->cmd_parse, 1);
     handle_quote_n_expand(mini);
     check_tab(mini);
     return (0);
@@ -86,6 +85,8 @@ void    mini_loop(t_main *mini)
 	    	mini->shell.error = g_error;
 	    	g_error = 0;
 	    }
+        mini->lexer_list = NULL;
+        mini->cmd_parse = NULL;
         if (check_space(input) && !error_quote(mini, input, 34, 39))
         {
             if (input[0] != '\0')
@@ -97,7 +98,7 @@ void    mini_loop(t_main *mini)
         bool = handle_history(mini, bool, input);
 		if  (bool == 2)
 			return ;
-        // free(input);
+        free(input);
     }
     rl_clear_history();
 

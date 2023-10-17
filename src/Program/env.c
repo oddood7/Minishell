@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:37:01 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 14:58:59 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,46 +38,6 @@ int    var_copy(t_main *mini, char *tmp, int i)
     return (k);
 }
 
-// void    env_export_cpy(t_main *mini, char *decla)
-// {
-//     int        i;
-//     int        j;
-//     int        size;
-//     char    *tmp;
-
-//     i = 0;
-//     while (mini->env[i])
-//     {
-//         j = 0;
-//         size = ft_strlen(mini->env[i]);
-//         tmp = ft_malloc(sizeof(char) * (size + 2) + 1);
-//         if (!tmp)
-//             err_mall(mini);
-//         j += var_copy(mini, tmp, i);
-//         tmp[j] = '\0';
-//         mini->env_exp[i] = ft_strjoin(decla, tmp);
-//         //free(tmp);
-//         i++;
-//     }
-//     mini->env_exp[i] = 0;
-// }
-
-// void    get_env_export(t_main *mini)
-// {
-//     int        i;
-//     char    *decla;
-
-//     i = 0;
-//     decla = "declare -x ";
-//     while (mini->env[i])
-//         i++;
-//     mini->env_exp = ft_malloc(sizeof(char *) * (i + 1));
-//     if (!mini->env_exp)
-//         err_mall(mini);
-//     i = 0;
-//     env_export_cpy(mini, decla);
-// }
-
 void    get_env(t_main *mini, char **env)
 {
     int    i;
@@ -87,8 +47,6 @@ void    get_env(t_main *mini, char **env)
     while (env[i])
         i++;
     mini->env = ft_malloc(sizeof(char *) * (i + 1));
-    if (!mini->env)
-        err_mall(mini);
     i = 0;
     while (env[i])
     {

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 21:06:56 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 18:03:19 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:06:59 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	first_hd_manage(t_main *mini, t_parsing *node, char *str)
 			free_garbage();
 			exit(1);
 		}
-		//free(input);
 	}
 }
 
