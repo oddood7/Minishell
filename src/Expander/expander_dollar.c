@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:03:10 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:21:57 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:19:25 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	expander_doll(t_main *mini, t_parsing *node, int i, int j)
 	return (1);
 }
 
-int get_rv(t_main *mini, t_parsing *node, int i, int j)
+int	get_rv(t_main *mini, t_parsing *node, int i, int j)
 {
 	char	*str_new;
 
@@ -42,71 +42,71 @@ int get_rv(t_main *mini, t_parsing *node, int i, int j)
 	return (2);
 }
 
-int    expanding_bis(t_main *mini, t_parsing *node, int i, int j)
+int	expanding_bis(t_main *mini, t_parsing *node, int i, int j)
 {
-    int    nb_env;
+	int	nb_env;
 
-    nb_env = check_env_var(mini, node->cmd_tab[i], j);
-    if (nb_env >= 0)
-    {
-        if (nb_env == 999)
-            return (expand_dol_qt(mini, node, i, j));
-        else
-            return (expander_doll(mini, node, i, j));
-    }
-    else if (nb_env == -1)
-        return (rm_dollard(mini, node, i, j));
-    else if (nb_env == -2)
-        return (1);
-    else if (nb_env == -3)
-        return (get_rv(mini, node, i, j));
-    return (0);
+	nb_env = check_env_var(mini, node->cmd_tab[i], j);
+	if (nb_env >= 0)
+	{
+		if (nb_env == 420)
+			return (expand_dol_qt(mini, node, i, j));
+		else
+			return (expander_doll(mini, node, i, j));
+	}
+	else if (nb_env == -1)
+		return (rm_dollard(mini, node, i, j));
+	else if (nb_env == -2)
+		return (1);
+	else if (nb_env == -3)
+		return (get_rv(mini, node, i, j));
+	return (0);
 }
 
-int    second_expand(t_main *mini, t_parsing *node, int i, int j)
+int	second_expand(t_main *mini, t_parsing *node, int i, int j)
 {
-    if ((j < (int)ft_strlen(node->cmd_tab[i])) && node->cmd_tab[i][j])
-    {
-        while (node->cmd_tab[i][j])
-        {
-            if (node->cmd_tab[i][j] == '$')
-            {
-                while (node->cmd_tab[i][j] == '$')
-                    j++;
-                if (!node->cmd_tab[i][j])
-                    break ;
-                expanding(mini, node, i, j - 1);
-            }
-            j++;
-            if ((int)ft_strlen(node->cmd_tab[i]) < j)
-                return (0);
-        }
-    }
-    if (j > (int)ft_strlen(node->cmd_tab[i]))
-        return (0);
-    if (!node->cmd_tab[i][j])
-        return (0);
-    return (1);
+	if ((j < (int)ft_strlen(node->cmd_tab[i])) && node->cmd_tab[i][j])
+	{
+		while (node->cmd_tab[i][j])
+		{
+			if (node->cmd_tab[i][j] == '$')
+			{
+				while (node->cmd_tab[i][j] == '$')
+					j++;
+				if (!node->cmd_tab[i][j])
+					break ;
+				expanding(mini, node, i, j - 1);
+			}
+			j++;
+			if ((int)ft_strlen(node->cmd_tab[i]) < j)
+				return (0);
+		}
+	}
+	if (j > (int)ft_strlen(node->cmd_tab[i]))
+		return (0);
+	if (!node->cmd_tab[i][j])
+		return (0);
+	return (1);
 }
 
-void    expanding(t_main *mini, t_parsing *node, int i, int j)
+void	expanding(t_main *mini, t_parsing *node, int i, int j)
 {
-    int            dol;
+	int	dol;
 
-    dol = 0;
-    while ((j < (int)ft_strlen(node->cmd_tab[i])) && node->cmd_tab[i][j])
-    {
-        if (node->cmd_tab[i][j] == '$')
-        {
-            if (!node->cmd_tab[i][j + 1])
-                return ;
-            dol = j;
-            j = while_dol(mini, node, i, dol);
-            if (!j)
-                return ;
-            if (!second_expand(mini, node, i, j))
-                return ;
-        }
-        j++;
-    }
+	dol = 0;
+	while ((j < (int)ft_strlen(node->cmd_tab[i])) && node->cmd_tab[i][j])
+	{
+		if (node->cmd_tab[i][j] == '$')
+		{
+			if (!node->cmd_tab[i][j + 1])
+				return ;
+			dol = j;
+			j = while_dol(mini, node, i, dol);
+			if (!j)
+				return ;
+			if (!second_expand(mini, node, i, j))
+				return ;
+		}
+		j++;
+	}
 }

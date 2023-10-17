@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:37:01 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 14:58:59 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:27:31 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,4 @@ void    get_env(t_main *mini, char **env)
         i++;
     }
     mini->env[i] = NULL;
-}
-
-int	print_env_exp(t_main *mini)
-{
-	int i;
-
-	i = 0;
-	while (mini->env_exp[i])
-	{
-		ft_putendl_fd(mini->env_exp[i], 1);
-		i++;
-	}
-	mini->shell.error = 0;
-	return (1);
 }

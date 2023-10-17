@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:44:53 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:26:53 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ typedef struct s_main
 	char				*input_line;
 	char				*test;
 	char				**env;
-	char				**env_exp;
-	char				**hidetab;
 	char				**tab_input_blank;
 	char				**cmd_paths;
 	t_shell				shell;
