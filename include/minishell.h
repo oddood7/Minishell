@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:26:53 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:21:20 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void			handle_quote_n_expand(t_main *mini);
 void			signal_handler(int sig);
 void			sig_init(void);
 void			handle_eot(t_main *mini);
+void			help_loop(t_main *mini, char *input);
 
 /***** LEXER *****/
 
@@ -278,7 +279,7 @@ void			input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data);
 void			redirections(t_main *mini, t_parsermain *data);
 void			parse_addback(t_parsing **lst, t_parsing *new);
 void			check_quote_redir(t_main *mini, t_lexer *node);
-void			parsing_tab_help(t_main *mini, t_parsing *node, int i, \
+void			parsing_tab_help(t_parsing *node, int i, \
 				int len);
 void			check_tab(t_main *mini);
 void			built_move(t_parsing *node, size_t j);
@@ -419,8 +420,8 @@ t_garbage    *get_garbage(void);
 
 /***** TESTS *****/
 
-void			pr(t_lexer *lexer_list);
+/* void			pr(t_lexer *lexer_list);
 void			pr_redir(t_lexer *lexer_list);
-void			prrr(t_parsing *cmd_parse, int ok);
+void			prrr(t_parsing *cmd_parse, int ok); */
 
 #endif

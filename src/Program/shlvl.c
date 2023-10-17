@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shlvl.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:35:03 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 17:05:29 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	shlvl_err(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -28,10 +28,10 @@ int	shlvl_err(char *str)
 
 void	do_shlvl(t_main *mini, char **env)
 {
-	int shlvl;
-	char *value;
-	char *shell;
-	char *new_shell;
+	int		shlvl;
+	char	*value;
+	char	*shell;
+	char	*new_shell;
 
 	shell = find_var_env(env, "SHLVL");
 	if (!shell)
@@ -40,10 +40,7 @@ void	do_shlvl(t_main *mini, char **env)
 	if (!value || shlvl_err(value))
 		return ;
 	shlvl = ft_atoi(value) + 1;
-	//free(value);
 	value = ft_itoa(shlvl);
 	new_shell = ft_strjoin("SHLVL=", value);
 	change_var_value(mini, new_shell, shell);
-	//free(value);
-	//free(new_shell);
 }

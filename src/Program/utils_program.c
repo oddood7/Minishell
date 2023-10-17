@@ -3,98 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   utils_program.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:03:33 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:08:46 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 17:10:36 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void    built_move(t_parsing *node, size_t j)
+void	built_move(t_parsing *node, size_t j)
 {
-    char    **tab;
-    int        i;
+	char	**tab;
+	int		i;
 
-    i = 0;
-    if (ft_strlen(node->cmd_tab[0]) == j)
-        return ;
-    if (!node->cmd_tab[0][0])
-        return ;
-    while (node->cmd_tab[0][i] == ' ')
-    {
-        i++;
-        if (!node->cmd_tab[0][i])
-            return ;
-    }
-    tab = ft_split(node->cmd_tab[0], ' ');
-    node->cmd_tab = tab;
-    return ;
+	i = 0;
+	if (ft_strlen(node->cmd_tab[0]) == j)
+		return ;
+	if (!node->cmd_tab[0][0])
+		return ;
+	while (node->cmd_tab[0][i] == ' ')
+	{
+		i++;
+		if (!node->cmd_tab[0][i])
+			return ;
+	}
+	tab = ft_split(node->cmd_tab[0], ' ');
+	node->cmd_tab = tab;
+	return ;
 }
 
-int    find_built(char *str)
+int	find_built(char *str)
 {
-    if (!ft_strncmp(str, "echo", 4) || !ft_strncmp(str, "exit", 4))
-        return (4);
-    else if (!ft_strncmp(str, "export", 6))
-        return (6);
-    else if (!ft_strncmp(str, "cd", 2))
-        return (2);
-    else if (!ft_strncmp(str, "unset", 5))
-        return (5);
-    else
-        return (-10);
+	if (!ft_strncmp(str, "echo", 4) || !ft_strncmp(str, "exit", 4))
+		return (4);
+	else if (!ft_strncmp(str, "export", 6))
+		return (6);
+	else if (!ft_strncmp(str, "cd", 2))
+		return (2);
+	else if (!ft_strncmp(str, "unset", 5))
+		return (5);
+	else
+		return (-10);
 }
 
-void    parsing_tab_help(t_main *mini, t_parsing *node, int i, int len)
+void	parsing_tab_help(t_parsing *node, int i, int len)
 {
-    char    *s;
-    char    **tab;
-    int        ok;
-    int        sizetab;
+	char	*s;
+	char	**tab;
+	int		ok;
+	int		sizetab;
 
 	ok = 0;
-    (void)mini;
-    sizetab = sizeof(node->cmd_tab);
-    while (++i <= sizetab)
-    {
-        if (node->cmd_tab[i][0])
-        {
-            ok = i;
-            len = tab_len(node, sizetab, i);
-            break ;
-        }
-    }
-    s = ft_malloc(sizeof(char) * len + 1);
-    parse_dup(node, sizetab, ok, s);
-    tab = ft_split(s, ' ');
-    node->cmd_tab = tab;
+	sizetab = sizeof(node->cmd_tab);
+	while (++i <= sizetab)
+	{
+		if (node->cmd_tab[i][0])
+		{
+			ok = i;
+			len = tab_len(node, sizetab, i);
+			break ;
+		}
+	}
+	s = ft_malloc(sizeof(char) * len + 1);
+	parse_dup(node, sizetab, ok, s);
+	tab = ft_split(s, ' ');
+	node->cmd_tab = tab;
 }
 
-void    check_tab(t_main *mini)
+void	check_tab(t_main *mini)
 {
-    t_parsing    *node;
-    int            i;
+	t_parsing	*node;
+	int			i;
 
-    node = mini->cmd_parse;
-    i = 0;
-    while (node)
-    {
-        i = 0;
-        if (!node->cmd_tab[0])
-            return ;
-        while (node->cmd_tab[i])
-            i++;
-        if (node->doubl == 2 || node->single == 2)
-        {
-            if (quote_tab(node, 0, 0))
-                return ;
-        }
-        if (i == 1 && find_built(node->cmd_tab[0]))
-            built_move(node, find_built(node->cmd_tab[0]));
-        else if (nothing_tab(node->cmd_tab))
-            parsing_tab_help(mini, node, -1, 0);
-        node = node->next;
-    }
+	node = mini->cmd_parse;
+	i = 0;
+	while (node)
+	{
+		i = 0;
+		if (!node->cmd_tab[0])
+			return ;
+		while (node->cmd_tab[i])
+			i++;
+		if (node->doubl == 2 || node->single == 2)
+		{
+			if (quote_tab(node, 0, 0))
+				return ;
+		}
+		if (i == 1 && find_built(node->cmd_tab[0]))
+			built_move(node, find_built(node->cmd_tab[0]));
+		else if (nothing_tab(node->cmd_tab))
+			parsing_tab_help(node, -1, 0);
+		node = node->next;
+	}
 }
