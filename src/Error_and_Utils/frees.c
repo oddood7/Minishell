@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 01:05:42 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:50:11 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 10:38:03 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ void    free_cmd_lst(t_parsing *lst)
     while (tmp)
     {
         lst = tmp->next;
-        if (tmp)
-        {
-            ft_free_lexer(tmp->redirection);
-            //free(tmp);
-        }
+        // if (tmp)
+        // {
+        //     ft_free_lexer(tmp->redirection);
+        //     //free(tmp);
+        // }
         tmp = lst;
     }
     //free(lst);

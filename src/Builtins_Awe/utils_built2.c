@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:31:12 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/16 17:31:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 10:56:19 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	add_env(t_lexer **env_list, char *str)
 	t_lexer	*new_var;
 	t_lexer	*current;
 
-	new_var = ft_calloc(1, sizeof *new_var);
+	new_var = ft_malloc(sizeof *new_var);
 	if (! new_var)	
 		return ;
 	new_var->str = ft_strdup(str);
@@ -62,14 +62,14 @@ t_lexer *copy_list(t_lexer *source)
 	{
         if (new_head == NULL)
 		{
-            new_head = ft_calloc(1, sizeof(t_lexer));
+            new_head = ft_malloc(sizeof(t_lexer));
             new_head->str = current->str;
             new_head->next = NULL;
             tail = new_head;
         }
 		else
 		{
-            tail->next = ft_calloc(1, sizeof(t_lexer));
+            tail->next = ft_malloc(sizeof(t_lexer));
             tail = tail->next;
             tail->str = current->str;
         }

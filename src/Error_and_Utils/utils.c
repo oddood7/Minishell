@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 14:37:14 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:50:11 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 10:38:27 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void    resets(t_main *mini)
     mini->lexer_list = NULL;
     if (mini->syntaxe_check == 0)
     {
-        if (mini->cmd_parse)
-            free_cmd_tab(mini);
-        if (mini->cmd_parse)
-            free_cmd_lst(mini->cmd_parse);
+        // if (mini->cmd_parse)
+        //     free_cmd_tab(mini);
+        // if (mini->cmd_parse)
+        //     free_cmd_lst(mini->cmd_parse);
     }
     mini->syntaxe_check = 0;
     mini->cmd_parse = NULL;

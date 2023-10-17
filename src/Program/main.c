@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:51:24 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 11:35:33 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int    start_in_loop(t_main *mini, char *input)
     if (!do_lexer(mini))
 		main_space("lexer failed.");
 	// pr(mini->lexer_list);
+    mini->cmd_parse = NULL;
     if (!parsing(mini))
     {
         mini->syntaxe_check = 1;
@@ -98,14 +99,14 @@ void    mini_loop(t_main *mini)
             {
                 if (!start_in_loop(mini, input))
                     execute_cmd(mini);
-              //  //resets(mini);
             }
         }
         bool = handle_history(mini, bool, input);
 		if  (bool == 2)
 			return ;
+        free(input);
     }
-    if (mini->tab_input_blank)
+    // if (mini->tab_input_blank)
         //ft_free_tab(mini->tab_input_blank);
     rl_clear_history();
 

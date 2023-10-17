@@ -17,12 +17,12 @@ void	find_3(t_main *mini, char *cmd, int len)
 	if (!ft_strncmp(cmd, "unset", len) && len == 5)
 	{
 		ft_unset(mini, mini->cmd_parse, &mini->env_list);
-		ft_exit(mini, mini->cmd_parse); //changer tous en exit(mini->shell->error);
+		exit(mini->shell.error); //changer tous en exit(mini->shell.error);
 	}
 	if (!ft_strncmp(cmd, "echo", len) && len == 4)
 	{
 		ft_echo(mini, mini->cmd_parse);
-		ft_exit(mini, mini->cmd_parse);
+		exit(mini->shell.error);
 	}
 }
 
@@ -30,17 +30,17 @@ void	find_2(t_main *mini, char *cmd, int len)
 {
 	if (!ft_strncmp(cmd, "exit", len) && len == 4)
 	{
-		ft_exit(mini, mini->cmd_parse);
+		exit(mini->shell.error);
 	}
 	else if (!ft_strncmp(cmd, "export", len) && len == 6)
 	{
 		ft_export(mini, mini->cmd_parse);
-		ft_exit(mini, mini->cmd_parse);
+		exit(mini->shell.error);
 	}
 	else if (!ft_strncmp(cmd, "pwd", len) && len == 3)
 	{
 		ft_pwd(mini);
-		ft_exit(mini, mini->cmd_parse);
+		exit(mini->shell.error);
 	}
 	else
 		find_3(mini, cmd, len);
@@ -60,12 +60,12 @@ void	find(t_main *mini, t_parsing *node)
 	if (!ft_strncmp(cmd, "cd", len) && len == 2)
 	{
 		ft_cd(mini, mini->cmd_parse);
-		ft_exit(mini, mini->cmd_parse);
+		exit(mini->shell.error);
 	}
 	else if (!ft_strncmp(cmd, "env", len) && len == 3)
 	{
 		ft_env(mini, mini->cmd_parse, &mini->env_list);
-		ft_exit(mini, mini->cmd_parse);
+		exit(mini->shell.error);
 	}
 	else
 		find_2(mini, cmd, len);

@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:46 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:32:43 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 10:39:22 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ char	**env_to_char(t_lexer **env_list)
 		env_char[i] = ft_strdup(current->str);
 		if (!env_char[i])
 		{
-			while (i >= 0)
+			// while (i >= 0)
 				//free(env_char[i--]);
 			//free(env_char);
 			return (NULL);

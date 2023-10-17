@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:03:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 17:04:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 10:56:50 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strdupto_n(char *str, char c)
 		len ++;
 		i ++;
 	}
-	tab = ft_calloc((len +1), sizeof(char));
+	tab = ft_malloc((len +1) * sizeof(char));
 	if (!tab)
 		return (NULL);
 	i = 0;
@@ -65,7 +65,7 @@ char	*ft_strdup_from(char *str, char c)
 	start = i;
 	while (str[i++])
 		len ++;
-	tab = ft_calloc((len +1), sizeof(char));
+	tab = ft_malloc((len +1) * sizeof(char));
 	if (!tab)
 		return (NULL);
 	i = start;
@@ -90,7 +90,7 @@ char	*from_end_to_char(char *str, char c)
 	while (i >= 0 && str[i] != c)
 		i --;
 	max = i;
-	tab = ft_calloc((max +1), sizeof(char));
+	tab = ft_malloc((max +1) * sizeof(char));
 	if (!tab)
 		return (NULL);
 	i = 0;

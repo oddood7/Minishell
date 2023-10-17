@@ -53,18 +53,18 @@ void	wait_exec(t_main *mini)
 		g_error = 0;
 	if (g_error != 0)
 		mini->shell.error = g_error;
-	else if (WIFEXITED(status))
+	else if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 	{
-		if (WEXITSTATUS(status) != 0)
-			mini->shell.error = handle_error_bis(WEXITSTATUS(status));
-		else if (WTERMSIG(status) == SIGSEGV)
-		{
-			ft_printf("Segmentation Fault (core dumped)\n");
-			mini->shell.error = handle_error_bis(139);
-		}
-		else
-			mini->shell.error = handle_error_bis(0);		
+		ft_printf("je suis la\n");
+		mini->shell.error = handle_error_bis(WEXITSTATUS(status));
 	}
+	else if (WIFEXITED(status) && WTERMSIG(status) == SIGSEGV)
+	{
+		ft_printf("Segmentation Fault (core dumped)\n");
+		mini->shell.error = handle_error_bis(139);
+	}		
+	else
+		mini->shell.error = handle_error_bis(0);
 }
 
 void	exit_error_redir(t_main *mini, int fd[2])

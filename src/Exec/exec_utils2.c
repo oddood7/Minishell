@@ -95,6 +95,7 @@ void	ft_execve(t_main *mini, t_parsing *node, char *cmd)
 {
 	if (cmd == NULL)
 		no_command(mini, node);
+	signal(SIGQUIT, signal_handler);
 	execve(cmd, node->cmd_tab, mini->env);
 	free_garbage();
 	////ft_free_tab(mini->cmd_paths);
