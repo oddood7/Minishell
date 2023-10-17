@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:26:37 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:08:29 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-t_lexer	*new_lexer(t_main *mini, char *str, int operateur)
-{
-	t_lexer *new;
-	static int i;
-
-	(void)mini;
-	new = (t_lexer *)ft_malloc(sizeof(t_lexer));
-	new->str = str;
-	new->operateur = operateur;
-	new->i = i++;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
-}
 
 int	ft_listadd(t_main *mini, char *str, t_operateurs operateur, t_lexer **lst)
 {

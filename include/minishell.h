@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:05:55 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 15:44:53 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,7 @@ void			change_var_value(t_main *mini, char *new, char *old);
 
 int				parsing(t_main *mini);
 int				var_check(t_main *mini, t_lexer *list);
+int				var_check2(t_main *mini, int len);
 int				dir_file_check(t_main *mini, char *str);
 int				finding_var(t_main *mini, char *str, int len);
 int				count_lex(t_lexer *list);
@@ -257,6 +258,7 @@ int				double_handle(t_main *mini, t_lexer *ongoing);
 int				operateur_handle(t_main *mini);
 int				weird_check(t_main *mini, char *str);
 int				check_all(t_main *mini);
+int				check_all_help(t_main *mini, t_lexer *tmp, int len);
 int				err_syn(t_main *mini, char *str);
 int				two_pipes(t_main *mini, t_lexer *ongoing);
 int				slash_manage(t_main *mini, char *str);

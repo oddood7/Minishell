@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:34:18 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 23:23:33 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:40:38 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,7 @@ int	var_check(t_main *mini, t_lexer *list)
 			len = ft_strlen(list->str);
 			if (list->str[0] == '$')
 			{
-				if (len == 1)
-				{
-					//return (mini->shell.error = handle_error_bis(127));
-					mini->shell.error = handle_error_bis(127);
-					return (mini->shell.error);
-				}
+				var_check2(mini, len);
 				if (!ft_strncmp(list->str + 1, "?", 1) && len == 2)
 					return (0);
 				if (!ft_strncmp(list->str + 1, "PWD", 3) && len == 4)
@@ -78,6 +73,16 @@ int	var_check(t_main *mini, t_lexer *list)
 			}
 			return (dir_file_check(mini, list->str));
 		}
+	}
+	return (0);
+}
+
+int	var_check2(t_main *mini, int len)
+{
+	if (len == 1)
+	{
+		mini->shell.error = handle_error_bis(127);
+		return (mini->shell.error);
 	}
 	return (0);
 }

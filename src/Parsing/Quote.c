@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:42:07 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:27:22 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:05:32 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	*malloc_space(t_main *mini, t_parsing *node, int i)
 	int		size;
 	char	*str;
 
-    (void)mini;
-    size = ft_strlen(node->cmd_tab[i]);
-    str = ft_malloc(sizeof(char) * size + 1);
-    return (str);
+	(void)mini;
+	size = ft_strlen(node->cmd_tab[i]);
+	str = ft_malloc(sizeof(char) * size + 1);
+	return (str);
 }
 
 int	count_quotes(char *str, int quote)

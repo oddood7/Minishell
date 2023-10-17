@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 23:54:38 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:02:56 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,24 +102,8 @@ int	check_all(t_main *mini)
 		return (1);
 	while (tmp)
 	{
-		if (len == 1 && !tmp->operateur)
-		{
-			if ((!ft_strncmp(tmp->str, "!", 1) || \
-			!ft_strncmp(tmp->str, ":", 1)) && ft_strlen(tmp->str) == 1)
-				return (weird_check(mini, tmp->str));
-			else if (!ft_strncmp(tmp->str, ".", 1) && ft_strlen(tmp->str) == 1)
-			{
-				//return (mini->shell.error = handle_error_bis(2));
-				mini->shell.error = handle_error_bis(2);
-				return (mini->shell.error);
-			}
-			else if (!ft_strncmp(tmp->str, "..", 2) && ft_strlen(tmp->str) == 2)
-			{
-				//return (mini->shell.error = handle_error_bis(127));
-				mini->shell.error = handle_error_bis(127);
-				return (mini->shell.error);
-			}
-		}
+		if (check_all_help(mini, tmp, len) == 1)
+			return (1);
 		tmp = tmp->next;
 	}
 	return (0);
