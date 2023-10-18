@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:31:12 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/17 16:30:10 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 12:48:54 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	add_env(t_lexer **env_list, char *str)
 	t_lexer	*current;
 
 	new_var = ft_malloc(sizeof * new_var);
-	new_var->str = str;
+	new_var->str = ft_strdup(str);
 	new_var->next = NULL;
 	if (*env_list)
 	{
