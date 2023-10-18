@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:30:00 by asalic            #+#    #+#             */
-/*   Updated: 2023/10/18 13:00:34 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 13:57:32 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_env_var(const char *name)
 		env_var = "";
 	return (ft_strdup(env_var));
 }
-
+	
 /* 
  * Creer les maillons shell->str en fonction de getenv
  * Check cas d'erreurs

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:00:07 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:01:19 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	start_in_loop(t_main *mini, char *input)
 
 static int	handle_history(t_main *mini, int bool, char *input)
 {
-	if (bool == 1 && !(ft_strcmp(mini->shell.input_bis, input) == 0 \
+	if (bool == 1 && input[0] != '\0' && !(ft_strcmp(mini->shell.input_bis, input) == 0 \
 	&& ft_strlen(mini->shell.input_bis) == ft_strlen(input)))
 		add_history(input);
 	else if (bool == 0)
