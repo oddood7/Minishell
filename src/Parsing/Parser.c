@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:04:11 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:29:03 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 12:56:16 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_parsing	*parse_new(t_main *mini, char **tab, int redir, t_lexer *red)
+t_parsing	*parse_new(char **tab, int redir, t_lexer *red)
 {
 	t_parsing	*new;
 
-	(void)mini;
 	new = (t_parsing *)ft_malloc(sizeof(t_parsing));
 	new->cmd_tab = tab;
 	new->next = NULL;
@@ -52,7 +51,7 @@ t_parsing	*init_cmd(t_main *mini, t_parsermain *data, int n_word)
 		n_word--;
 	}
 	tab[i] = 0;
-	node = parse_new(mini, tab, data->num_redir, data->redirection);
+	node = parse_new(tab, data->num_redir, data->redirection);
 	return (node);
 }
 

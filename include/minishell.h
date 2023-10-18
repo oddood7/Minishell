@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:28:35 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 12:56:30 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ void			parsing_tab_help(t_parsing *node, int i, \
 void			check_tab(t_main *mini);
 void			built_move(t_parsing *node, size_t j);
 t_parsing		*init_cmd(t_main *mini, t_parsermain *data, int n_word);
-t_parsing		*parse_new(t_main *mini, char **tab, int redir, t_lexer *red);
+t_parsing		*parse_new(char **tab, int redir, t_lexer *red);
 
 /***** EXPANDER *****/
 

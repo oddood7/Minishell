@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 21:36:22 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:29:21 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 12:53:54 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,22 @@ char	*find_var_env(char **env, char *var)
 		i++;
 	}
 	return (NULL);
+}
+
+void	get_env(t_main *mini, char **env)
+{
+	int	i;
+
+	i = 0;
+	set_env(mini, env);
+	while (env[i])
+		i++;
+	mini->env = ft_malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (env[i])
+	{
+		mini->env[i] = ft_strdup(env[i]);
+		i++;
+	}
+	mini->env[i] = NULL;
 }

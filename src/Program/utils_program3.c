@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:34:21 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:20:48 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 12:52:37 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_space(char *str)
 
 	i = 0;
 	while (str[i] == ' ')
+		i++;
+	while (str[i] == '\t')
 		i++;
 	if (str[i] == '\0')
 		return (0);

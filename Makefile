@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asalic <asalic@student.42.fr>              +#+  +:+       +#+         #
+#    By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 15:58:12 by lde-mais          #+#    #+#              #
-#    Updated: 2023/10/17 17:28:26 by asalic           ###   ########.fr        #
+#    Updated: 2023/10/18 12:54:27 by lde-mais         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ LIBS 		= -lreadline -Linclude/libft -lft \
 				-Linclude/libft/libftprintf -lftprintf
 
 SRC = ./src/Program/main.c \
-	./src/Program/env.c \
 	./src/Program/env_utils.c \
 	./src/Program/signal.c \
 	./src/Program/shlvl.c \
