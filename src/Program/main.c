@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/18 15:06:16 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 15:52:29 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	handle_quote_n_expand(t_main *mini)
 	while (node)
 	{
 		i = 0;
-		// ft_printf("je vaux : %s\n", node->cmd_tab[i]);
 		while (node->cmd_tab[i])
 		{
 			node->doubl = count_quotes(node->cmd_tab[i], 34);
@@ -52,7 +51,8 @@ int	start_in_loop(t_main *mini, char *input)
 
 static int	handle_history(t_main *mini, int bool, char *input)
 {
-	if (bool == 1 && input[0] != '\0' && !(ft_strcmp(mini->shell.input_bis, input) == 0 \
+	if (bool == 1 && input[0] != '\0' && \
+	!(ft_strcmp(mini->shell.input_bis, input) == 0 \
 	&& ft_strlen(mini->shell.input_bis) == ft_strlen(input)))
 		add_history(input);
 	else if (bool == 0)

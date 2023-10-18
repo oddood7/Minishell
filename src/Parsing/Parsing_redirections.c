@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:51:19 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/18 15:00:30 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 15:51:36 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data)
 	int		id;
 	int		id2;
 
-	
 	file = ft_strdup(tmp->next->str);
 	id = tmp->i;
 	id2 = tmp->next->i;
