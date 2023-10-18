@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:07:53 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 15:27:29 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 13:49:52 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,10 @@ int	string_syn2(t_main *mini, t_lexer *ongoing)
 	return (0);
 }
 
-int	syntax_check(t_main *mini, int size)
+int	syntax_check(t_main *mini)
 {
 	t_lexer	*ongoing;
 
-	(void)size;
 	ongoing = mini->lexer_list;
 	if (ongoing->str)
 	{

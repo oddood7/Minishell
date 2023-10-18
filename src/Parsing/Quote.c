@@ -6,18 +6,17 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:42:07 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:05:32 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:00:32 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*malloc_space(t_main *mini, t_parsing *node, int i)
+char	*malloc_space(t_parsing *node, int i)
 {
 	int		size;
 	char	*str;
 
-	(void)mini;
 	size = ft_strlen(node->cmd_tab[i]);
 	str = ft_malloc(sizeof(char) * size + 1);
 	return (str);
@@ -39,7 +38,7 @@ int	count_quotes(char *str, int quote)
 	return (j);
 }
 
-char	*check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
+char	*check_4_strim(t_parsing *node, int i, int quote)
 {
 	char	*new;
 	int		len;
@@ -49,7 +48,7 @@ char	*check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
 	count_quotes(node->cmd_tab[i], quote) == 2 \
 	&& node->cmd_tab[i][len - 1] == quote)
 	{
-		new = ft_trim(mini, node->cmd_tab[i], quote);
+		new = ft_trim(node->cmd_tab[i], quote);
 		node->cmd_tab[i] = ft_strdup(new);
 		return (new);
 	}
@@ -57,7 +56,7 @@ char	*check_4_strim(t_main *mini, t_parsing *node, int i, int quote)
 		return (NULL);
 }
 
-int	rm_quote(t_main *mini, t_parsing *node, int index, int quote)
+int	rm_quote(t_parsing *node, int index, int quote)
 {
 	char		*new;
 	int			j;
@@ -65,10 +64,10 @@ int	rm_quote(t_main *mini, t_parsing *node, int index, int quote)
 
 	j = 0;
 	i = 0;
-	new = check_4_strim(mini, node, i, quote);
+	new = check_4_strim(node, i, quote);
 	if (!new)
 	{
-		new = malloc_space(mini, node, index);
+		new = malloc_space(node, index);
 		while (node->cmd_tab[index][j])
 		{
 			if (node->cmd_tab[index][j] == quote)
@@ -84,20 +83,19 @@ int	rm_quote(t_main *mini, t_parsing *node, int index, int quote)
 	return (0);
 }
 
-int	quotes(t_main *mini, t_parsing *node, int i)
+int	quotes(t_parsing *node, int i)
 {
 	int	j;
 
 	j = 0;
-	(void)mini;
 	while (node->cmd_tab[i][j])
 	{
 		if (node->redirection)
-			check_quote_redir(mini, node->redirection);
+			check_quote_redir(node->redirection);
 		if (node->cmd_tab[i][j] == 39)
-			return (rm_quote(mini, node, i, 39));
+			return (rm_quote(node, i, 39));
 		else if (node->cmd_tab[i][j] == 34)
-			return (rm_quote(mini, node, i, 34));
+			return (rm_quote(node, i, 34));
 		j++;
 	}
 	return (0);

@@ -44,7 +44,7 @@ void	pipe_work(t_main *mini, int fd[2], t_parsing *node, int old_fd[2])
 	{
 		close_hds(mini, node);
 		if (redir_pipe(mini, node, &old_fd[0], &fd[1]) == -2)
-			exit_error_redir(mini, fd);
+			exit_error_redir(fd);
 		if (old_fd[0] != -1 && node->hd_check == 0)
 		{
 			dup2(old_fd[0], 0);

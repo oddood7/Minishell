@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shlvl.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:35:03 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:29:44 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 13:48:34 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	do_shlvl(t_main *mini, char **env)
 	shell = find_var_env(env, "SHLVL");
 	if (!shell)
 		return ;
-	value = value_env_var(mini, shell);
+	value = value_env_var(shell);
 	if (!value || shlvl_err(value))
 		return ;
 	shlvl = ft_atoi(value) + 1;

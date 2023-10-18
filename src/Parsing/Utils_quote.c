@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:49:41 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:29:14 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 14:01:33 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ int	check_set(char c, int quote)
 	return (0);
 }
 
-char	*ft_trim(t_main *mini, char const *s1, int quote)
+char	*ft_trim(char const *s1, int quote)
 {
 	char		*str;
 	size_t		start;
 	size_t		end;
 	size_t		i;
 
-	(void)mini;
 	start = 0;
 	while (s1[start] && check_set(s1[start], quote))
 		start++;
@@ -45,13 +44,12 @@ char	*ft_trim(t_main *mini, char const *s1, int quote)
 	return (str);
 }
 
-char	*cpquote(t_main *mini, char *s, int j, int quote)
+char	*cpquote(char *s, int j, int quote)
 {
 	int		i;
 	char	*ok;
 
 	i = 0;
-	(void)mini;
 	ok = ft_malloc(sizeof(char) * ft_strlen(s) - count_quotes(s, quote) + 1);
 	while (s[i])
 	{
@@ -68,23 +66,23 @@ char	*cpquote(t_main *mini, char *s, int j, int quote)
 	return (ok);
 }
 
-char	*rm_quote_redir(t_main *mini, char *s, int quote, int j)
+char	*rm_quote_redir(char *s, int quote, int j)
 {
 	char	*new;
 
 	if (count_quotes(s, quote))
 	{
 		if (count_quotes(s, quote) == 2)
-			new = ft_trim(mini, s, quote);
+			new = ft_trim(s, quote);
 		else
-			new = cpquote(mini, s, j, quote);
+			new = cpquote(s, j, quote);
 		return (new);
 	}
 	else
 		return (NULL);
 }
 
-void	check_quote_redir(t_main *mini, t_lexer *node)
+void	check_quote_redir(t_lexer *node)
 {
 	t_lexer	*tmp;
 	char	*s_trim;
@@ -96,12 +94,12 @@ void	check_quote_redir(t_main *mini, t_lexer *node)
 		{
 			if (count_quotes(tmp->str, 39))
 			{
-				s_trim = rm_quote_redir(mini, tmp->str, 39, 0);
+				s_trim = rm_quote_redir(tmp->str, 39, 0);
 				tmp->str = s_trim;
 			}
 			else if (count_quotes(tmp->str, 34))
 			{
-				s_trim = rm_quote_redir(mini, tmp->str, 34, 0);
+				s_trim = rm_quote_redir(tmp->str, 34, 0);
 				tmp->str = s_trim;
 			}
 		}

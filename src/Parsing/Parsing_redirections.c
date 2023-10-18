@@ -6,13 +6,13 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:51:19 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/16 23:03:08 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:42:35 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data)
+void	input_redir(t_lexer *tmp, t_parsermain *data)
 {
 	char	*file;
 	t_lexer	*new;
@@ -22,7 +22,7 @@ void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data)
 	file = ft_strdup(tmp->next->str);
 	id = tmp->i;
 	id2 = tmp->next->i;
-	new = new_lexer(mini, file, tmp->operateur);
+	new = new_lexer(file, tmp->operateur);
 	if (!new)
 	{
 		free_garbage();
@@ -37,7 +37,7 @@ void	input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data)
 	data->num_redir++;
 }
 
-void	redirections(t_main *mini, t_parsermain *data)
+void	redirections(t_parsermain *data)
 {
 	t_lexer	*tmp;
 
@@ -51,7 +51,7 @@ void	redirections(t_main *mini, t_parsermain *data)
 		if (tmp->operateur == PIPE)
 			return ;
 		else
-			input_redir(mini, tmp, data);
+			input_redir(tmp, data);
 	}
-	redirections(mini, data);
+	redirections(data);
 }

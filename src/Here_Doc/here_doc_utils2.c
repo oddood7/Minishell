@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:08:26 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 19:17:51 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 13:36:53 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check)
+void	close_free_hd(t_main *mini, t_parsing *node, int check)
 {
 	int	i;
 
-	(void)(input);
 	i = 0;
 	if (check != -42)
 	{
@@ -36,12 +35,11 @@ void	close_free_hd(t_main *mini, t_parsing *node, char *input, int check)
 	exit (1);
 }
 
-void	write_hd(t_main *mini, char *input, int fd[2])
+void	write_hd(char *input, int fd[2])
 {
 	int	i;
 
 	i = 0;
-	(void)mini;
 	while (input[i])
 	{
 		write(fd[1], &input[i], 1);

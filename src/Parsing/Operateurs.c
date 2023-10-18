@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Operateurs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:11:52 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:28:54 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 13:50:32 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_all(t_main *mini)
 
 	tmp = mini->lexer_list;
 	len = ft_size_list(mini->lexer_list);
-	if (syntax_check(mini, len) || var_check(mini, mini->lexer_list))
+	if (syntax_check(mini) || var_check(mini, mini->lexer_list))
 		return (1);
 	while (tmp)
 	{

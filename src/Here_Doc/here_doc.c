@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 21:06:56 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:44:20 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:37:08 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	here_doc_manage(t_main *mini, t_parsing *node, int fd[2])
 	{
 		input = readline(">");
 		if (!input)
-			close_free_hd(mini, node, input, j);
+			close_free_hd(mini, node, j);
 		if (!init_loop(node, input, fd))
-			close_free_hd(mini, node, input, -42);
-		write_hd(mini, input, fd);
+			close_free_hd(mini, node, -42);
+		write_hd(input, fd);
 		j++;
 	}
 }
@@ -75,13 +75,13 @@ void	first_hd_manage(t_main *mini, t_parsing *node, char *str)
 			printf("bash: warning: here-document at line 1");
 			printf("deliminited by end-of-file");
 			printf("(wanted `%s')\n", str);
-			close_free_hd(mini, node, input, -42);
+			close_free_hd(mini, node, -42);
 			free_garbage();
 			exit(1);
 		}
 		if (!ft_strncmp(input, str, len) && len == ft_strlen(input))
 		{
-			close_free_hd(mini, node, input, -42);
+			close_free_hd(mini, node, -42);
 			free_garbage();
 			exit(1);
 		}

@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 17:00:07 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:00:56 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	handle_quote_n_expand(t_main *mini)
 		{
 			node->doubl = count_quotes(node->cmd_tab[i], 34);
 			node->single = count_quotes(node->cmd_tab[i], 39);
-			if (!quotes(mini, node, i))
+			if (!quotes(node, i))
 				expanding(mini, node, i, 0);
 			i++;
 		}

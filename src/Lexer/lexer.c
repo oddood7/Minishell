@@ -6,17 +6,17 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:59:29 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/18 12:45:41 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:44:06 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_listadd(t_main *mini, char *str, t_operateurs operateur, t_lexer **lst)
+int	ft_listadd(char *str, t_operateurs operateur, t_lexer **lst)
 {
 	t_lexer	*node;
 
-	node = new_lexer(mini, str, operateur);
+	node = new_lexer(str, operateur);
 	if (!node)
 		return (0);
 	if (!lst)
@@ -26,7 +26,7 @@ int	ft_listadd(t_main *mini, char *str, t_operateurs operateur, t_lexer **lst)
 	return (1);
 }
 
-int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
+int	word_add_list(char *str, int i, t_lexer **list)
 {
 	int		j;
 	char	*tmp;
@@ -38,14 +38,14 @@ int	word_add_list(t_main *mini, char *str, int i, t_lexer **list)
 	if (j == 1)
 	{
 		tmp = ft_substr(str, i, j);
-		if (!ft_listadd(mini, tmp, 0, list))
+		if (!ft_listadd(tmp, 0, list))
 			return (-1);
 		return (j);
 	}
 	if (str[i + j - 1] == ' ')
 	j--;
 	tmp = ft_substr(str, i, j);
-	if (!ft_listadd(mini, tmp, 0, list))
+	if (!ft_listadd(tmp, 0, list))
 		return (-1);
 	return (j);
 }
@@ -69,26 +69,26 @@ t_operateurs	is_ope(int c)
 	return (0);
 }
 
-int	add_operateur(t_main *mini, char *str, int i, t_lexer **list)
+int	add_operateur(char *str, int i, t_lexer **list)
 {
 	t_operateurs	ope;
 
 	ope = is_ope(str[i]);
 	if (ope == RIGHT && is_ope(str[i + 1]) == RIGHT)
 	{
-		if (!ft_listadd(mini, NULL, RIGHT_RIGHT, list))
+		if (!ft_listadd(NULL, RIGHT_RIGHT, list))
 			return (-1);
 		return (2);
 	}
 	else if (ope == LEFT && is_ope(str[i + 1]) == LEFT)
 	{
-		if (!ft_listadd(mini, NULL, LEFT_LEFT, list))
+		if (!ft_listadd(NULL, LEFT_LEFT, list))
 			return (-1);
 		return (2);
 	}
 	else if (ope)
 	{
-		if (!ft_listadd(mini, NULL, ope, list))
+		if (!ft_listadd(NULL, ope, list))
 			return (-1);
 		return (1);
 	}
@@ -109,9 +109,9 @@ int	do_lexer(t_main *mini)
 		if (mini->input_line[i] == '\0')
 			break ;
 		if (is_ope(mini->input_line[i]))
-			j = add_operateur(mini, mini->input_line, i, &mini->lexer_list);
+			j = add_operateur(mini->input_line, i, &mini->lexer_list);
 		else
-			j = word_add_list(mini, mini->input_line, i, &mini->lexer_list);
+			j = word_add_list(mini->input_line, i, &mini->lexer_list);
 		if (j < 0)
 			return (0);
 		i += j;

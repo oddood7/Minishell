@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:55:40 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/18 12:56:30 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:00:50 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,9 +164,9 @@ void			help_loop(t_main *mini, char *input);
 /***** LEXER *****/
 
 int				do_lexer(t_main *mini);
-int				add_operateur(t_main *mini, char *str, int i, t_lexer **list);
-int				word_add_list(t_main *mini, char *str, int i, t_lexer **list);
-int				ft_listadd(t_main *mini, char *str, t_operateurs operateur, \
+int				add_operateur(char *str, int i, t_lexer **list);
+int				word_add_list(char *str, int i, t_lexer **list);
+int				ft_listadd(char *str, t_operateurs operateur, \
 				t_lexer **lst);
 int				count_double_quote(char *str, int i);
 int				count_single_quote(char *str, int i);
@@ -181,7 +181,7 @@ void			ft_delfirst(t_lexer **lst);
 void			ft_lstaddback(t_lexer **lst, t_lexer *new);
 void			clean_lexed_list(t_lexer **list);
 t_lexer			*ft_delone(t_lexer **lst);
-t_lexer			*new_lexer(t_main *mini, char *str, int operateur);
+t_lexer			*new_lexer(char *str, int operateur);
 t_operateurs	is_ope(int c);
 
 /**** ERRORS *****/
@@ -225,7 +225,7 @@ void			resets(t_main *mini);
 int				var_copy(t_main *mini, char *tmp, int i);
 int				print_env_exp(t_main *mini);
 int				shlvl_err(char *str);
-char			*value_env_var(t_main *mini, char *str);
+char			*value_env_var(char *str);
 char			*find_var_env(char **env, char *var);
 char			*get_var_name(char *str, t_main *mini);
 void			do_shlvl(t_main *mini, char **env);
@@ -242,8 +242,8 @@ int				var_check2(t_main *mini, int len);
 int				dir_file_check(t_main *mini, char *str);
 int				finding_var(t_main *mini, char *str, int len);
 int				count_lex(t_lexer *list);
-int				rm_quote(t_main *mini, t_parsing *node, int i, int quote);
-int				quotes(t_main *mini, t_parsing *node, int i);
+int				rm_quote(t_parsing *node, int i, int quote);
+int				quotes(t_parsing *node, int i);
 int				check_set(char c, int quote);
 int				left_check(t_main *mini, t_lexer *ope);
 int				right_check(t_main *mini, t_lexer *ope);
@@ -262,32 +262,31 @@ int				slash_manage(t_main *mini, char *str);
 int				string_syn(t_main *mini, char *str);
 int				string_syn_plus(t_main *mini, char *str, int i);
 int				string_syn2(t_main *mini, t_lexer *ongoing);
-int				syntax_check(t_main *mini, int size);
+int				syntax_check(t_main *mini);
 int				count_quotes(char *str, int quote);
 int				find_built(char *str);
-char			*malloc_space(t_main *mini, t_parsing *node, int i);
-char			*check_4_strim(t_main *mini, t_parsing *node, int i, \
-				int quote);
-char			*ft_trim(t_main *mini, char const *s1, int quote);
-char			*cpquote(t_main *mini, char *s, int j, int quote);
-char			*rm_quote_redir(t_main *mini, char *s, int quote, int j);
+char			*malloc_space(t_parsing *node, int i);
+char			*check_4_strim(t_parsing *node, int i, int quote);
+char			*ft_trim(char const *s1, int quote);
+char			*cpquote(char *s, int j, int quote);
+char			*rm_quote_redir(char *s, int quote, int j);
 void			init_parser_data(t_parsermain *data, t_lexer *list, \
 				t_main *mini);
-void			input_redir(t_main *mini, t_lexer *tmp, t_parsermain *data);
-void			redirections(t_main *mini, t_parsermain *data);
+void			input_redir(t_lexer *tmp, t_parsermain *data);
+void			redirections(t_parsermain *data);
 void			parse_addback(t_parsing **lst, t_parsing *new);
-void			check_quote_redir(t_main *mini, t_lexer *node);
+void			check_quote_redir(t_lexer *node);
 void			parsing_tab_help(t_parsing *node, int i, \
 				int len);
 void			check_tab(t_main *mini);
 void			built_move(t_parsing *node, size_t j);
-t_parsing		*init_cmd(t_main *mini, t_parsermain *data, int n_word);
+t_parsing		*init_cmd(t_parsermain *data, int n_word);
 t_parsing		*parse_new(char **tab, int redir, t_lexer *red);
 
 /***** EXPANDER *****/
 
 int				expander_doll(t_main *mini, t_parsing *node, int i, int j);
-int				get_rv(t_main *mini, t_parsing *node, int i, int j);
+int				get_rv(t_main *mini, t_parsing *node, int i);
 int				expanding_bis(t_main *mini, t_parsing *node, int i, int j);
 int				second_expand(t_main *mini, t_parsing *node, int i, int j);
 int				copy_bis(char *s1, char *s2, int i, int ok);
@@ -296,11 +295,11 @@ int				copy_past(t_parsing *cmd_node, int i, int j_dol, \
 int				check_env_bis_qt(char **env, char *str_dol);
 int				check_env_variable_qt(t_main *mini, char *s, int j);
 int				expand_dol_qt(t_main *mini, t_parsing *node, int i, int j);
-int				rm_dollard(t_main *mini, t_parsing *node, int i, int j);
+int				rm_dollard(t_parsing *node, int i, int j);
 int				while_dol(t_main *mini, t_parsing *node, int i, int dol);
 int				check_env_var(t_main *mini, char *s, int j);
 int				check_env_bis(char **env, char *dollar);
-char			*add_qt(t_main *mini, char *s);
+char			*add_qt(char *s);
 char			*keep_good_str_qt(char **env, int nb_env);
 char			*copy_without_dol(t_parsing *node, int i, int j, char *s);
 char			*check_char_after(t_parsing *node, int i, int j_dol);
@@ -357,7 +356,7 @@ void			find_2(t_main *mini, char *cmd, int len);
 void			find_3(t_main *mini, char *cmd, int len);
 void			free_process(t_main *mini);
 void			wait_exec(t_main *mini);
-void			exit_error_redir(t_main *mini, int fd[2]);
+void			exit_error_redir(int fd[2]);
 void			close_pipe(t_main *mini, int count);
 void			no_command(t_main *mini, t_parsing *node);
 void			print_no_command(t_main *mini, char *s, int i);
@@ -395,9 +394,8 @@ char			*var_hd_name(t_main *mini, char *input);
 char			*get_var_content(t_main *mini, char *var_name);
 char			*skip_tmpr(t_lexer *tmpr);
 void			sig_hd(int signal);
-void			close_free_hd(t_main *mini, t_parsing *node, char *input, \
-				int check);
-void			write_hd(t_main *mini, char *input, int fd[2]);
+void			close_free_hd(t_main *mini, t_parsing *node, int check);
+void			write_hd(char *input, int fd[2]);
 void			here_doc_manage(t_main *mini, t_parsing *node, int fd[2]);
 void			first_hd_manage(t_main *mini, t_parsing *node, char *str);
 void			hdinit(t_main *mini);

@@ -6,13 +6,13 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:21:14 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:23:07 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:32:45 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*add_qt(t_main *mini, char *s)
+char	*add_qt(char *s)
 {
 	int		i;
 	int		j;
@@ -20,7 +20,6 @@ char	*add_qt(t_main *mini, char *s)
 
 	i = 0;
 	j = 0;
-	(void)mini;
 	while (s[i])
 		i++;
 	new = ft_malloc(sizeof(char) * i + 2);
@@ -105,7 +104,7 @@ int	expand_dol_qt(t_main *mini, t_parsing *node, int i, int j)
 	if (node->cmd_tab[i][j] == '$')
 	{
 		str_replace = keep_good_str_qt(mini->env, nb_env);
-		final = add_qt(mini, str_replace);
+		final = add_qt(str_replace);
 		copy_past(node, i, j, final);
 		ok = ft_strlen(str_replace);
 		return (ok);

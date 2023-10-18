@@ -6,13 +6,13 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 17:02:19 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:33:46 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:34:23 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	rm_dollard(t_main *mini, t_parsing *node, int i, int j)
+int	rm_dollard(t_parsing *node, int i, int j)
 {
 	int		len_dol;
 	char	*str_new;
@@ -21,7 +21,6 @@ int	rm_dollard(t_main *mini, t_parsing *node, int i, int j)
 
 	len_dol = 0;
 	tmp_j = j;
-	(void)mini;
 	while (node->cmd_tab[i][j] && node->cmd_tab[i][j] != ' ' \
 	&& node->cmd_tab[i][j] != 39 && node->cmd_tab[i][++j] != '$')
 		len_dol++;

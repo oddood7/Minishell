@@ -6,13 +6,13 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 21:36:22 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/18 12:53:54 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:48:26 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*value_env_var(t_main *mini, char *str)
+char	*value_env_var(char *str)
 {
 	char	*tmp;
 	int		i;
@@ -20,7 +20,6 @@ char	*value_env_var(t_main *mini, char *str)
 
 	i = 0;
 	j = 0;
-	(void)mini;
 	if (!str || !ft_strchr(str, '='))
 		return (NULL);
 	while (str[i] != '=')

@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:03:10 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:19:25 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:34:15 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ int	expander_doll(t_main *mini, t_parsing *node, int i, int j)
 	return (1);
 }
 
-int	get_rv(t_main *mini, t_parsing *node, int i, int j)
+int	get_rv(t_main *mini, t_parsing *node, int i)
 {
 	char	*str_new;
 
-	(void)j;
 	if (ft_strlen(node->cmd_tab[i]) == 2)
 		str_new = ft_itoa(mini->shell.error);
 	else
@@ -55,11 +54,11 @@ int	expanding_bis(t_main *mini, t_parsing *node, int i, int j)
 			return (expander_doll(mini, node, i, j));
 	}
 	else if (nb_env == -1)
-		return (rm_dollard(mini, node, i, j));
+		return (rm_dollard(node, i, j));
 	else if (nb_env == -2)
 		return (1);
 	else if (nb_env == -3)
-		return (get_rv(mini, node, i, j));
+		return (get_rv(mini, node, i));
 	return (0);
 }
 

@@ -66,9 +66,8 @@ void	wait_exec(t_main *mini)
 	search_err(mini, status);
 }
 
-void	exit_error_redir(t_main *mini, int fd[2])
+void	exit_error_redir(int fd[2])
 {
-	(void)(mini);
 	if (fd[0] > 1)
 		close (fd[0]);
 	if (fd[1] > 1)

@@ -6,7 +6,7 @@
 /*   By: lde-mais <lde-mais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:53:41 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/17 16:09:11 by lde-mais         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:39:01 by lde-mais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ int	add_w_dig(char *str, int i, int j)
 	return (j);
 }
 
-t_lexer	*new_lexer(t_main *mini, char *str, int operateur)
+t_lexer	*new_lexer(char *str, int operateur)
 {
 	t_lexer			*new;
 	static int		i;
 
-	(void)mini;
 	new = (t_lexer *)ft_malloc(sizeof(t_lexer));
 	new->str = str;
 	new->operateur = operateur;
