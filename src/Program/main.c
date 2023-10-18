@@ -6,7 +6,7 @@
 /*   By: asalic <asalic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:52:48 by lde-mais          #+#    #+#             */
-/*   Updated: 2023/10/18 14:01:19 by asalic           ###   ########.fr       */
+/*   Updated: 2023/10/18 15:06:16 by asalic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	handle_quote_n_expand(t_main *mini)
 	while (node)
 	{
 		i = 0;
+		// ft_printf("je vaux : %s\n", node->cmd_tab[i]);
 		while (node->cmd_tab[i])
 		{
 			node->doubl = count_quotes(node->cmd_tab[i], 34);
